@@ -209,7 +209,7 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0
   .form-grid{grid-template-columns:1fr;}
   .formation-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;gap:32px;}
-  .prog-days{grid-template-columns:repeat(4,1fr);}
+  
   .nav-links{display:none;}
   .counter-bar{gap:12px;}
 }
@@ -517,64 +517,71 @@ footer{background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0
     <h2 class="section-title">Votre <span style="color:#A78BFA;">formation</span> pour le terrain</h2>
     <p class="section-desc" id="txt-s4-desc">Un module intensif de 3 à 7 jours, alternant théorie (YouTube Live) et actions terrain. <strong>Accès réservé aux inscrits.</strong></p>
 
-    <div class="formation-grid">
-      <div class="module-card yt">
-        <div class="module-lock">🔒 Réservé aux inscrits</div>
-        <div class="module-icon">▶️</div>
-        <h3 id="txt-m1-title">Vidéos YouTube Live</h3>
-        <p id="txt-m1-desc">Sessions live animées par Coach Morgan's sur la chaîne YouTube officielle VoteConnect. Théorie, démonstrations, Q&A en direct.</p>
-        <span class="module-tag tag-yt">Live YouTube</span>
-        <span class="module-tag tag-yt">Q&A Direct</span>
-        <a href="https://www.youtube.com/@VoteConnect" target="_blank" class="btn-secondary" style="display:inline-flex;margin-top:16px;font-size:13px;padding:10px 18px;" id="txt-m1-btn">📺 Chaîne VoteConnect</a>
-      </div>
-      <div class="module-card test">
-        <div class="module-lock">🔒 Réservé aux inscrits</div>
-        <div class="module-icon">📋</div>
-        <h3 id="txt-m2-title">Test Global CF v1</h3>
-        <p id="txt-m2-desc">Le support de référence pour valider vos connaissances de l'écosystème ChallengeFinancier™ et du Dispositif CROIRE avant d'aller sur le terrain.</p>
-        <span class="module-tag tag-vert">Disponible J+1</span>
-        <span class="module-tag tag-vert">Document officiel</span>
-        <div style="margin-top:16px;padding:12px;background:rgba(29,158,117,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.5);" id="txt-m2-note">📎 Fichier partagé après inscription validée</div>
-      </div>
-      <div class="module-card tuto">
-        <div class="module-lock">🔒 Réservé aux inscrits</div>
-        <div class="module-icon">📊</div>
-        <h3 id="txt-m3-title">Tutoriel GS CF-DB v2.0</h3>
-        <p id="txt-m3-desc">Guide complet du Google Sheets ChallengeFinancier-DB v2.0 : enregistrer vos recrutements, suivre les métriques, utiliser le Dashboard Admin.</p>
-        <span class="module-tag tag-bleu">Google Sheets</span>
-        <span class="module-tag tag-bleu">Apps Script API</span>
-        <div style="margin-top:16px;padding:12px;background:rgba(24,95,165,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.5);" id="txt-m3-note">📎 Fichier partagé après inscription validée</div>
-      </div>
-      <div class="module-card agenda">
-        <div class="module-lock">🔒 Réservé aux inscrits</div>
-        <div class="module-icon">🗓️</div>
-        <h3 id="txt-m4-title">Chronogramme terrain J0→J14</h3>
-        <p id="txt-m4-desc">Le plan d'action jour par jour avec vos missions exactes : qui contacter, quoi dire, quel message envoyer, comment enregistrer dans le Bot.</p>
-        <span class="module-tag tag-orange">Actions quotidiennes</span>
-        <span class="module-tag tag-orange">KPIs à atteindre</span>
-        <div style="margin-top:16px;padding:12px;background:rgba(216,90,48,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.5);" id="txt-m4-note">📎 Partagé lors de la 1ère session Live</div>
-      </div>
-      <div class="programme-strip">
-        <h3>🗓️ Programme du Module — 7 jours</h3>
-        <div class="prog-days">
-          <div class="prog-day theory"><div class="prog-day-num">J1</div><div class="prog-day-label">Théorie Live</div></div>
-          <div class="prog-day terrain"><div class="prog-day-num">J2</div><div class="prog-day-label">Terrain</div></div>
-          <div class="prog-day both"><div class="prog-day-num">J3</div><div class="prog-day-label">Live + Terrain</div></div>
-          <div class="prog-day terrain"><div class="prog-day-num">J4</div><div class="prog-day-label">Terrain</div></div>
-          <div class="prog-day theory"><div class="prog-day-num">J5</div><div class="prog-day-label">Live Q&A</div></div>
-          <div class="prog-day terrain"><div class="prog-day-num">J6</div><div class="prog-day-label">Terrain</div></div>
-          <div class="prog-day both"><div class="prog-day-num">J7</div><div class="prog-day-label">Bilan + Suite</div></div>
+    <!-- BANNIÈRE BIENTÔT DISPONIBLE -->
+    <div style="margin-top:40px;background:linear-gradient(135deg,rgba(127,119,221,0.15),rgba(24,95,165,0.15));border:1px solid rgba(127,119,221,0.4);border-radius:20px;padding:48px 32px;text-align:center;">
+      <div style="margin-bottom:20px;"><img src="https://i.ibb.co/VWp3SGvq/Simplice-KOUAME.png" alt="Coach Morgan's — Simplice KOUAMÉ" style="width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #A78BFA;box-shadow:0 0 0 6px rgba(127,119,221,0.2);"></div>
+      <h3 style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#A78BFA;margin-bottom:12px;">Salle de Formation — Bientôt disponible</h3>
+      <p style="font-size:16px;color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto 24px;line-height:1.7;">
+        La Salle de Formation ouvre le <strong style="color:var(--vert);">31 Mars 2026 (J+1)</strong> pour tous les inscrits validés.<br>
+        Inscrivez-vous maintenant pour recevoir votre accès dès l'ouverture.
+      </p>
+
+      <!-- SESSIONS PLANIFIÉES -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:32px 0;text-align:left;">
+        <div style="background:rgba(255,0,0,0.08);border:1px solid rgba(255,0,0,0.25);border-radius:12px;padding:20px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#FF6B6B;text-transform:uppercase;margin-bottom:8px;">📺 Session 1 — J1</div>
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Introduction &amp; Écosystème CF™</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.55);">31 Mars 2026 · YouTube Live<br>Coach Morgan's · @VoteConnect</div>
+          <a href="https://www.youtube.com/@VoteConnect" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:#FF0000;color:white;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;">▶ Accéder à la chaîne</a>
         </div>
-        <div class="prog-legend">
-          <div class="prog-legend-item"><div class="prog-legend-dot" style="background:#FF0000;"></div> Session YouTube Live</div>
+        <div style="background:rgba(29,158,117,0.08);border:1px solid rgba(29,158,117,0.25);border-radius:12px;padding:20px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--vert);text-transform:uppercase;margin-bottom:8px;">📋 Support 1 — J+1</div>
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Test Global CF v1</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.55);">Validation connaissances<br>ChallengeFinancier™ + Dispositif CROIRE</div>
+          <div style="margin-top:12px;background:rgba(29,158,117,0.15);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--vert);font-weight:600;">🔒 Envoyé par WhatsApp après validation</div>
+        </div>
+        <div style="background:rgba(24,95,165,0.08);border:1px solid rgba(24,95,165,0.25);border-radius:12px;padding:20px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#85B7EB;text-transform:uppercase;margin-bottom:8px;">📊 Support 2 — J+1</div>
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Tutoriel GS CF-DB v2.1</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.55);">Guide Google Sheets CF-DB<br>Enregistrement · Métriques · Dashboard</div>
+          <div style="margin-top:12px;background:rgba(24,95,165,0.15);border-radius:8px;padding:8px 12px;font-size:12px;color:#85B7EB;font-weight:600;">🔒 Envoyé par WhatsApp après validation</div>
+        </div>
+        <div style="background:rgba(216,90,48,0.08);border:1px solid rgba(216,90,48,0.25);border-radius:12px;padding:20px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#F0997B;text-transform:uppercase;margin-bottom:8px;">🗓️ Chronogramme — J0→J14</div>
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Plan d'action terrain</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.55);">Missions quotidiennes · KPIs<br>Messages WhatsApp officiels</div>
+          <div style="margin-top:12px;background:rgba(216,90,48,0.15);border-radius:8px;padding:8px 12px;font-size:12px;color:#F0997B;font-weight:600;">🔒 Partagé lors de la 1ère session Live</div>
+        </div>
+      </div>
+
+      <!-- PROGRAMME 7 JOURS -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:24px;margin-top:8px;text-align:left;">
+        <h4 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:20px;text-align:center;">🗓️ Programme du Module — 7 jours</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+          <div class="prog-day theory" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J1</div><div class="prog-day-label">Théorie Live</div></div>
+          <div class="prog-day terrain" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J2</div><div class="prog-day-label">Terrain</div></div>
+          <div class="prog-day both" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J3</div><div class="prog-day-label">Live + Terrain</div></div>
+          <div class="prog-day terrain" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J4</div><div class="prog-day-label">Terrain</div></div>
+          <div class="prog-day theory" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J5</div><div class="prog-day-label">Live Q&A</div></div>
+          <div class="prog-day terrain" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J6</div><div class="prog-day-label">Terrain</div></div>
+          <div class="prog-day both" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J7</div><div class="prog-day-label">Bilan + Suite</div></div>
+        </div>
+        <div class="prog-legend" style="justify-content:center;margin-top:16px;">
+          <div class="prog-legend-item"><div class="prog-legend-dot" style="background:#FF0000;"></div> YouTube Live — Coach Morgan's</div>
           <div class="prog-legend-item"><div class="prog-legend-dot" style="background:var(--vert);"></div> Actions terrain</div>
           <div class="prog-legend-item"><div class="prog-legend-dot" style="background:var(--bleu);"></div> Session mixte</div>
         </div>
       </div>
+
+      <!-- CTA INSCRIPTION -->
+      <div style="margin-top:32px;">
+        <a href="#inscription" class="btn-primary" style="font-size:16px;padding:18px 36px;" id="txt-btn-formation">🌱 S'inscrire pour accéder à la formation</a>
+        <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,0.4);">
+          📱 Après validation, vous recevrez vos accès par WhatsApp · +225 07 67 56 09 08
+        </p>
+      </div>
     </div>
-    <div style="margin-top:32px;text-align:center;">
-      <a href="#inscription" class="btn-primary" style="font-size:16px;padding:18px 36px;" id="txt-btn-formation">🌱 S'inscrire pour accéder à la formation</a>
-    </div>
+
   </div>
 </section>
 
