@@ -266,7 +266,7 @@ section {
   border-radius: var(--radius); text-align: center;
 }
 .tg-link-url {
-  font-family: 'Syne', sans-serif; font-size: clamp(14px, 4vw, 22px); font-weight: 800; word-break: break-all;
+  font-family: 'Syne', sans-serif; font-size: clamp(11px, 3.2vw, 18px); font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   color: var(--bleu-clair); display: block; margin-bottom: 8px;
 }
 .tg-link p { font-size: 14px; color: rgba(255,255,255,0.55); }
@@ -527,7 +527,7 @@ footer {
         <span class="flag-pill">🇧🇯 <span data-fr="Campagne Wadagni-CI" data-en="Wadagni Campaign" data-fon="Azɔ Wadagni-CI" data-yoruba="Ipolongo Wadagni">Campagne Wadagni-CI</span></span>
       </div>
       <div class="hero-btns fade-up-4">
-        <a href="#inscription" class="btn-primary" data-fr="⚔️ Je rejoins l'équipe" data-en="⚔️ I join the team" data-fon="⚔️ Un wá" data-yoruba="⚔️ Mo darapọ mọ">⚔️ Je rejoins l'équipe</a>
+        <a href="#inscription" class="btn-primary" data-fr="🌱 Je rejoins l'équipe" data-en="🌱 I join the team" data-fon="🌱 Un wá" data-yoruba="🌱 Mo darapọ mọ">🌱 Je rejoins l'équipe</a>
         <a href="#telegram" class="btn-secondary" data-fr="📱 Guide Telegram" data-en="📱 Telegram Guide" data-fon="📱 Kplɔ́n Telegram" data-yoruba="📱 Itọsọna Telegram">📱 Guide Telegram</a>
       </div>
     </div>
@@ -702,7 +702,7 @@ footer {
     <div class="counter-bar">
       <div class="counter-card">
         <div class="counter-val" style="color:var(--vert);" id="counter-animateurs">0</div>
-        <div class="counter-label">⚔️ Animateurs LFA-CI inscrits</div>
+        <div class="counter-label">🌱 Animateurs LFA-CI inscrits</div>
       </div>
       <div class="counter-card">
         <div class="counter-val" style="color:var(--benin);" id="counter-coords">0</div>
@@ -731,7 +731,7 @@ footer {
     <p class="section-desc" data-fr="Deux profils, une seule mission : La Grande Réappropriation. Remplissez le formulaire correspondant à votre rôle." data-en="Two profiles, one mission: La Grande Réappropriation. Fill in the form for your role." data-fon="Profil wè ɖé é sín mɛ wà kpɔ́ GR." data-yoruba="Awọn ipa meji, ise kan: La Grande Réappropriation.">Deux profils, une seule mission : La Grande Réappropriation. Remplissez le formulaire correspondant à votre rôle.</p>
 
     <div class="inscription-tabs">
-      <div class="ins-tab active" onclick="showTab('animateur')" data-fr="⚔️ Animateur LFA-CI" data-en="⚔️ LFA-CI Animator" data-fon="⚔️ Animateur LFA-CI" data-yoruba="⚔️ Alakoso LFA-CI">⚔️ Animateur LFA-CI</div>
+      <div class="ins-tab active" onclick="showTab('animateur')" data-fr="🌱 Animateur LFA-CI" data-en="🌱 LFA-CI Animator" data-fon="🌱 Animateur LFA-CI" data-yoruba="🌱 Alakoso LFA-CI">🌱 Animateur LFA-CI</div>
       <div class="ins-tab" onclick="showTab('coord')" data-fr="🇧🇯 Coordinateur Bénin-CI" data-en="🇧🇯 Benin-CI Coordinator" data-fon="🇧🇯 Coordinateur Bénin-CI" data-yoruba="🇧🇯 Alakoso Bénin-CI">🇧🇯 Coordinateur Bénin-CI</div>
     </div>
 
@@ -785,11 +785,11 @@ footer {
             <textarea name="motivation" placeholder="En quelques mots..."></textarea>
           </div>
         </div>
-        <button type="submit" class="form-submit orange" data-fr="⚔️ Je m'inscris comme Animateur LFA-CI" data-en="⚔️ I register as LFA-CI Animator" data-fon="⚔️ Un ɖó nyikɔ ce" data-yoruba="⚔️ Mo forukọsilẹ bi Alakoso LFA-CI">⚔️ Je m'inscris comme Animateur LFA-CI</button>
+        <button type="submit" class="form-submit orange" data-fr="🌱 Je m'inscris comme Animateur LFA-CI" data-en="🌱 I register as LFA-CI Animator" data-fon="🌱 Un ɖó nyikɔ ce" data-yoruba="🌱 Mo forukọsilẹ bi Alakoso LFA-CI">🌱 Je m'inscris comme Animateur LFA-CI</button>
         <p class="form-note" data-fr="✅ Après inscription, vous recevrez le lien Bot CHALLENGER + votre accès à la Salle de Formation." data-en="✅ After registration, you will receive the CHALLENGER Bot link + your access to the Training Room." data-fon="✅ Ðò bɛ́ wǔ hú, a na mɔ link Bot CHALLENGER." data-yoruba="✅ Lẹhin forukọsilẹ, iwọ yoo gba ọna asopọ Bot CHALLENGER.">✅ Après inscription, vous recevrez le lien Bot CHALLENGER + votre accès à la Salle de Formation.</p>
       </form>
       <div class="success-msg" id="success-animateur">
-        <h3>⚔️ Bienvenue, Animateur !</h3>
+        <h3>🌱 Bienvenue, Animateur !</h3>
         <p>Votre inscription a été enregistrée avec succès. Vous allez recevoir un message WhatsApp avec le lien Bot CHALLENGER et votre accès à la Salle de Formation.</p>
         <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="btn-primary">🤖 Ouvrir le Bot CHALLENGER maintenant</a>
       </div>
@@ -935,7 +935,7 @@ footer {
 
     <div style="margin-top:32px;text-align:center;">
       <a href="#inscription" class="btn-primary" style="font-size:16px;padding:18px 36px;">
-        <span data-fr="⚔️ S'inscrire pour accéder à la formation" data-en="⚔️ Register to access training" data-fon="⚔️ Ðó nyikɔ ce" data-yoruba="⚔️ Forukọsilẹ lati wọle si ikẹkọ">⚔️ S'inscrire pour accéder à la formation</span>
+        <span data-fr="🌱 S'inscrire pour accéder à la formation" data-en="🌱 Register to access training" data-fon="🌱 Ðó nyikɔ ce" data-yoruba="🌱 Forukọsilẹ lati wọle si ikẹkọ">🌱 S'inscrire pour accéder à la formation</span>
       </a>
     </div>
   </div>
