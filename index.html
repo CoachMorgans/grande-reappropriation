@@ -100,14 +100,14 @@ nav {
 
 /* ── HERO ────────────────────────────────────────────────── */
 .hero {
-  min-height: 92vh;
-  display: flex; align-items: center; justify-content: center;
-  padding: 60px 24px;
+  width: 100%;
+  padding: 60px 40px;
   position: relative;
   background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(24,95,165,0.35) 0%, transparent 70%),
               radial-gradient(ellipse 60% 40% at 80% 80%, rgba(29,158,117,0.15) 0%, transparent 60%),
               var(--noir);
   overflow: hidden;
+  box-sizing: border-box;
 }
 .hero::before {
   content: '';
@@ -118,9 +118,18 @@ nav {
 }
 .hero-inner {
   max-width: 1100px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: center;
+  display: flex; flex-wrap: wrap;
+  gap: 48px; align-items: center;
   position: relative; z-index: 1;
+}
+.hero-left {
+  flex: 1 1 420px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.hero-right {
+  flex: 0 1 380px;
+  min-width: 0;
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
@@ -137,8 +146,8 @@ nav {
   0%,100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(1.3); }
 }
-.hero h1 {
-  font-size: clamp(24px, 7vw, 58px);
+.hero h1 { word-break: break-word; overflow-wrap: break-word;
+  font-size: 48px;
   font-weight: 800; line-height: 1.1;
   margin-bottom: 20px;
 }
@@ -459,11 +468,13 @@ footer {
 /* ── RESPONSIVE ──────────────────────────────────────────── */
 @media (max-width: 768px) {
   .hero-inner { grid-template-columns: 1fr; }
-  .hero { padding: 40px 20px; overflow-x: hidden; }
-  .hero h1 { font-size: clamp(22px, 9vw, 40px); word-break: break-word; overflow-wrap: break-word; }
+  .hero { padding: 32px 20px; }
+  .hero h1 { word-break: break-word; overflow-wrap: break-word; font-size: 20px; }
   .hero-sub { font-size: 14px; }
+  .hero-left { flex: 1 1 100%; }
+  .hero-right { flex: 1 1 100%; }
   .bot-card { display: block; margin-top: 32px; }
-  .bot-stats { grid-template-columns: repeat(4, 1fr); }
+  .bot-stats { grid-template-columns: repeat(3, 1fr); }
   .bot-stat-val { font-size: 16px; }
   .countdown-num { font-size: 22px; }
   .form-grid { grid-template-columns: 1fr; }
@@ -525,8 +536,16 @@ footer {
         <span class="accent">Réappropriation</span><br>
         <span class="accent-vert" data-fr="est en marche." data-en="is underway." data-fon="ɖò yi." data-yoruba="ti bẹrẹ.">est en marche.</span>
       </h1>
-      <p class="hero-sub fade-up-3" data-fr="De Abidjan aux 14 capitales de la Zone FCFA. Rejoignez l'équipe VoteConnect — Animateurs LFA-CI et Coordinateurs Bénin-CI — et construisez le pays que vous voulez laisser à vos enfants." data-en="From Abidjan to the 14 capitals of the FCFA Zone. Join the VoteConnect team and build the country you want to leave to your children." data-fon="Sín Abidjan jɔ azɔxwé 14 tɔn lɛ bǐ mɛ. Wá na mɔ hudo nú VoteConnect." data-yoruba="Lati Abidjan si awọn olu-ilu 14 ti Agbegbe FCFA. Darapọ mọ ẹgbẹ VoteConnect.">
-        De Abidjan aux 14 capitales de la Zone FCFA. Rejoignez l'équipe VoteConnect — Animateurs LFA-CI et Coordinateurs Bénin-CI — et construisez le pays que vous voulez laisser à vos enfants.
+      <p class="hero-sub fade-up-3"
+        data-fr="De Abidjan aux 14 capitales de la Zone FCFA. Rejoignez l'équipe VoteConnect et construisez le pays que vous voulez laisser à vos enfants."
+        data-en="From Abidjan to the 14 capitals of the FCFA Zone. Join the VoteConnect team and build the country you want to leave to your children."
+        data-fon="Sín Abidjan jɔ azɔxwé 14 tɔn lɛ bǐ mɛ. Wá na mɔ hudo nú VoteConnect."
+        data-yoruba="Lati Abidjan si awọn olu-ilu 14 ti Agbegbe FCFA. Darapọ mọ ẹgbẹ VoteConnect.">
+        De Abidjan aux 14 capitales de la Zone FCFA. Rejoignez l'équipe VoteConnect —
+        <strong style="color:#1D9E75;font-family:'Syne',sans-serif;font-weight:700;">Animateurs LFA-CI</strong>
+        et
+        <strong style="color:#BA7517;font-family:'Syne',sans-serif;font-weight:700;">Coordinateurs Bénin-CI</strong>
+        — et construisez le pays que vous voulez laisser à vos enfants.
       </p>
       <div class="hero-flags fade-up-3">
         <span class="flag-pill">🇨🇮 <span data-fr="ChallengeFinancier™ CI" data-en="ChallengeFinancier™ CI" data-fon="ChallengeFinancier™ CI" data-yoruba="ChallengeFinancier™ CI">ChallengeFinancier™ CI</span></span>
@@ -538,6 +557,8 @@ footer {
       </div>
     </div>
 
+    </div>
+    <div class="hero-right">
     <div class="bot-card fade-up-3">
       <div class="bot-avatar" style="background:transparent;border:none;padding:0;">
         <img src="https://i.ibb.co/nMMn7Tx2/Logo-Bot-CF.png" alt="Bot CHALLENGER" style="width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.15);">
@@ -550,10 +571,7 @@ footer {
           <div class="bot-stat-val">20</div>
           <div class="bot-stat-label">Produits TCL</div>
         </div>
-        <div class="bot-stat">
-          <div class="bot-stat-val">7</div>
-          <div class="bot-stat-label">Boutons Bénin-CI</div>
-        </div>
+
         <div class="bot-stat">
           <div class="bot-stat-val">24/7</div>
           <div class="bot-stat-label">Disponibilité</div>
@@ -578,6 +596,7 @@ footer {
       <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="btn-telegram" style="width:100%;justify-content:center;margin-top:20px;">
         🤖 Ouvrir le Bot CHALLENGER
       </a>
+    </div>
     </div>
   </div>
 </section>
