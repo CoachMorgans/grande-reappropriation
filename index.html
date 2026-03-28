@@ -459,7 +459,10 @@ footer {
 /* ── RESPONSIVE ──────────────────────────────────────────── */
 @media (max-width: 768px) {
   .hero-inner { grid-template-columns: 1fr; }
-  .bot-card { display: none; }
+  .bot-card { display: block; margin-top: 32px; }
+  .bot-stats { grid-template-columns: repeat(4, 1fr); }
+  .bot-stat-val { font-size: 16px; }
+  .countdown-num { font-size: 22px; }
   .form-grid { grid-template-columns: 1fr; }
   .formation-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -533,8 +536,8 @@ footer {
     </div>
 
     <div class="bot-card fade-up-3">
-      <div class="bot-avatar">
-        ₿
+      <div class="bot-avatar" style="background:transparent;border:none;padding:0;">
+        <img src="https://i.ibb.co/nMMn7Tx2/Logo-Bot-CF.png" alt="Bot CHALLENGER" style="width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.15);">
         <div class="bot-live-dot"></div>
       </div>
       <div class="bot-name">Bot CHALLENGER</div>
@@ -800,21 +803,21 @@ footer {
       <form id="form-coord" onsubmit="submitForm(event, 'coord')">
         <div class="form-grid">
           <div class="form-group">
-            <label>Prénom *</label>
+            <label data-fr="Prénom *" data-en="First name *" data-fon="Nyikɔ towe *" data-yoruba="Orukọ akọkọ *">Prénom *</label>
             <input type="text" name="prenom" required placeholder="Votre prénom">
           </div>
           <div class="form-group">
-            <label>Nom *</label>
+            <label data-fr="Nom *" data-en="Last name *" data-fon="Nyi kɔ gando *" data-yoruba="Orukọ idile *">Nom *</label>
             <input type="text" name="nom" required placeholder="Votre nom">
           </div>
           <div class="form-group">
-            <label>Téléphone / WhatsApp *</label>
+            <label data-fr="Téléphone / WhatsApp *" data-en="Phone / WhatsApp *" data-fon="Telefonu towe *" data-yoruba="Foonu / WhatsApp *">Téléphone / WhatsApp *</label>
             <input type="tel" name="telephone" required placeholder="+225 07 XX XX XX XX">
           </div>
           <div class="form-group">
-            <label>Quartier à Abidjan *</label>
+            <label data-fr="Quartier à Abidjan *" data-en="District in Abidjan *" data-fon="Agblanagan ɖò Abidjan *" data-yoruba="Agbegbe ni Abidjan *">Quartier à Abidjan *</label>
             <select name="quartier_abidjan" required>
-              <option value="">-- Votre quartier --</option>
+              <option value="" data-fr="-- Votre quartier --" data-en="-- Your district --" data-fon="-- Agblanagan towe --" data-yoruba="-- Agbegbe rẹ --">-- Votre quartier --</option>
               <option value="Adjame">Adjamé</option>
               <option value="Yopougon">Yopougon</option>
               <option value="Abobo">Abobo</option>
@@ -823,30 +826,30 @@ footer {
               <option value="Koumassi">Koumassi</option>
               <option value="Treichville">Treichville</option>
               <option value="Plateau">Plateau</option>
-              <option value="Autre">Autre</option>
+              <option value="Autre" data-fr="Autre" data-en="Other" data-fon="Vǒ" data-yoruba="Miiran">Autre</option>
             </select>
           </div>
           <div class="form-group">
-            <label>Ville / Département d'origine au Bénin *</label>
+            <label data-fr="Ville / Département d'origine au Bénin *" data-en="City of origin in Benin *" data-fon="Dɔ̌ towe ɖò Bénin *" data-yoruba="Ilu abinibi ni Bénin *">Ville / Département d'origine au Bénin *</label>
             <input type="text" name="ville_benin" required placeholder="Ex: Cotonou, Porto-Novo, Parakou...">
           </div>
           <div class="form-group">
-            <label>Communauté / Association béninoise</label>
+            <label data-fr="Communauté / Association béninoise" data-en="Beninese community / Association" data-fon="Gbɛ̌tɔ lɛ tɔn / Aklunɔ" data-yoruba="Agbegbe / Ẹgbẹ ara Bénin">Communauté / Association béninoise</label>
             <input type="text" name="association" placeholder="Ex: Association des Béninois de Yopougon...">
           </div>
           <div class="form-group full">
-            <label>Combien de personnes pouvez-vous mobiliser pour le vote ?</label>
+            <label data-fr="Combien de personnes pouvez-vous mobiliser pour le vote ?" data-en="How many people can you mobilize for the vote?" data-fon="Gbɛ̌tɔ lɛ tɛnmɛ jɛ nú a sixu bló azɔ ɖé?" data-yoruba="Elo ni eniyan ti o le gba fun idibo?">Combien de personnes pouvez-vous mobiliser pour le vote ?</label>
             <select name="capacite_mobilisation">
-              <option value="">-- Estimation --</option>
-              <option value="1-10">1 à 10 personnes</option>
-              <option value="10-50">10 à 50 personnes</option>
-              <option value="50-100">50 à 100 personnes</option>
-              <option value="100+">Plus de 100 personnes</option>
+              <option value="" data-fr="-- Estimation --" data-en="-- Estimate --" data-fon="-- Tɛnmɛ --" data-yoruba="-- Iṣiro --">-- Estimation --</option>
+              <option value="1-10" data-fr="1 à 10 personnes" data-en="1 to 10 people" data-fon="Mɛ 1 jɔ 10" data-yoruba="Eniyan 1 si 10">1 à 10 personnes</option>
+              <option value="10-50" data-fr="10 à 50 personnes" data-en="10 to 50 people" data-fon="Mɛ 10 jɔ 50" data-yoruba="Eniyan 10 si 50">10 à 50 personnes</option>
+              <option value="50-100" data-fr="50 à 100 personnes" data-en="50 to 100 people" data-fon="Mɛ 50 jɔ 100" data-yoruba="Eniyan 50 si 100">50 à 100 personnes</option>
+              <option value="100+" data-fr="Plus de 100 personnes" data-en="More than 100 people" data-fon="Mɛ 100 jɔ síìn" data-yoruba="Ju eniyan 100 lọ">Plus de 100 personnes</option>
             </select>
           </div>
         </div>
-        <button type="submit" class="form-submit benin">🇧🇯 Je m'inscris comme Coordinateur Bénin-CI</button>
-        <p class="form-note">✅ Après inscription, vous recevrez le lien Bot CHALLENGER + le guide complet pour mobiliser votre communauté béninoise d'Abidjan.</p>
+        <button type="submit" class="form-submit benin" data-fr="🇧🇯 Je m'inscris comme Coordinateur Bénin-CI" data-en="🇧🇯 I register as Benin-CI Coordinator" data-fon="🇧🇯 Un ɖó nyikɔ ce dó coordinateur" data-yoruba="🇧🇯 Mo forukọsilẹ bi Alakoso Bénin-CI">🇧🇯 Je m'inscris comme Coordinateur Bénin-CI</button>
+        <p class="form-note" data-fr="✅ Après inscription, vous recevrez le lien Bot CHALLENGER + le guide complet pour mobiliser votre communauté béninoise d'Abidjan." data-en="✅ After registration, you will receive the CHALLENGER Bot link + the complete guide to mobilize your Beninese community in Abidjan." data-fon="✅ Ðò bɛ́ wǔ hú, a na mɔ link Bot CHALLENGER kpo kplɔ́nlɛ̀do ɖaxó ɔ kpo." data-yoruba="✅ Lẹhin forukọsilẹ, iwọ yoo gba ọna asopọ Bot CHALLENGER + itọsọna pipe.">✅ Après inscription, vous recevrez le lien Bot CHALLENGER + le guide complet pour mobiliser votre communauté béninoise d'Abidjan.</p>
       </form>
       <div class="success-msg" id="success-coord">
         <h3>🇧🇯 Bienvenue, Coordinateur !</h3>
