@@ -4,895 +4,1106 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La Grande Réappropriation — Rejoignez l'équipe VoteConnect</title>
-<meta name="description" content="Rejoignez La Grande Réappropriation — Bot CHALLENGER × Campagne officielle 2026. Animateurs LFA-CI et Coordinateurs Bénin-CI.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bleu:#185FA5; --bleu-fonce:#0C3B6E; --bleu-clair:#EBF5FB;
-  --vert:#1D9E75; --vert-fonce:#0F6E56; --vert-clair:#E1F5EE;
-  --orange:#D85A30; --benin:#008751; --or:#BA7517;
-  --noir:#0D1117; --gris:#718096; --blanc:#FFFFFF;
-  --radius:14px; --radius-sm:8px;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:var(--noir);color:var(--blanc);line-height:1.6;overflow-x:hidden;}
-h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.2;}
+  :root {
+    --vert: #1D9E75; --vert-fonce: #0d7a58; --orange: #D85A30;
+    --bleu: #185FA5; --or: #C9A84C; --noir: #0a0a0a;
+    --gris-fonce: #1a1a1a; --texte: #e8e8e0; --texte-doux: #a0a090;
+    --rouge-alerte: #e74c3c;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Georgia','Times New Roman',serif; background: var(--noir); color: var(--texte); line-height: 1.65; overflow-x: hidden; }
+  a { color: var(--vert); text-decoration: none; transition: color 0.2s; }
+  a:hover { color: var(--or); }
+  img { max-width: 100%; }
 
-/* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);padding:0 24px;}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-logo-icon{width:34px;height:34px;border-radius:8px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:white;font-family:'Syne',sans-serif;}
-.nav-logo-text{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:white;}
-.nav-links{display:flex;gap:24px;align-items:center;}
-.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
-.nav-links a:hover{color:white;}
-.nav-cta{background:var(--orange);color:white;padding:8px 18px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;text-decoration:none;font-family:'Syne',sans-serif;transition:all 0.2s;}
-.nav-cta:hover{background:#C04D26;}
+  /* ===== NAV — CORRECTION 1 : logo compact sur une ligne ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,10,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(29,158,117,0.25);
+    padding: 0 0.75rem;
+    display: flex; align-items: center;
+    justify-content: space-between; height: 52px; gap: 0.5rem;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 0.4rem; text-decoration: none; flex-shrink: 0; min-width: 0; }
+  .nav-logo-badge {
+    width: 28px; height: 28px; background: var(--orange); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.68rem; font-weight: 900; color: white; font-family: sans-serif;
+    flex-shrink: 0;
+  }
+  /* Titre nav : une seule ligne, tronqué si nécessaire */
+  .nav-logo-text {
+    font-size: 0.78rem; font-weight: bold; color: var(--vert);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 120px; /* limite sur mobile */
+  }
+  .nav-links { display: none; } /* masqué sur mobile */
+  @media (min-width: 700px) {
+    .nav-links { display: flex; gap: 1rem; align-items: center; }
+    .nav-links a { color: var(--texte-doux); font-size: 0.8rem; font-family: sans-serif; }
+    .nav-links a:hover { color: var(--vert); }
+    .nav-logo-text { max-width: 180px; font-size: 0.88rem; }
+  }
+  .nav-bot { background: var(--vert); color: white !important; padding: 0.3rem 0.7rem; border-radius: 4px; font-size: 0.72rem; font-family: sans-serif; white-space: nowrap; }
+  /* LANG SWITCHER — 4 boutons compacts, jamais tronqués */
+  .lang-switcher { display: flex; gap: 0.2rem; flex-shrink: 0; }
+  .lang-btn {
+    background: none; border: 1px solid rgba(255,255,255,0.15);
+    color: var(--texte-doux); padding: 0.18rem 0.32rem;
+    border-radius: 3px; cursor: pointer; font-size: 0.64rem; font-family: sans-serif;
+    transition: all 0.2s; white-space: nowrap; line-height: 1.4;
+  }
+  .lang-btn:hover, .lang-btn.active { border-color: var(--vert); color: var(--vert); background: rgba(29,158,117,0.1); }
 
-/* LANG */
-.lang-bar{background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.06);padding:8px 24px;display:flex;justify-content:flex-end;gap:8px;}
-.lang-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;}
-.lang-btn:hover,.lang-btn.active{background:var(--bleu);border-color:var(--bleu);color:white;}
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    padding: 68px 1.25rem 3rem;
+    background: radial-gradient(ellipse at 20% 50%, rgba(29,158,117,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(216,90,48,0.06) 0%, transparent 50%), var(--noir);
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(29,158,117,0.1); border: 1px solid rgba(29,158,117,0.3);
+    color: var(--vert); padding: 0.35rem 0.9rem; border-radius: 20px;
+    font-size: 0.75rem; font-family: sans-serif; margin-bottom: 1.4rem;
+  }
+  .hero h1 { font-size: clamp(1.9rem, 6vw, 4rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.1rem; }
+  .hero h1 .gr-orange { color: var(--orange); }
+  .hero h1 .gr-vert { color: var(--vert); }
+  .hero p { font-size: 0.97rem; color: var(--texte-doux); max-width: 580px; margin: 0 auto 1.75rem; font-family: sans-serif; }
+  .hero-flags { margin-bottom: 0.4rem; font-size: 1.3rem; }
+  .hero-cta { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.75rem; }
+  .btn-primary {
+    background: var(--orange); color: white; padding: 0.8rem 1.8rem;
+    border-radius: 8px; font-size: 0.92rem; font-family: sans-serif; font-weight: 700;
+    transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.45rem;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: #b84a22; color: white; transform: translateY(-2px); }
+  .btn-primary.vert { background: var(--vert); }
+  .btn-primary.vert:hover { background: var(--vert-fonce); }
+  .btn-secondary {
+    background: transparent; color: var(--texte); border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.8rem 1.8rem; border-radius: 8px; font-size: 0.92rem; font-family: sans-serif;
+    transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.45rem;
+  }
+  .btn-secondary:hover { border-color: var(--vert); color: var(--vert); }
 
-/* HERO */
-.hero{width:100%;padding:60px 40px;position:relative;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(24,95,165,0.35) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(29,158,117,0.15) 0%,transparent 60%),var(--noir);overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;}
-.hero-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px;align-items:center;position:relative;z-index:1;}
-.hero-left{flex:1 1 420px;min-width:0;}
-.hero-right{flex:0 1 380px;min-width:0;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:24px;color:rgba(255,255,255,0.8);}
-.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--vert);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.3);}}
-.hero h1{font-size:48px;font-weight:800;line-height:1.1;margin-bottom:20px;word-break:break-word;overflow-wrap:break-word;}
-.hero h1 .accent{color:var(--orange);}
-.hero h1 .accent-vert{color:var(--vert);}
-.hero-sub{font-size:16px;color:rgba(255,255,255,0.65);margin-bottom:32px;max-width:480px;line-height:1.7;}
-.gr-strong{color:var(--vert);font-family:'Syne',sans-serif;font-weight:700;}
-.role-strong-vert{color:var(--vert);font-family:'Syne',sans-serif;font-weight:700;}
-.role-strong-or{color:var(--or);font-family:'Syne',sans-serif;font-weight:700;}
-.hero-flags{display:flex;gap:10px;margin-bottom:32px;flex-wrap:wrap;}
-.flag-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);padding:6px 14px;border-radius:20px;font-size:13px;}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
-.btn-primary{background:var(--orange);color:white;padding:14px 28px;border-radius:var(--radius-sm);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;}
-.btn-primary:hover{background:#C04D26;transform:translateY(-1px);}
-.btn-secondary{background:transparent;color:white;padding:14px 28px;border-radius:var(--radius-sm);font-family:'Syne',sans-serif;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.2s;border:1px solid rgba(255,255,255,0.2);display:inline-flex;align-items:center;gap:8px;}
-.btn-secondary:hover{background:rgba(255,255,255,0.06);}
+  /* BOT CARD */
+  .bot-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 1.4rem; max-width: 320px; width: 100%; margin: 0 auto 1.4rem;
+    text-align: center;
+  }
+  .bot-card img { width: 68px; height: 68px; border-radius: 50%; border: 2px solid var(--vert); object-fit: cover; margin-bottom: 0.55rem; }
+  .bot-card-name { font-weight: bold; font-size: 1rem; margin-bottom: 0.12rem; }
+  .bot-card-handle { font-size: 0.78rem; color: var(--texte-doux); font-family: monospace; margin-bottom: 0.9rem; }
+  .bot-card-stats { display: flex; gap: 0.6rem; justify-content: center; margin-bottom: 1rem; }
+  .bot-stat { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.45rem 0.65rem; flex: 1; }
+  .bot-stat-num { font-size: 1.1rem; font-weight: bold; color: var(--vert); display: block; font-family: sans-serif; }
+  .bot-stat-num.orange { color: var(--orange); }
+  .bot-stat-label { font-size: 0.6rem; color: var(--texte-doux); font-family: sans-serif; line-height: 1.2; }
+  .countdown-label { font-size: 0.62rem; color: var(--texte-doux); font-family: sans-serif; margin-bottom: 0.35rem; letter-spacing: 0.07em; text-transform: uppercase; }
+  .countdown { display: flex; gap: 0.35rem; justify-content: center; margin-bottom: 0.9rem; }
+  .cd-block { background: rgba(0,0,0,0.4); border: 1px solid rgba(216,90,48,0.3); border-radius: 6px; padding: 0.35rem 0.45rem; min-width: 44px; text-align: center; }
+  .cd-num { font-size: 1.3rem; font-weight: bold; color: var(--orange); line-height: 1; display: block; font-family: sans-serif; }
+  .cd-lbl { font-size: 0.54rem; color: var(--texte-doux); font-family: sans-serif; text-transform: uppercase; letter-spacing: 0.04em; }
+  .cd-sep { font-size: 1.1rem; color: var(--orange); align-self: center; margin-top: -4px; }
+  .btn-open-bot {
+    display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+    background: var(--bleu); color: white; border-radius: 8px; padding: 0.7rem;
+    font-size: 0.88rem; font-family: sans-serif; font-weight: 600; width: 100%;
+    transition: background 0.2s;
+  }
+  .btn-open-bot:hover { background: #0d4a8a; color: white; }
 
-/* BOT CARD */
-.bot-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:32px;text-align:center;position:relative;}
-.bot-card::before{content:'';position:absolute;top:-1px;left:20%;right:20%;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--bleu),var(--vert));}
-.bot-avatar{width:96px;height:96px;border-radius:50%;margin:0 auto 16px;position:relative;}
-.bot-avatar img{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.15);}
-.bot-live-dot{position:absolute;bottom:4px;right:4px;width:16px;height:16px;border-radius:50%;background:var(--vert);border:2px solid var(--noir);animation:pulse 2s infinite;}
-.bot-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px;}
-.bot-handle{color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:20px;}
-.bot-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
-.bot-stat{background:rgba(255,255,255,0.04);border-radius:var(--radius-sm);padding:12px;text-align:center;}
-.bot-stat-val{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--vert);}
-.bot-stat-label{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;}
-.countdown-row{display:flex;gap:12px;justify-content:center;}
-.countdown-unit{text-align:center;}
-.countdown-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--orange);line-height:1;}
-.countdown-label{font-size:10px;color:rgba(255,255,255,0.45);letter-spacing:1px;text-transform:uppercase;}
-.countdown-sep{font-size:24px;color:rgba(255,255,255,0.2);align-self:flex-start;padding-top:4px;}
-.btn-telegram{display:inline-flex;align-items:center;gap:8px;background:#2AABEE;color:white;padding:14px 28px;border-radius:var(--radius-sm);font-family:'Syne',sans-serif;font-size:15px;font-weight:700;text-decoration:none;margin-top:16px;transition:all 0.2s;width:100%;justify-content:center;}
-.btn-telegram:hover{background:#1A8FCC;}
+  /* SECTIONS */
+  section { padding: 3.5rem 1.25rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag { font-size: 0.7rem; font-family: sans-serif; letter-spacing: 0.14em; color: var(--vert); text-transform: uppercase; margin-bottom: 0.55rem; }
+  .section-title { font-size: clamp(1.4rem, 3vw, 2.1rem); margin-bottom: 0.7rem; }
+  .section-subtitle { color: var(--texte-doux); font-family: sans-serif; max-width: 560px; margin-bottom: 2.2rem; font-size: 0.92rem; }
+  .divider { height: 1px; background: rgba(255,255,255,0.07); }
 
-/* SECTIONS */
-section{padding:80px 24px;}
-.section-inner{max-width:1100px;margin:0 auto;}
-.section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
-.section-label .dot{width:6px;height:6px;border-radius:50%;}
-.section-title{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:16px;}
-.section-desc{font-size:16px;color:rgba(255,255,255,0.6);max-width:560px;line-height:1.7;}
+  /* TELEGRAM */
+  #telegram { background: var(--gris-fonce); }
+  .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.1rem; }
+  .step-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.2rem; transition: border-color 0.2s; }
+  .step-card:hover { border-color: rgba(29,158,117,0.35); }
+  .step-num { font-size: 2rem; font-weight: bold; color: rgba(29,158,117,0.2); font-family: sans-serif; margin-bottom: 0.4rem; display: block; }
+  .step-icon { font-size: 1.5rem; margin-bottom: 0.35rem; display: block; }
+  .step-card h3 { font-size: 0.92rem; margin-bottom: 0.35rem; }
+  .step-card p { font-size: 0.8rem; color: var(--texte-doux); font-family: sans-serif; }
+  .step-links { display: flex; gap: 0.35rem; margin-top: 0.55rem; flex-wrap: wrap; }
+  .step-link { background: rgba(29,158,117,0.12); color: var(--vert); padding: 0.22rem 0.6rem; border-radius: 4px; font-size: 0.72rem; font-family: sans-serif; }
+  .step-link:hover { background: rgba(29,158,117,0.22); color: var(--vert); }
+  /* PARTAGE */
+  .share-box {
+    background: rgba(29,158,117,0.07); border: 1px solid rgba(29,158,117,0.2);
+    border-radius: 10px; padding: 1.1rem 1.25rem; margin-top: 1.75rem;
+  }
+  .share-box-title { font-size: 0.83rem; font-family: sans-serif; color: var(--texte-doux); margin-bottom: 0.65rem; }
+  .share-box-title strong { color: var(--vert); }
+  .share-link-row { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
+  .share-link { font-family: monospace; color: var(--vert); font-size: 0.87rem; flex: 1; min-width: 180px; word-break: break-all; }
+  /* CORRECTION 3 : bouton copier — fallback sans clipboard API */
+  .btn-copy { background: var(--vert); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-family: sans-serif; transition: background 0.2s; white-space: nowrap; }
+  .btn-copy:hover { background: var(--vert-fonce); }
+  .share-message { font-size: 0.76rem; color: var(--texte-doux); font-family: sans-serif; margin-top: 0.55rem; font-style: italic; }
 
-/* GUIDE TELEGRAM */
-.s-telegram{background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.06);}
-.telegram-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:48px;}
-.tg-step{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:28px;transition:all 0.3s;}
-.tg-step:hover{background:rgba(255,255,255,0.07);transform:translateY(-2px);}
-.tg-step-num{width:40px;height:40px;border-radius:50%;background:var(--bleu);color:white;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
-.tg-step h3{font-size:18px;font-weight:700;margin-bottom:10px;}
-.tg-step p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;}
-.tg-step .tg-icon{font-size:32px;margin-bottom:12px;}
-.tg-platforms{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
-.tg-platform{background:rgba(255,255,255,0.06);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;}
-.tg-link{display:block;margin-top:40px;padding:20px 28px;background:rgba(24,95,165,0.15);border:1px solid rgba(24,95,165,0.4);border-radius:var(--radius);text-align:center;}
-.tg-link-url{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--bleu-clair);display:block;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.tg-link p{font-size:14px;color:rgba(255,255,255,0.55);}
+  /* PLAN */
+  #plan { background: var(--noir); }
+  .regions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.55rem; margin-bottom: 2.2rem; }
+  .region-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 0.8rem; display: flex; align-items: flex-start; gap: 0.45rem; }
+  .region-num { color: var(--vert); font-weight: bold; font-family: sans-serif; min-width: 16px; font-size: 0.88rem; }
+  .region-info h4 { font-size: 0.82rem; margin-bottom: 0.12rem; }
+  .region-info p { font-size: 0.7rem; color: var(--texte-doux); font-family: sans-serif; }
+  .timeline { position: relative; padding-left: 1.6rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--vert), rgba(29,158,117,0.05)); }
+  .tl-item { position: relative; margin-bottom: 1.5rem; }
+  .tl-dot { position: absolute; left: -2rem; top: 0.3rem; width: 11px; height: 11px; border-radius: 50%; background: var(--vert); border: 2px solid var(--noir); }
+  .tl-day { font-size: 0.7rem; color: var(--vert); font-family: sans-serif; letter-spacing: 0.04em; margin-bottom: 0.18rem; }
+  .tl-title { font-size: 0.92rem; font-weight: bold; margin-bottom: 0.22rem; }
+  .tl-desc { font-size: 0.8rem; color: var(--texte-doux); font-family: sans-serif; }
+  .live-stats { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 2.2rem; }
+  .live-stat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 0.85rem 1.1rem; flex: 1; min-width: 120px; }
+  .live-stat-num { font-size: 1.5rem; font-weight: bold; color: var(--vert); display: block; font-family: sans-serif; }
+  .live-stat-label { font-size: 0.72rem; color: var(--texte-doux); font-family: sans-serif; }
 
-/* PLAN */
-.s-plan{border-top:1px solid rgba(255,255,255,0.06);}
-.regions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:32px;margin-bottom:48px;}
-.region-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-sm);padding:16px 20px;display:flex;align-items:center;gap:12px;}
-.region-num{width:32px;height:32px;border-radius:6px;background:var(--vert);color:white;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.region-name{font-size:14px;font-weight:600;}
-.region-tag{font-size:11px;color:rgba(255,255,255,0.45);margin-top:2px;}
-.plan-timeline{margin-top:48px;position:relative;}
-.plan-timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:rgba(255,255,255,0.08);}
-.tl-item{display:flex;gap:24px;margin-bottom:28px;position:relative;}
-.tl-dot{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;font-family:'Syne',sans-serif;position:relative;z-index:1;}
-.tl-content{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-sm);padding:16px 20px;flex:1;}
-.tl-jour{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
-.tl-titre{font-size:16px;font-weight:700;margin-bottom:6px;}
-.tl-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;}
-.counter-bar{display:flex;gap:20px;margin-top:48px;flex-wrap:wrap;}
-.counter-card{flex:1;min-width:160px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:24px;text-align:center;}
-.counter-val{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;line-height:1;margin-bottom:8px;}
-.counter-label{font-size:13px;color:rgba(255,255,255,0.5);}
+  /* INSCRIPTION */
+  #inscription { background: var(--gris-fonce); }
+  .roles-tabs { display: flex; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); width: fit-content; margin-bottom: 1.6rem; }
+  .role-tab { padding: 0.65rem 1.3rem; cursor: pointer; font-family: sans-serif; font-size: 0.82rem; background: rgba(255,255,255,0.03); color: var(--texte-doux); border: none; transition: all 0.2s; }
+  .role-tab.active { background: var(--vert); color: white; }
+  .form-panel { display: none; }
+  .form-panel.active { display: block; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; max-width: 660px; }
+  .form-group { display: flex; flex-direction: column; gap: 0.32rem; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 0.76rem; color: var(--texte-doux); font-family: sans-serif; }
+  .form-group label span { color: var(--rouge-alerte); }
+  .form-group input, .form-group select, .form-group textarea {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+    color: var(--texte); border-radius: 6px; padding: 0.58rem 0.82rem;
+    font-size: 0.86rem; font-family: sans-serif; transition: border-color 0.2s; width: 100%;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--vert); }
+  .form-group select option { background: var(--gris-fonce); }
+  .form-group textarea { resize: vertical; min-height: 70px; }
+  .form-submit { background: var(--vert); color: white; border: none; padding: 0.8rem 2rem; border-radius: 6px; font-size: 0.92rem; font-family: sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-top: 0.35rem; }
+  .form-submit:hover { background: var(--vert-fonce); transform: translateY(-1px); }
+  .form-note { font-size: 0.76rem; color: var(--texte-doux); font-family: sans-serif; margin-top: 0.65rem; }
+  .success-msg { display: none; background: rgba(29,158,117,0.1); border: 1px solid rgba(29,158,117,0.3); border-radius: 8px; padding: 1.2rem; margin-top: 0.65rem; max-width: 660px; }
+  .success-msg.visible { display: block; }
+  .success-msg h3 { color: var(--vert); margin-bottom: 0.35rem; font-size: 0.97rem; }
+  .success-msg p { font-family: sans-serif; font-size: 0.82rem; color: var(--texte-doux); }
+  @media (max-width: 580px) { .form-grid { grid-template-columns: 1fr; } .form-group.full { grid-column: 1; } }
 
-/* INSCRIPTION */
-.s-inscription{background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.06);}
-.inscription-tabs{display:flex;gap:0;margin-bottom:32px;border-bottom:1px solid rgba(255,255,255,0.08);}
-.ins-tab{padding:14px 28px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;color:rgba(255,255,255,0.45);transition:all 0.2s;user-select:none;}
-.ins-tab:hover{color:rgba(255,255,255,0.8);}
-.ins-tab.active{color:white;border-bottom-color:var(--orange);}
-.ins-panel{display:none;}
-.ins-panel.active{display:block;}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.form-group{margin-bottom:0;}
-.form-group.full{grid-column:1/-1;}
-label{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,0.6);margin-bottom:8px;letter-spacing:0.5px;text-transform:uppercase;}
-input,select,textarea{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-sm);color:white;padding:12px 16px;font-size:14px;font-family:'DM Sans',sans-serif;transition:all 0.2s;outline:none;appearance:none;}
-input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.3);}
-input:focus,select:focus,textarea:focus{border-color:var(--bleu);background:rgba(24,95,165,0.1);box-shadow:0 0 0 3px rgba(24,95,165,0.15);}
-select option{background:#1A2332;color:white;}
-textarea{resize:vertical;min-height:80px;}
-.form-submit{margin-top:24px;width:100%;padding:16px;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;border:none;border-radius:var(--radius-sm);cursor:pointer;transition:all 0.2s;}
-.form-submit.orange{background:var(--orange);color:white;}
-.form-submit.orange:hover{background:#C04D26;}
-.form-submit.benin{background:var(--benin);color:white;}
-.form-submit.benin:hover{background:#006B41;}
-.form-note{margin-top:12px;font-size:12px;color:rgba(255,255,255,0.4);text-align:center;line-height:1.5;}
-.success-msg{display:none;background:rgba(29,158,117,0.15);border:1px solid rgba(29,158,117,0.4);border-radius:var(--radius);padding:24px;text-align:center;margin-top:20px;}
-.success-msg.visible{display:block;}
-.success-msg h3{font-size:20px;margin-bottom:8px;color:var(--vert);}
-.success-msg p{font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:16px;}
+  /* SALLE DE FORMATION */
+  #formation { background: var(--noir); }
+  .formation-header { display: flex; gap: 1.4rem; align-items: flex-start; margin-bottom: 2.2rem; flex-wrap: wrap; }
+  .coach-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.2rem; min-width: 190px; text-align: center; }
+  .coach-card img { width: 68px; height: 68px; border-radius: 50%; object-fit: cover; margin-bottom: 0.55rem; border: 2px solid var(--vert); }
+  .coach-name { font-size: 0.85rem; font-weight: bold; margin-bottom: 0.18rem; }
+  .coach-title { font-size: 0.7rem; color: var(--texte-doux); font-family: sans-serif; }
+  .supports-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.1rem; }
+  .support-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
+  .support-card:hover { border-color: rgba(29,158,117,0.3); }
+  .support-header { padding: 0.9rem 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: flex-start; gap: 0.55rem; flex-wrap: wrap; }
+  .support-day-badge { background: rgba(29,158,117,0.15); color: var(--vert); border-radius: 6px; padding: 0.28rem 0.6rem; font-size: 0.7rem; font-family: sans-serif; font-weight: bold; white-space: nowrap; flex-shrink: 0; }
+  .support-header h3 { font-size: 0.87rem; flex: 1; min-width: 0; }
+  .support-body { padding: 0.9rem 1.1rem; }
+  .support-meta { font-size: 0.73rem; color: var(--texte-doux); font-family: sans-serif; margin-bottom: 0.75rem; }
+  .support-file { display: flex; align-items: center; gap: 0.38rem; font-size: 0.78rem; font-family: sans-serif; color: var(--texte-doux); padding: 0.22rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .support-file:last-child { border-bottom: none; }
+  .file-icon { font-size: 0.9rem; flex-shrink: 0; }
+  .support-files { margin-bottom: 0.8rem; }
+  /* MDP ZONE — mobile safe */
+  .mdp-zone { width: 100%; }
+  .mdp-input-wrap { display: flex; gap: 0.45rem; width: 100%; }
+  .mdp-input {
+    flex: 1; min-width: 0;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+    color: var(--texte); border-radius: 6px; padding: 0.5rem 0.65rem;
+    font-size: 0.8rem; font-family: monospace; transition: border-color 0.2s;
+  }
+  .mdp-input:focus { outline: none; border-color: var(--vert); }
+  .mdp-input.error { border-color: var(--rouge-alerte); animation: shake 0.3s; }
+  .mdp-input.success { border-color: var(--vert); }
+  .mdp-btn {
+    background: var(--bleu); color: white; border: none; border-radius: 6px;
+    padding: 0.5rem 0.78rem; font-size: 0.75rem; font-family: sans-serif;
+    cursor: pointer; transition: background 0.2s; white-space: nowrap; flex-shrink: 0;
+  }
+  .mdp-btn:hover:not(:disabled) { background: #0d4a8a; }
+  .mdp-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .mdp-error { color: var(--rouge-alerte); font-size: 0.7rem; font-family: sans-serif; margin-top: 0.3rem; display: none; }
+  .mdp-error.visible { display: block; }
+  .download-zone { display: none; margin-top: 0.55rem; }
+  .download-zone.visible { display: flex; flex-direction: column; gap: 0.35rem; }
+  .download-btn {
+    display: flex; align-items: center; justify-content: center; gap: 0.45rem;
+    background: var(--vert); color: white; border-radius: 6px;
+    padding: 0.55rem 0.9rem; font-size: 0.8rem; font-family: sans-serif; font-weight: 600;
+    transition: all 0.2s; width: 100%;
+  }
+  .download-btn:hover { background: var(--vert-fonce); color: white; transform: translateY(-1px); }
+  .download-btn.sec { background: rgba(29,158,117,0.12); color: var(--vert); border: 1px solid rgba(29,158,117,0.25); }
+  .download-btn.sec:hover { background: rgba(29,158,117,0.22); }
+  .mdp-hint { font-size: 0.68rem; color: var(--texte-doux); font-family: sans-serif; margin-top: 0.3rem; }
+  .support-card.coming { opacity: 0.5; }
+  /* Programme */
+  .programme-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.35rem; margin-top: 1.2rem; }
+  .prog-day { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 7px; padding: 0.55rem 0.25rem; text-align: center; }
+  .prog-day.live { border-color: rgba(29,158,117,0.3); background: rgba(29,158,117,0.05); }
+  .prog-day.terrain { border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.05); }
+  .prog-day-label { font-size: 0.54rem; font-family: sans-serif; font-weight: bold; color: var(--texte-doux); margin-bottom: 0.2rem; }
+  .prog-day-icon { font-size: 1rem; display: block; margin-bottom: 0.18rem; }
+  .prog-day-type { font-size: 0.5rem; font-family: sans-serif; color: var(--texte-doux); }
+  @media (max-width: 560px) { .programme-grid { grid-template-columns: repeat(4, 1fr); } .supports-grid { grid-template-columns: 1fr; } }
 
-/* FORMATION */
-.s-formation{border-top:1px solid rgba(255,255,255,0.06);}
-.formation-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;}
-.module-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden;}
-.module-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
-.module-card.yt::before{background:#FF0000;}
-.module-card.test::before{background:var(--vert);}
-.module-card.tuto::before{background:var(--bleu);}
-.module-card.agenda::before{background:var(--orange);}
-.module-icon{font-size:36px;margin-bottom:16px;}
-.module-card h3{font-size:18px;font-weight:700;margin-bottom:10px;}
-.module-card p{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:16px;}
-.module-tag{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-right:6px;margin-bottom:4px;}
-.tag-yt{background:rgba(255,0,0,0.15);color:#FF6B6B;}
-.tag-vert{background:rgba(29,158,117,0.15);color:var(--vert);}
-.tag-bleu{background:rgba(24,95,165,0.2);color:#85B7EB;}
-.tag-orange{background:rgba(216,90,48,0.15);color:#F0997B;}
-.module-lock{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.06);border-radius:20px;padding:4px 10px;font-size:11px;color:rgba(255,255,255,0.4);}
-.programme-strip{margin-top:24px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:24px;grid-column:1/-1;}
-.programme-strip h3{font-size:18px;font-weight:700;margin-bottom:20px;}
-.prog-days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
-.prog-day{text-align:center;padding:12px 4px;border-radius:var(--radius-sm);font-size:12px;}
-.prog-day-num{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:4px;}
-.prog-day-label{font-size:10px;color:rgba(255,255,255,0.45);}
-.prog-day.theory{background:rgba(255,0,0,0.1);border:1px solid rgba(255,0,0,0.2);}
-.prog-day.terrain{background:rgba(29,158,117,0.1);border:1px solid rgba(29,158,117,0.2);}
-.prog-day.both{background:rgba(24,95,165,0.1);border:1px solid rgba(24,95,165,0.2);}
-.prog-legend{display:flex;gap:20px;margin-top:16px;flex-wrap:wrap;}
-.prog-legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.5);}
-.prog-legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
+  /* FOOTER */
+  footer { background: var(--gris-fonce); border-top: 1px solid rgba(255,255,255,0.07); padding: 2.2rem 1.25rem; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2.2rem; }
+  .footer-brand p { font-size: 0.8rem; color: var(--texte-doux); font-family: sans-serif; margin: 0.55rem 0; max-width: 290px; }
+  .footer-brand .rccm { font-size: 0.7rem; color: rgba(255,255,255,0.22); font-family: sans-serif; }
+  .footer-col h4 { font-size: 0.72rem; color: var(--vert); text-transform: uppercase; letter-spacing: 0.1em; font-family: sans-serif; margin-bottom: 0.85rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.4rem; }
+  .footer-col ul li a { font-size: 0.8rem; color: var(--texte-doux); font-family: sans-serif; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 1.5rem; padding-top: 1.1rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; }
+  .footer-bottom p { font-size: 0.7rem; color: rgba(255,255,255,0.2); font-family: sans-serif; }
+  @media (max-width: 680px) { .footer-inner { grid-template-columns: 1fr; gap: 1.4rem; } }
 
-/* FOOTER */
-footer{background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.06);padding:48px 24px 32px;}
-.footer-inner{max-width:1100px;margin:0 auto;}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px;}
-.footer-brand h3{font-size:20px;font-weight:800;margin-bottom:10px;}
-.footer-brand p{font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7;}
-.footer-col h4{font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:16px;}
-.footer-col a{display:block;font-size:14px;color:rgba(255,255,255,0.65);text-decoration:none;margin-bottom:8px;transition:color 0.2s;}
-.footer-col a:hover{color:white;}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-.footer-bottom p{font-size:13px;color:rgba(255,255,255,0.3);}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .hero{padding:32px 20px;}
-  .hero h1{font-size:20px;}
-  .hero-left{flex:1 1 100%;}
-  .hero-right{flex:1 1 100%;}
-  .hero-sub{font-size:14px;}
-  .bot-card{margin-top:32px;}
-  .bot-stats{grid-template-columns:repeat(3,1fr);}
-  .bot-stat-val{font-size:16px;}
-  .countdown-num{font-size:22px;}
-  .form-grid{grid-template-columns:1fr;}
-  .formation-grid{grid-template-columns:1fr;}
-  .footer-grid{grid-template-columns:1fr;gap:32px;}
-  
-  .nav-links{display:none;}
-  .counter-bar{gap:12px;}
-}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-.fade-up{animation:fadeUp 0.6s ease forwards;}
-.fade-up-2{animation:fadeUp 0.6s 0.15s ease both;}
-.fade-up-3{animation:fadeUp 0.6s 0.3s ease both;}
-.fade-up-4{animation:fadeUp 0.6s 0.45s ease both;}
+  /* ANIMATIONS */
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+  @keyframes unlockPulse { 0%{box-shadow:0 0 0 0 rgba(29,158,117,.5)} 70%{box-shadow:0 0 0 10px rgba(29,158,117,0)} 100%{box-shadow:0 0 0 0 rgba(29,158,117,0)} }
+  .unlock-pulse { animation: unlockPulse 0.6s ease; }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="nav-inner">
-    <a class="nav-logo" href="#">
-      <div class="nav-logo-icon">GR</div>
-      <span class="nav-logo-text" style="color:var(--vert);">La Grande Réappropriation</span>
-    </a>
-    <div class="nav-links">
-      <a href="#telegram">Guide Telegram</a>
-      <a href="#plan">Le Plan</a>
-      <a href="#inscription">S'inscrire</a>
-      <a href="#formation">Formation</a>
-      <a class="nav-cta" href="https://t.me/ChallengeFinancierbot" target="_blank">🤖 Ouvrir le Bot</a>
-    </div>
+  <a href="#top" class="nav-logo">
+    <div class="nav-logo-badge">GR</div>
+    <div class="nav-logo-text">La Grande Réappropriation</div>
+  </a>
+  <div class="nav-links">
+    <a href="#telegram">Guide Telegram</a>
+    <a href="#plan">Le Plan</a>
+    <a href="#inscription">S'inscrire</a>
+    <a href="#formation">Formation</a>
+    <a href="https://t.me/ChallengeFinancierbot" class="nav-bot" target="_blank">🤖 Bot</a>
+  </div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('fr',this)">🇫🇷 FR</button>
+    <button class="lang-btn" onclick="setLang('en',this)">🇬🇧 EN</button>
+    <button class="lang-btn" onclick="setLang('fon',this)">🇧🇯 Fon</button>
+    <button class="lang-btn" onclick="setLang('yoruba',this)">🇧🇯 Yor</button>
   </div>
 </nav>
 
-<div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('fr')">🇫🇷 Français</button>
-  <button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button>
-  <button class="lang-btn" onclick="setLang('fon')">🇧🇯 Fon</button>
-  <button class="lang-btn" onclick="setLang('yoruba')">🇧🇯 Yoruba</button>
-</div>
-
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="hero-badge fade-up">
-        <span class="hero-badge-dot"></span>
-        <span id="txt-badge">Lancement officiel — 30 Mars 2026 à 7h00</span>
+<section class="hero" id="top">
+  <div class="hero-badge" id="t-badge">🚀 Lancement officiel — 31 Mars 2026 à 7h00</div>
+  <div class="hero-flags">🇨🇮 &nbsp;🇧🇯</div>
+  <!-- CORRECTION 4 : nouveau texte grand titre -->
+  <h1 id="t-h1"><span class="gr-orange">La Grande</span><br><span class="gr-vert">Réappropriation</span><br>est en marche.</h1>
+  <p id="t-p">De Abidjan aux 13 capitales de la Zone FCFA. Rejoignez l'équipe VoteConnect — <strong>Animateurs LFA-CI</strong> et <strong>Coordinateurs Bénin-CI</strong> — et construisons la CEDEAO que nous voulons laisser à nos enfants.</p>
+  <div class="hero-cta">
+    <a href="#inscription" class="btn-primary" id="t-cta1">🌱 Je rejoins l'équipe</a>
+    <a href="#telegram" class="btn-secondary" id="t-cta2">📱 Guide Telegram</a>
+  </div>
+  <div class="bot-card">
+    <img src="https://i.ibb.co/nMMn7Tx2/Logo-Bot-CF.png" alt="Bot CHALLENGER">
+    <div class="bot-card-name">Bot CHALLENGER</div>
+    <div class="bot-card-handle">@ChallengeFinancierbot</div>
+    <div class="bot-card-stats">
+      <div class="bot-stat"><span class="bot-stat-num">20</span><span class="bot-stat-label">Produits TCL</span></div>
+      <div class="bot-stat"><span class="bot-stat-num">24/7</span><span class="bot-stat-label">Disponibilité</span></div>
+      <div class="bot-stat"><span class="bot-stat-num orange" id="jours-benin-stat">J-13</span><span class="bot-stat-label">Avant vote Bénin</span></div>
+    </div>
+    <div class="countdown-label" id="t-cd-label">COMPTE À REBOURS LANCEMENT FORMATION</div>
+    <div class="countdown">
+      <div class="cd-block"><span class="cd-num" id="cd-j">00</span><span class="cd-lbl">Jours</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">H</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-m">00</span><span class="cd-lbl">Min</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">Sec</span></div>
+    </div>
+    <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="btn-open-bot" id="t-open-bot">🤖 Ouvrir le Bot CHALLENGER</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TELEGRAM -->
+<section id="telegram">
+  <div class="section-inner">
+    <div class="section-tag" id="t-tg-tag">Étape 1 — Pour les nouveaux sur Telegram</div>
+    <h2 class="section-title" id="t-tg-title">75% des gens ici n'ont jamais utilisé Telegram. Ce guide est pour vous.</h2>
+    <p class="section-subtitle" id="t-tg-sub">Suivez ces 4 étapes simples pour installer Telegram et rejoindre le Bot CHALLENGER en moins de 3 minutes.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-num">1</span><span class="step-icon">📲</span>
+        <h3 id="t-s1h">Télécharger Telegram</h3>
+        <p id="t-s1p">Rendez-vous sur votre boutique d'applications et téléchargez Telegram. C'est gratuit et ne prend que 30 secondes.</p>
+        <div class="step-links">
+          <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger" class="step-link" target="_blank">📱 Android</a>
+          <a href="https://apps.apple.com/app/telegram-messenger/id686449807" class="step-link" target="_blank">🍎 iPhone</a>
+        </div>
       </div>
-      <h1 class="fade-up-2">
-        La Grande<br>
-        <span class="accent">Réappropriation</span><br>
-        <span class="accent-vert" id="txt-h1-3">est en marche.</span>
-      </h1>
-      <p class="hero-sub fade-up-3">
-        <span id="txt-sub-before">De Abidjan aux 14 capitales de la Zone FCFA. Rejoignez l'équipe VoteConnect —</span>
-        <strong class="role-strong-vert"> Animateurs LFA-CI</strong>
-        <span id="txt-sub-et"> et</span>
-        <strong class="role-strong-or"> Coordinateurs Bénin-CI</strong>
-        <span id="txt-sub-after"> — et construisez le pays que vous voulez laisser à vos enfants.</span>
-      </p>
-      <div class="hero-flags fade-up-3">
-        <span class="flag-pill">🇨🇮 ChallengeFinancier™ CI</span>
-        <span class="flag-pill">🇧🇯 <span id="txt-flag-benin">Campagne Wadagni-CI</span></span>
+      <div class="step-card">
+        <span class="step-num">2</span><span class="step-icon">📝</span>
+        <h3 id="t-s2h">Créer votre compte</h3>
+        <p id="t-s2p">Ouvrez Telegram, entrez votre numéro de téléphone, puis le code SMS reçu. Choisissez un prénom. C'est tout !</p>
       </div>
-      <div class="hero-btns fade-up-4">
-        <a href="#inscription" class="btn-primary" id="txt-btn-rejoins">🌱 Je rejoins l'équipe</a>
-        <a href="#telegram" class="btn-secondary" id="txt-btn-telegram">📱 Guide Telegram</a>
+      <div class="step-card">
+        <span class="step-num">3</span><span class="step-icon">🔗</span>
+        <h3 id="t-s3h">Cliquer le lien Bot</h3>
+        <p id="t-s3p">Cliquez sur ce lien depuis votre téléphone. Telegram va s'ouvrir automatiquement sur le Bot CHALLENGER.</p>
+        <div class="step-links"><a href="https://t.me/ChallengeFinancierbot" class="step-link" target="_blank">👉 t.me/ChallengeFinancierbot</a></div>
+      </div>
+      <div class="step-card">
+        <span class="step-num">4</span><span class="step-icon">🚀</span>
+        <h3 id="t-s4h">Appuyer START BOT</h3>
+        <p id="t-s4p">Appuyez sur le bouton bleu <strong>'START BOT'</strong>. Le menu principal s'affiche. Vous êtes dans <strong>La Grande Réappropriation</strong> !</p>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="bot-card fade-up-3">
-        <div class="bot-avatar">
-          <img src="https://i.ibb.co/nMMn7Tx2/Logo-Bot-CF.png" alt="Bot CHALLENGER">
-          <div class="bot-live-dot"></div>
-        </div>
-        <div class="bot-name">Bot CHALLENGER</div>
-        <div class="bot-handle">@ChallengeFinancierbot</div>
-        <div class="bot-stats">
-          <div class="bot-stat">
-            <div class="bot-stat-val">20</div>
-            <div class="bot-stat-label">Produits TCL</div>
-          </div>
-          <div class="bot-stat">
-            <div class="bot-stat-val">24/7</div>
-            <div class="bot-stat-label">Disponibilité</div>
-          </div>
-          <div class="bot-stat">
-            <div class="bot-stat-val" style="color:var(--orange);">J-<span id="jours-vote">15</span></div>
-            <div class="bot-stat-label">Avant vote Bénin</div>
-          </div>
-        </div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;" id="txt-countdown-label">Compte à rebours lancement</div>
-        <div class="countdown-row">
-          <div class="countdown-unit"><div class="countdown-num" id="cd-j">01</div><div class="countdown-label" id="txt-cd-j">Jours</div></div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-unit"><div class="countdown-num" id="cd-h">00</div><div class="countdown-label" id="txt-cd-h">Heures</div></div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-unit"><div class="countdown-num" id="cd-m">00</div><div class="countdown-label" id="txt-cd-m">Min</div></div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-unit"><div class="countdown-num" id="cd-s">00</div><div class="countdown-label" id="txt-cd-s">Sec</div></div>
-        </div>
-        <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="btn-telegram" style="margin-top:20px;" id="txt-btn-bot">🤖 Ouvrir le Bot CHALLENGER</a>
+    <!-- PARTAGE LIEN -->
+    <div class="share-box">
+      <div class="share-box-title" id="t-share-title">📣 <strong>Partagez ce lien à vos contacts WhatsApp</strong> pour les inviter à rejoindre La Grande Réappropriation :</div>
+      <div class="share-link-row">
+        <span class="share-link" id="lien-bot-display">t.me/ChallengeFinancierbot</span>
+        <!-- CORRECTION 3 : bouton avec fallback textarea pour environnements sans clipboard -->
+        <button class="btn-copy" id="t-copy-btn" onclick="copyLink()">📋 Copier le lien</button>
       </div>
+      <!-- Zone fallback : champ sélectionnable si clipboard API indisponible -->
+      <input type="text" id="fallback-copy" value="https://t.me/ChallengeFinancierbot"
+        style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" readonly>
+      <div class="share-message" id="t-share-msg">💬 Message suggéré : "Frère/Sœur, rejoins La Grande Réappropriation — le mouvement citoyen qui transforme chaque achat en acte politique : t.me/ChallengeFinancierbot"</div>
     </div>
   </div>
 </section>
 
-<!-- GUIDE TELEGRAM -->
-<section class="s-telegram" id="telegram">
+<div class="divider"></div>
+
+<!-- PLAN — CORRECTION 5 : chronogramme corrigé selon Guide Webinaire PDF -->
+<section id="plan">
   <div class="section-inner">
-    <div class="section-label" style="color:var(--bleu-clair);">
-      <span class="dot" style="background:var(--bleu);"></span>
-      <span id="txt-s1-label">Étape 1 — Pour les nouveaux sur Telegram</span>
-    </div>
-    <h2 class="section-title" id="txt-s1-title">75% des gens ici n'ont jamais utilisé Telegram.<br>Ce guide est <span style="color:var(--vert);">pour vous.</span></h2>
-    <p class="section-desc" id="txt-s1-desc">Suivez ces 4 étapes simples pour installer Telegram et rejoindre le Bot CHALLENGER en moins de 3 minutes.</p>
-
-    <div class="telegram-grid">
-      <div class="tg-step">
-        <div class="tg-step-num">1</div>
-        <div class="tg-icon">📲</div>
-        <h3 id="txt-tg1-title">Télécharger Telegram</h3>
-        <p id="txt-tg1-desc">Rendez-vous sur votre boutique d'applications et téléchargez Telegram. C'est gratuit et ne prend que 30 secondes.</p>
-        <div class="tg-platforms">
-          <span class="tg-platform">📱 Android</span>
-          <span class="tg-platform">🍎 iPhone</span>
-        </div>
-      </div>
-      <div class="tg-step">
-        <div class="tg-step-num">2</div>
-        <div class="tg-icon">📝</div>
-        <h3 id="txt-tg2-title">Créer votre compte</h3>
-        <p id="txt-tg2-desc">Ouvrez Telegram, entrez votre numéro de téléphone, puis le code SMS reçu. Choisissez un prénom. C'est tout !</p>
-      </div>
-      <div class="tg-step">
-        <div class="tg-step-num">3</div>
-        <div class="tg-icon">🔗</div>
-        <h3 id="txt-tg3-title">Cliquer le lien Bot</h3>
-        <p id="txt-tg3-desc">Cliquez sur ce lien depuis votre téléphone. Telegram va s'ouvrir automatiquement sur le Bot CHALLENGER.</p>
-        <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="btn-telegram" style="margin-top:12px;font-size:13px;padding:10px 18px;">👉 t.me/ChallengeFinancierbot</a>
-      </div>
-      <div class="tg-step">
-        <div class="tg-step-num">4</div>
-        <div class="tg-icon">🚀</div>
-        <h3 id="txt-tg4-title">Appuyer START BOT</h3>
-        <p id="txt-tg4-desc">Appuyez sur le bouton bleu <strong>'START BOT'</strong>. Le menu principal s'affiche. Vous êtes maintenant dans <strong class="gr-strong">La Grande Réappropriation</strong> !</p>
-      </div>
-    </div>
-
-    <div class="tg-link">
-      <span class="tg-link-url">t.me/ChallengeFinancierbot</span>
-      <p id="txt-tg-copy">Copiez ce lien et envoyez-le à vos contacts WhatsApp pour les inviter à rejoindre le mouvement.</p>
-      <button class="btn-primary" onclick="copyLink()" style="margin-top:12px;" id="txt-btn-copy">📋 Copier le lien</button>
-    </div>
-  </div>
-</section>
-
-<!-- PLAN -->
-<section class="s-plan" id="plan">
-  <div class="section-inner">
-    <div class="section-label" style="color:var(--orange);">
-      <span class="dot" style="background:var(--orange);"></span>
-      <span id="txt-s2-label">Étape 2 — Le Plan Officiel</span>
-    </div>
-    <h2 class="section-title">La <span style="color:var(--orange);">Campagne</span> en détail</h2>
-    <p class="section-desc" id="txt-s2-desc">30 Mars → 12 Avril 2026 · 14 jours · 7 régions pilotes · 2 volets simultanés</p>
-
+    <div class="section-tag" id="t-plan-tag">Étape 2 — Le Plan Officiel</div>
+    <h2 class="section-title" id="t-plan-title">La Campagne en détail</h2>
+    <p class="section-subtitle" id="t-plan-sub">31 Mars → 12 Avril 2026 · 14 jours · 7 régions pilotes · 2 volets simultanés</p>
     <div class="regions-grid">
-      <div class="region-card"><div class="region-num">1</div><div><div class="region-name">District d'Abidjan</div><div class="region-tag">6 321 017 hab.</div></div></div>
-      <div class="region-card"><div class="region-num">2</div><div><div class="region-name">District de Yamoussoukro</div><div class="region-tag">372 559 hab.</div></div></div>
-      <div class="region-card"><div class="region-num">3</div><div><div class="region-name">Région du Bélier</div><div class="region-tag">Toumodi · 123 568 hab.</div></div></div>
-      <div class="region-card"><div class="region-num">4</div><div><div class="region-name">Agnéby-Tiassa</div><div class="region-tag">865 951 hab.</div></div></div>
-      <div class="region-card"><div class="region-num">5</div><div><div class="region-name">Région de Mé</div><div class="region-tag">726 665 hab.</div></div></div>
-      <div class="region-card"><div class="region-num">6</div><div><div class="region-name">Grands-Ponts</div><div class="region-tag">450 007 hab.</div></div></div>
-      <div class="region-card"><div class="region-num">7</div><div><div class="region-name">Sud-Comoé</div><div class="region-tag">784 893 hab.</div></div></div>
+      <div class="region-card"><span class="region-num">1</span><div class="region-info"><h4>District d'Abidjan</h4><p>6 321 017 hab.</p></div></div>
+      <div class="region-card"><span class="region-num">2</span><div class="region-info"><h4>District de Yamoussoukro</h4><p>372 559 hab.</p></div></div>
+      <div class="region-card"><span class="region-num">3</span><div class="region-info"><h4>Région du Bélier</h4><p>Toumodi · 123 568 hab.</p></div></div>
+      <div class="region-card"><span class="region-num">4</span><div class="region-info"><h4>Agnéby-Tiassa</h4><p>865 951 hab.</p></div></div>
+      <div class="region-card"><span class="region-num">5</span><div class="region-info"><h4>Région de Mé</h4><p>726 665 hab.</p></div></div>
+      <div class="region-card"><span class="region-num">6</span><div class="region-info"><h4>Grands-Ponts</h4><p>450 007 hab.</p></div></div>
+      <div class="region-card"><span class="region-num">7</span><div class="region-info"><h4>Sud-Comoé</h4><p>784 893 hab.</p></div></div>
     </div>
-
-    <div class="plan-timeline">
-      <div class="tl-item"><div class="tl-dot" style="background:var(--orange);color:white;">J0</div><div class="tl-content"><div class="tl-jour" style="color:var(--orange);">Lundi 30 Mars 2026 · 7h00 précises</div><div class="tl-titre">🚀 Top départ — Lancement simultané CI + Bénin-CI</div><div class="tl-desc">Messages WhatsApp · Annonce canal Telegram · Activation Boutique TCL · Dashboard /dashboard actif</div></div></div>
-      <div class="tl-item"><div class="tl-dot" style="background:var(--bleu);color:white;">J1-2</div><div class="tl-content"><div class="tl-jour" style="color:var(--bleu);">Mardi 31 Mars & Mercredi 1er Avril</div><div class="tl-titre">📚 Présentation & Éducation</div><div class="tl-desc">Présentation TCL aux commerçants · Message WADAGNI diaspora béninoise · Annonce LMS Module 1</div></div></div>
-      <div class="tl-item"><div class="tl-dot" style="background:var(--vert);color:white;">J3-5</div><div class="tl-content"><div class="tl-jour" style="color:var(--vert);">Jeudi 3 → Samedi 5 Avril</div><div class="tl-titre">🔥 Mobilisation Intense</div><div class="tl-desc">Guide vote Bénin · Conventionnement 20 commerçants béninois · Kits Fon & Yoruba · Premiers paiements LMS</div></div></div>
-      <div class="tl-item"><div class="tl-dot" style="background:var(--bleu);color:white;">J6-9</div><div class="tl-content"><div class="tl-jour" style="color:var(--bleu);">Dimanche 6 → Mercredi 9 Avril</div><div class="tl-titre">📊 Bilan mi-parcours & Consolidation</div><div class="tl-desc">Métriques publiques · Alerte J-5 vote Bénin · Témoignages commerçants TCL</div></div></div>
-      <div class="tl-item"><div class="tl-dot" style="background:var(--benin);color:white;">J12</div><div class="tl-content"><div class="tl-jour" style="color:#4ADE80;">Dimanche 12 Avril 2026 · 7h00</div><div class="tl-titre">🗳️ Jour du Vote — Présidentielle Bénin</div><div class="tl-desc">Vote diaspora béninoise d'Abidjan pour WADAGNI · Bureaux ouverts 7h00-17h00</div></div></div>
-      <div class="tl-item"><div class="tl-dot" style="background:var(--vert);color:white;">J14</div><div class="tl-content"><div class="tl-jour" style="color:var(--vert);">Lundi 13 Avril 2026</div><div class="tl-titre">📋 Bilan final & Suite TCL CI</div><div class="tl-desc"><strong class="gr-strong">La Grande Réappropriation</strong> continue · Prochain scrutin Zone FCFA</div></div></div>
+    <div class="timeline">
+      <!-- J0 : 31 Mars — Lancement officiel campagne -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-day" id="tl-j0-day">J0 · Mardi 31 Mars 2026 · 7h00</div>
+        <div class="tl-title" id="tl-j0-title">🚀 Top départ — Lancement officiel CI + Bénin-CI</div>
+        <div class="tl-desc" id="tl-j0-desc">Messages WhatsApp (LFA-CI + diaspora béninoise) · Annonce canal Telegram via /annonce · Activation Boutique TCL · /dashboard actif · Inscriptions Landing Page ouvertes</div>
+      </div>
+      <!-- J1 : 1er Avril — Inscriptions & mobilisation terrain -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-day" id="tl-j1-day">J1 · Mercredi 1er Avril</div>
+        <div class="tl-title" id="tl-j1-title">📥 Inscriptions & Mobilisation terrain</div>
+        <div class="tl-desc" id="tl-j1-desc">Recrutement premiers Animateurs LFA-CI · Premiers contacts diaspora béninoise · Présentation TCL commerçants pilotes · Collecte inscriptions Landing Page</div>
+      </div>
+      <!-- J2 (Webinaire J1) : 2 Avril — Session Live 1 -->
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--vert);box-shadow:0 0 6px rgba(29,158,117,0.5);"></div>
+        <div class="tl-day" id="tl-j2-day">J2 · Jeudi 2 Avril · 19h00 GMT+0 — 🎓 Session Live J1</div>
+        <div class="tl-title" id="tl-j2-title">🎓 YouTube Live — Introduction & Écosystème CF™</div>
+        <div class="tl-desc" id="tl-j2-desc">MDP J1 : <strong style="color:var(--vert)">GR-J1-2026</strong> · Supports : Document Directeur v2.1 + Tutoriel GS CF-DB · Durée 90 min · Mission : s'inscrire LP + rejoindre Bot Telegram</div>
+      </div>
+      <!-- J3 (Webinaire J2) : 3 Avril — Terrain TCL -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-day" id="tl-j3-day">J3 · Vendredi 3 Avril · Terrain</div>
+        <div class="tl-title" id="tl-j3-title">🌱 Terrain J2 — Déploiement TCL & Mobilisation Bénin-CI</div>
+        <div class="tl-desc" id="tl-j3-desc">MDP J2 : <strong style="color:var(--vert)">GR-J2-2026</strong> · Support : Plan de Lancement GR · Mission : identifier 3 commerçants TCL dans sa zone · Rapport WhatsApp avant 20h00</div>
+      </div>
+      <!-- J4 (Webinaire J3) : 4 Avril — Live Mobilisation intense -->
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--vert);box-shadow:0 0 6px rgba(29,158,117,0.5);"></div>
+        <div class="tl-day" id="tl-j4-day">J4 · Samedi 4 Avril · 19h00 — 🎓 Session Live J3</div>
+        <div class="tl-title" id="tl-j4-title">🔥 YouTube Live — Mobilisation Intense TCL · Bénin-CI</div>
+        <div class="tl-desc" id="tl-j4-desc">MDP J3 : <strong style="color:var(--vert)">GR-J3-2026</strong> · Supports : Guide Webinaire + Kits Fon & Yoruba · Démo live Bot CHALLENGER parcours TCL · Kits mobilisation diaspora · Mission : 1 commerçant TCL conventionné + 5 Béninois mobilisés</div>
+      </div>
+      <!-- J5 (Webinaire J4) : 5 Avril — Terrain consolidation -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-day" id="tl-j5-day">J5 · Dimanche 5 Avril · Terrain</div>
+        <div class="tl-title" id="tl-j5-title">📊 Terrain J4 — Bilan mi-parcours & Consolidation</div>
+        <div class="tl-desc" id="tl-j5-desc">MDP J4 : <strong style="color:var(--vert)">GR-J4-2026</strong> · Supports : Fiches terrain TCL + Scripts mobilisation Bénin-CI · Alerte J-7 vote Bénin · Rapport : nb conventions + nb Béninois mobilisés</div>
+      </div>
+      <!-- J6 (Webinaire J5) : 6 Avril — Live Q&A -->
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--vert);box-shadow:0 0 6px rgba(29,158,117,0.5);"></div>
+        <div class="tl-day" id="tl-j6-day">J6 · Lundi 6 Avril · 19h00 — 🎓 Session Live J5</div>
+        <div class="tl-title" id="tl-j6-title">❓ YouTube Live Q&A — Cas pratiques terrain</div>
+        <div class="tl-desc" id="tl-j6-desc">MDP J5 : <strong style="color:var(--vert)">GR-J5-2026</strong> · 100% Q&A questions Telegram · /dashboard en live · Objections commerçants TCL · Préparation J6 terrain · Alerte J-6 vote Bénin</div>
+      </div>
+      <!-- J7 (Webinaire J6) : 7 Avril — Terrain final -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-day" id="tl-j7-day">J7 · Mardi 7 Avril · Terrain</div>
+        <div class="tl-title" id="tl-j7-title">🌱 Terrain J6 — Dernière journée terrain avant bilan</div>
+        <div class="tl-desc" id="tl-j7-desc">MDP J6 : <strong style="color:var(--vert)">GR-J6-2026</strong> · Supports : Checklist bilan terrain + Modèle rapport final · Maximiser conventions TCL · Finaliser listes Béninois mobilisés · Alerte J-5 vote Bénin</div>
+      </div>
+      <!-- J8 (Webinaire J7) : 8 Avril — Live Bilan final -->
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--or);box-shadow:0 0 6px rgba(201,168,76,0.5);"></div>
+        <div class="tl-day" id="tl-j8-day">J8 · Mercredi 8 Avril · 19h00 — 🏆 Session Live J7 — BILAN</div>
+        <div class="tl-title" id="tl-j8-title">🏆 YouTube Live Bilan — Résultats & Feuille de route 2026-2028</div>
+        <div class="tl-desc" id="tl-j8-desc">MDP J7 : <strong style="color:var(--or)">GR-J7-2026</strong> · Tous supports débloqués · /dashboard final live · Témoignages Animateurs + Commerçants TCL · Feuille de route J8→J12 Bénin · Appel : recruter 3 nouveaux Animateurs</div>
+      </div>
+      <!-- J9-J11 : sprint final vote Bénin -->
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--orange);"></div>
+        <div class="tl-day" id="tl-j9-day">J9-J11 · Jeudi 9 → Samedi 11 Avril</div>
+        <div class="tl-title" id="tl-j9-title">🗳️ Sprint Final — Mobilisation vote Bénin</div>
+        <div class="tl-desc" id="tl-j9-desc">J-3 à J-1 avant vote · Messages diaspora béninoise · Rappels procédure vote · Coordination logistique bureaux de vote · Alerte /dashboard 3x/jour</div>
+      </div>
+      <!-- J12 : Jour du Vote -->
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--orange);width:14px;height:14px;left:-2.15rem;"></div>
+        <div class="tl-day" id="tl-j12-day">J12 · Dimanche 12 Avril 2026 · 7h00-17h00</div>
+        <div class="tl-title" id="tl-j12-title">🗳️ JOUR DU VOTE — Présidentielle Bénin</div>
+        <div class="tl-desc" id="tl-j12-desc">Vote diaspora béninoise d'Abidjan pour WADAGNI · Messages d'encouragement 7h00, 12h00, 17h00 · Attente résultats le soir · La Grande Réappropriation continue</div>
+      </div>
+      <!-- J13 : Bilan -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-day" id="tl-j13-day">J13 · Lundi 13 Avril 2026</div>
+        <div class="tl-title" id="tl-j13-title">📋 Bilan final & Suite TCL CI</div>
+        <div class="tl-desc" id="tl-j13-desc"><strong>La Grande Réappropriation</strong> continue · Rapport métriques complet · Objectif : 500 commerçants TCL conventionnés fin 2026 · Prochain scrutin Zone FCFA</div>
+      </div>
     </div>
-
-    <div class="counter-bar">
-      <div class="counter-card"><div class="counter-val" style="color:var(--vert);" id="counter-animateurs">0</div><div class="counter-label">🌱 Animateurs LFA-CI inscrits</div></div>
-      <div class="counter-card"><div class="counter-val" style="color:var(--benin);" id="counter-coords">0</div><div class="counter-label">🇧🇯 Coordinateurs Bénin inscrits</div></div>
-      <div class="counter-card"><div class="counter-val" style="color:var(--orange);">7</div><div class="counter-label">🗺️ Régions pilotes couvertes</div></div>
-      <div class="counter-card"><div class="counter-val" style="color:#85B7EB;" id="counter-jours">15</div><div class="counter-label">⏳ Jours avant le vote Bénin</div></div>
+    <div class="live-stats">
+      <div class="live-stat"><span class="live-stat-num" id="stat-animateurs">0</span><span class="live-stat-label">🌱 Animateurs LFA-CI inscrits</span></div>
+      <div class="live-stat"><span class="live-stat-num" id="stat-coordinateurs">0</span><span class="live-stat-label">🇧🇯 Coordinateurs Bénin inscrits</span></div>
+      <div class="live-stat"><span class="live-stat-num">7</span><span class="live-stat-label">🗺️ Régions pilotes couvertes</span></div>
+      <div class="live-stat"><span class="live-stat-num" id="stat-jours">13</span><span class="live-stat-label">⏳ Jours avant le vote Bénin</span></div>
     </div>
   </div>
 </section>
+
+<div class="divider"></div>
 
 <!-- INSCRIPTION -->
-<section class="s-inscription" id="inscription">
+<section id="inscription">
   <div class="section-inner">
-    <div class="section-label" style="color:var(--vert);">
-      <span class="dot" style="background:var(--vert);"></span>
-      <span id="txt-s3-label">Étape 3 — Rejoindre l'équipe</span>
+    <div class="section-tag" id="t-insc-tag">Étape 3 — Rejoindre l'équipe</div>
+    <h2 class="section-title" id="t-insc-title">Choisissez votre rôle</h2>
+    <p class="section-subtitle" id="t-insc-sub">Deux profils, une seule mission : <strong>La Grande Réappropriation</strong>.</p>
+    <div class="roles-tabs">
+      <button class="role-tab active" onclick="switchTab('lfa',this)" id="t-tab-lfa">🌱 Animateur LFA-CI</button>
+      <button class="role-tab" onclick="switchTab('benin',this)" id="t-tab-benin">🇧🇯 Coordinateur Bénin-CI</button>
     </div>
-    <h2 class="section-title">Choisissez <span style="color:var(--vert);">votre rôle</span></h2>
-    <p class="section-desc">Deux profils, une seule mission : <strong class="gr-strong">La Grande Réappropriation</strong>. Remplissez le formulaire correspondant à votre rôle.</p>
-
-    <div class="inscription-tabs">
-      <div class="ins-tab active" onclick="showTab('animateur')">🌱 <span id="txt-tab-animateur">Animateur LFA-CI</span></div>
-      <div class="ins-tab" onclick="showTab('coord')">🇧🇯 <span id="txt-tab-coord">Coordinateur Bénin-CI</span></div>
-    </div>
-
-    <!-- FORMULAIRE ANIMATEUR -->
-    <div class="ins-panel active" id="panel-animateur">
-      <form id="form-animateur" onsubmit="submitForm(event,'animateur')">
+    <div class="form-panel active" id="panel-lfa">
+      <form id="form-lfa" onsubmit="submitForm(event,'lfa')">
         <div class="form-grid">
-          <div class="form-group"><label id="lbl-a-prenom">Prénom *</label><input type="text" name="prenom" required placeholder="Votre prénom"></div>
-          <div class="form-group"><label id="lbl-a-nom">Nom *</label><input type="text" name="nom" required placeholder="Votre nom"></div>
-          <div class="form-group"><label id="lbl-a-tel">Téléphone / WhatsApp *</label><input type="tel" name="telephone" required placeholder="+225 07 XX XX XX XX"></div>
           <div class="form-group">
-            <label id="lbl-a-region">Région pilote *</label>
-            <select name="region" required>
-              <option value="" id="opt-a-region">-- Choisir votre région --</option>
-              <option value="Abidjan">District d'Abidjan</option>
-              <option value="Yamoussoukro">District de Yamoussoukro</option>
-              <option value="Belier">Région du Bélier (Toumodi)</option>
-              <option value="Agneby-Tiassa">Agnéby-Tiassa</option>
-              <option value="Me">Région de Mé</option>
-              <option value="Grands-Ponts">Grands-Ponts</option>
-              <option value="Sud-Comoe">Sud-Comoé</option>
+            <label id="fl-prenom-lbl">Prénom <span>*</span></label>
+            <input type="text" name="prenom" required id="fl-prenom-inp" placeholder="Votre prénom">
+          </div>
+          <div class="form-group">
+            <label id="fl-nom-lbl">Nom <span>*</span></label>
+            <input type="text" name="nom" required id="fl-nom-inp" placeholder="Votre nom">
+          </div>
+          <div class="form-group">
+            <label id="fl-tel-lbl">Téléphone / WhatsApp <span>*</span></label>
+            <input type="tel" name="telephone" required placeholder="07 XX XX XX XX">
+          </div>
+          <div class="form-group">
+            <label id="fl-region-lbl">Région pilote <span>*</span></label>
+            <select name="region" required id="fl-region-sel">
+              <option value="" id="fl-region-opt0">-- Choisir votre région --</option>
+              <option>District d'Abidjan</option><option>District de Yamoussoukro</option>
+              <option>Région du Bélier (Toumodi)</option><option>Agnéby-Tiassa</option>
+              <option>Région de Mé</option><option>Grands-Ponts</option><option>Sud-Comoé</option>
             </select>
           </div>
-          <div class="form-group"><label id="lbl-a-commune">Commune / Quartier *</label><input type="text" name="commune" required placeholder="Ex: Cocody, Yopougon, Adjamé..."></div>
           <div class="form-group">
-            <label id="lbl-a-profil">Profil activité</label>
-            <select name="profil">
-              <option value="" id="opt-a-profil">-- Votre activité principale --</option>
-              <option value="Commerçant">Commerçant(e)</option>
-              <option value="Étudiant">Étudiant(e)</option>
-              <option value="Fonctionnaire">Fonctionnaire</option>
-              <option value="Entrepreneur">Entrepreneur(e)</option>
-              <option value="Enseignant">Enseignant(e)</option>
-              <option value="Autre">Autre</option>
+            <label id="fl-quartier-lbl">Commune / Quartier <span>*</span></label>
+            <input type="text" name="quartier" required id="fl-quartier-inp" placeholder="Ex: Cocody, Yopougon...">
+          </div>
+          <div class="form-group">
+            <label id="fl-profil-lbl">Profil activité</label>
+            <select name="profil" id="fl-profil-sel">
+              <option value="" id="fl-profil-opt0">-- Votre activité --</option>
+              <option id="fl-profil-opt1">Commerçant(e)</option>
+              <option id="fl-profil-opt2">Étudiant(e)</option>
+              <option id="fl-profil-opt3">Fonctionnaire</option>
+              <option id="fl-profil-opt4">Entrepreneur(e)</option>
+              <option id="fl-profil-opt5">Enseignant(e)</option>
+              <option id="fl-profil-opt6">Autre</option>
             </select>
           </div>
-          <div class="form-group full"><label id="lbl-a-motivation">Pourquoi rejoindre La Grande Réappropriation ?</label><textarea name="motivation" placeholder="En quelques mots..."></textarea></div>
+          <div class="form-group full">
+            <label id="fl-motiv-lbl">Pourquoi rejoindre La Grande Réappropriation ?</label>
+            <textarea name="motivation" id="fl-motiv-txt" placeholder="En quelques mots..."></textarea>
+          </div>
         </div>
-        <button type="submit" class="form-submit orange" id="txt-btn-animateur">🌱 Je m'inscris comme Animateur LFA-CI</button>
-        <p class="form-note" id="txt-note-animateur">✅ Après inscription, vous recevrez le lien Bot CHALLENGER + votre accès à la Salle de Formation.</p>
+        <button type="submit" class="form-submit" id="t-submit-lfa">🌱 Je m'inscris comme Animateur LFA-CI</button>
+        <p class="form-note" id="t-note-lfa">✅ Après inscription, vous recevrez le lien Bot CHALLENGER + votre accès à la Salle de Formation.</p>
       </form>
-      <div class="success-msg" id="success-animateur">
-        <h3>🌱 Bienvenue, Animateur !</h3>
-        <p id="txt-success-animateur">Votre inscription a été enregistrée. Vous allez recevoir un message WhatsApp avec le lien Bot CHALLENGER et votre accès à la Salle de Formation.</p>
-        <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="btn-primary">🤖 Ouvrir le Bot CHALLENGER maintenant</a>
+      <div class="success-msg" id="success-lfa">
+        <h3 id="fl-success-title">🌱 Bienvenue, Animateur !</h3>
+        <p id="fl-success-msg">Votre inscription a été enregistrée. Vous allez recevoir un message WhatsApp avec le lien Bot CHALLENGER et votre accès à la Salle de Formation.</p>
+        <a href="https://t.me/ChallengeFinancierbot" class="btn-primary vert" style="margin-top:1rem;display:inline-flex;" target="_blank">🤖 Ouvrir le Bot CHALLENGER</a>
       </div>
     </div>
-
-    <!-- FORMULAIRE COORDINATEUR -->
-    <div class="ins-panel" id="panel-coord">
-      <form id="form-coord" onsubmit="submitForm(event,'coord')">
+    <div class="form-panel" id="panel-benin">
+      <form id="form-benin" onsubmit="submitForm(event,'benin')">
         <div class="form-grid">
-          <div class="form-group"><label id="lbl-c-prenom">Prénom *</label><input type="text" name="prenom" required placeholder="Votre prénom"></div>
-          <div class="form-group"><label id="lbl-c-nom">Nom *</label><input type="text" name="nom" required placeholder="Votre nom"></div>
-          <div class="form-group"><label id="lbl-c-tel">Téléphone / WhatsApp *</label><input type="tel" name="telephone" required placeholder="+225 07 XX XX XX XX"></div>
           <div class="form-group">
-            <label id="lbl-c-quartier">Quartier à Abidjan *</label>
-            <select name="quartier_abidjan" required>
-              <option value="" id="opt-c-quartier">-- Votre quartier --</option>
-              <option value="Adjame">Adjamé</option>
-              <option value="Yopougon">Yopougon</option>
-              <option value="Abobo">Abobo</option>
-              <option value="Cocody">Cocody</option>
-              <option value="Marcory">Marcory</option>
-              <option value="Koumassi">Koumassi</option>
-              <option value="Treichville">Treichville</option>
-              <option value="Plateau">Plateau</option>
-              <option value="Autre" id="opt-c-autre">Autre</option>
+            <label id="fb-prenom-lbl">Prénom <span>*</span></label>
+            <input type="text" name="prenom" required id="fb-prenom-inp" placeholder="Votre prénom">
+          </div>
+          <div class="form-group">
+            <label id="fb-nom-lbl">Nom <span>*</span></label>
+            <input type="text" name="nom" required id="fb-nom-inp" placeholder="Votre nom">
+          </div>
+          <div class="form-group">
+            <label id="fb-tel-lbl">Téléphone / WhatsApp <span>*</span></label>
+            <input type="tel" name="telephone" required placeholder="07 XX XX XX XX">
+          </div>
+          <div class="form-group">
+            <label id="fb-quartier-lbl">Quartier à Abidjan <span>*</span></label>
+            <select name="quartier" required id="fb-quartier-sel">
+              <option value="" id="fb-quartier-opt0">-- Votre quartier --</option>
+              <option>Adjamé</option><option>Yopougon</option><option>Abobo</option>
+              <option>Cocody</option><option>Marcory</option><option>Koumassi</option>
+              <option>Treichville</option><option>Plateau</option><option>Autre</option>
             </select>
           </div>
-          <div class="form-group"><label id="lbl-c-ville">Ville / Département d'origine au Bénin *</label><input type="text" name="ville_benin" required placeholder="Ex: Cotonou, Porto-Novo, Parakou..."></div>
-          <div class="form-group"><label id="lbl-c-asso">Communauté / Association béninoise</label><input type="text" name="association" placeholder="Ex: Association des Béninois de Yopougon..."></div>
+          <div class="form-group">
+            <label id="fb-ville-lbl">Ville / Département d'origine au Bénin <span>*</span></label>
+            <input type="text" name="ville_benin" required id="fb-ville-inp" placeholder="Ex: Cotonou, Porto-Novo...">
+          </div>
+          <div class="form-group">
+            <label id="fb-communaute-lbl">Communauté / Association béninoise</label>
+            <input type="text" name="communaute" id="fb-communaute-inp" placeholder="Nom de votre association">
+          </div>
           <div class="form-group full">
-            <label id="lbl-c-mobilisation">Combien de personnes pouvez-vous mobiliser pour le vote ?</label>
-            <select name="capacite_mobilisation">
-              <option value="" id="opt-c-estim">-- Estimation --</option>
-              <option value="1-10" id="opt-c-1">1 à 10 personnes</option>
-              <option value="10-50" id="opt-c-2">10 à 50 personnes</option>
-              <option value="50-100" id="opt-c-3">50 à 100 personnes</option>
-              <option value="100+" id="opt-c-4">Plus de 100 personnes</option>
+            <label id="fb-mobil-lbl">Combien de personnes pouvez-vous mobiliser ?</label>
+            <select name="mobilisation" id="fb-mobil-sel">
+              <option value="" id="fb-mobil-opt0">-- Estimation --</option>
+              <option id="fb-mobil-opt1">1 à 10 personnes</option>
+              <option id="fb-mobil-opt2">10 à 50 personnes</option>
+              <option id="fb-mobil-opt3">50 à 100 personnes</option>
+              <option id="fb-mobil-opt4">Plus de 100 personnes</option>
             </select>
           </div>
         </div>
-        <button type="submit" class="form-submit benin" id="txt-btn-coord">🇧🇯 Je m'inscris comme Coordinateur Bénin-CI</button>
-        <p class="form-note" id="txt-note-coord">✅ Après inscription, vous recevrez le lien Bot CHALLENGER + le guide complet pour mobiliser votre communauté béninoise d'Abidjan.</p>
+        <button type="submit" class="form-submit" id="t-submit-benin">🇧🇯 Je m'inscris comme Coordinateur Bénin-CI</button>
+        <p class="form-note" id="t-note-benin">✅ Après inscription, vous recevrez le lien Bot CHALLENGER + le guide complet de mobilisation.</p>
       </form>
-      <div class="success-msg" id="success-coord">
-        <h3>🇧🇯 Bienvenue, Coordinateur !</h3>
-        <p id="txt-success-coord">Votre inscription a été enregistrée. Vous allez recevoir un message WhatsApp avec le Bot CHALLENGER et le guide complet de mobilisation.</p>
-        <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="btn-primary" style="background:var(--benin);">🤖 Ouvrir le Bot CHALLENGER maintenant</a>
+      <div class="success-msg" id="success-benin">
+        <h3 id="fb-success-title">🇧🇯 Bienvenue, Coordinateur !</h3>
+        <p id="fb-success-msg">Votre inscription a été enregistrée. Vous allez recevoir un message WhatsApp avec le Bot CHALLENGER et le guide complet de mobilisation.</p>
+        <a href="https://t.me/ChallengeFinancierbot" class="btn-primary vert" style="margin-top:1rem;display:inline-flex;" target="_blank">🤖 Ouvrir le Bot CHALLENGER</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FORMATION -->
-<section class="s-formation" id="formation">
+<div class="divider"></div>
+
+<!-- SALLE DE FORMATION -->
+<section id="formation">
   <div class="section-inner">
-    <div class="section-label" style="color:#A78BFA;">
-      <span class="dot" style="background:#7F77DD;"></span>
-      <span id="txt-s4-label">Étape 4 — Salle de Formation</span>
-    </div>
-    <h2 class="section-title">Votre <span style="color:#A78BFA;">formation</span> pour le terrain</h2>
-    <p class="section-desc" id="txt-s4-desc">Un module intensif de 3 à 7 jours, alternant théorie (YouTube Live) et actions terrain. <strong>Accès réservé aux inscrits.</strong></p>
-
-    <!-- BANNIÈRE BIENTÔT DISPONIBLE -->
-    <div style="margin-top:40px;background:linear-gradient(135deg,rgba(127,119,221,0.15),rgba(24,95,165,0.15));border:1px solid rgba(127,119,221,0.4);border-radius:20px;padding:48px 32px;text-align:center;">
-      <div style="margin-bottom:20px;"><img src="https://i.ibb.co/VWp3SGvq/Simplice-KOUAME.png" alt="Coach Morgan's — Simplice KOUAMÉ" style="width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #A78BFA;box-shadow:0 0 0 6px rgba(127,119,221,0.2);"></div>
-      <h3 style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#A78BFA;margin-bottom:12px;">Salle de Formation — Bientôt disponible</h3>
-      <p style="font-size:16px;color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto 24px;line-height:1.7;">
-        La Salle de Formation ouvre le <strong style="color:var(--vert);">31 Mars 2026 (J+1)</strong> pour tous les inscrits validés.<br>
-        Inscrivez-vous maintenant pour recevoir votre accès dès l'ouverture.
-      </p>
-
-      <!-- SESSIONS PLANIFIÉES -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:32px 0;text-align:left;">
-        <div style="background:rgba(255,0,0,0.08);border:1px solid rgba(255,0,0,0.25);border-radius:12px;padding:20px;">
-          <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#FF6B6B;text-transform:uppercase;margin-bottom:8px;">📺 Session 1 — J1</div>
-          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Introduction &amp; Écosystème CF™</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.55);">31 Mars 2026 · YouTube Live<br>Coach Morgan's · @VoteConnect</div>
-          <a href="https://www.youtube.com/@VoteConnect" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:#FF0000;color:white;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;">▶ Accéder à la chaîne</a>
-        </div>
-        <div style="background:rgba(29,158,117,0.08);border:1px solid rgba(29,158,117,0.25);border-radius:12px;padding:20px;">
-          <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--vert);text-transform:uppercase;margin-bottom:8px;">📋 Support 1 — J+1</div>
-          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Test Global CF v1</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.55);">Validation connaissances<br>ChallengeFinancier™ + Dispositif CROIRE</div>
-          <div style="margin-top:12px;background:rgba(29,158,117,0.15);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--vert);font-weight:600;">🔒 Envoyé par WhatsApp après validation</div>
-        </div>
-        <div style="background:rgba(24,95,165,0.08);border:1px solid rgba(24,95,165,0.25);border-radius:12px;padding:20px;">
-          <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#85B7EB;text-transform:uppercase;margin-bottom:8px;">📊 Support 2 — J+1</div>
-          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Tutoriel GS CF-DB v2.1</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.55);">Guide Google Sheets CF-DB<br>Enregistrement · Métriques · Dashboard</div>
-          <div style="margin-top:12px;background:rgba(24,95,165,0.15);border-radius:8px;padding:8px 12px;font-size:12px;color:#85B7EB;font-weight:600;">🔒 Envoyé par WhatsApp après validation</div>
-        </div>
-        <div style="background:rgba(216,90,48,0.08);border:1px solid rgba(216,90,48,0.25);border-radius:12px;padding:20px;">
-          <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#F0997B;text-transform:uppercase;margin-bottom:8px;">🗓️ Chronogramme — J0→J14</div>
-          <div style="font-size:15px;font-weight:700;margin-bottom:6px;">Plan d'action terrain</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.55);">Missions quotidiennes · KPIs<br>Messages WhatsApp officiels</div>
-          <div style="margin-top:12px;background:rgba(216,90,48,0.15);border-radius:8px;padding:8px 12px;font-size:12px;color:#F0997B;font-weight:600;">🔒 Partagé lors de la 1ère session Live</div>
-        </div>
+    <div class="section-tag" id="t-form-tag">Étape 4 — Salle de Formation</div>
+    <h2 class="section-title" id="t-form-title">Votre formation pour le terrain</h2>
+    <p class="section-subtitle" id="t-form-sub">Module 7 jours · <strong>2→8 Avril 2026</strong> · YouTube Live + Terrain. <strong>Accès réservé aux inscrits.</strong> Saisissez le mot de passe du jour reçu par WhatsApp.</p>
+    <div class="formation-header">
+      <div class="coach-card">
+        <img src="https://i.ibb.co/VWp3SGvq/Simplice-KOUAME.png" alt="Coach Morgan's">
+        <div class="coach-name">Coach Morgan's</div>
+        <div class="coach-title">Simplice KOUAMÉ<br>Président LFA-CI · CEO VoteConnect</div>
       </div>
-
-      <!-- PROGRAMME 7 JOURS -->
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:24px;margin-top:8px;text-align:left;">
-        <h4 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:20px;text-align:center;">🗓️ Programme du Module — 7 jours</h4>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
-          <div class="prog-day theory" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J1</div><div class="prog-day-label">Théorie Live</div></div>
-          <div class="prog-day terrain" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J2</div><div class="prog-day-label">Terrain</div></div>
-          <div class="prog-day both" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J3</div><div class="prog-day-label">Live + Terrain</div></div>
-          <div class="prog-day terrain" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J4</div><div class="prog-day-label">Terrain</div></div>
-          <div class="prog-day theory" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J5</div><div class="prog-day-label">Live Q&A</div></div>
-          <div class="prog-day terrain" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J6</div><div class="prog-day-label">Terrain</div></div>
-          <div class="prog-day both" style="flex:1 1 calc(14% - 8px);min-width:70px;"><div class="prog-day-num">J7</div><div class="prog-day-label">Bilan + Suite</div></div>
+      <div style="flex:1;min-width:250px;">
+        <h3 style="font-size:0.9rem;margin-bottom:0.55rem;" id="t-prog-title">🗓️ Programme — 7 Jours · 2→8 Avril 2026</h3>
+        <div class="programme-grid">
+          <div class="prog-day live"><div class="prog-day-label">J1 · 2 Avr</div><span class="prog-day-icon">🎓</span><div class="prog-day-type">Live</div></div>
+          <div class="prog-day terrain"><div class="prog-day-label">J2 · 3 Avr</div><span class="prog-day-icon">🌱</span><div class="prog-day-type">Terrain</div></div>
+          <div class="prog-day live"><div class="prog-day-label">J3 · 4 Avr</div><span class="prog-day-icon">🔥</span><div class="prog-day-type">Live+T.</div></div>
+          <div class="prog-day terrain"><div class="prog-day-label">J4 · 5 Avr</div><span class="prog-day-icon">📊</span><div class="prog-day-type">Terrain</div></div>
+          <div class="prog-day live"><div class="prog-day-label">J5 · 6 Avr</div><span class="prog-day-icon">❓</span><div class="prog-day-type">Q&A</div></div>
+          <div class="prog-day terrain"><div class="prog-day-label">J6 · 7 Avr</div><span class="prog-day-icon">🌱</span><div class="prog-day-type">Terrain</div></div>
+          <div class="prog-day live"><div class="prog-day-label">J7 · 8 Avr</div><span class="prog-day-icon">🏆</span><div class="prog-day-type">Bilan</div></div>
         </div>
-        <div class="prog-legend" style="justify-content:center;margin-top:16px;">
-          <div class="prog-legend-item"><div class="prog-legend-dot" style="background:#FF0000;"></div> YouTube Live — Coach Morgan's</div>
-          <div class="prog-legend-item"><div class="prog-legend-dot" style="background:var(--vert);"></div> Actions terrain</div>
-          <div class="prog-legend-item"><div class="prog-legend-dot" style="background:var(--bleu);"></div> Session mixte</div>
-        </div>
-      </div>
-
-      <!-- CTA INSCRIPTION -->
-      <div style="margin-top:32px;">
-        <a href="#inscription" class="btn-primary" style="font-size:16px;padding:18px 36px;" id="txt-btn-formation">🌱 S'inscrire pour accéder à la formation</a>
-        <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,0.4);">
-          📱 Après validation, vous recevrez vos accès par WhatsApp · +225 07 67 56 09 08
-        </p>
       </div>
     </div>
-
+    <div class="supports-grid">
+      <div class="support-card" id="card-j1">
+        <div class="support-header"><span class="support-day-badge">J1 · 2 Avril · 19h00</span><h3>Introduction & Écosystème CF™</h3></div>
+        <div class="support-body">
+          <div class="support-meta">🎓 YouTube Live · 90 min · Coach Morgan's</div>
+          <div class="support-files">
+            <div class="support-file"><span class="file-icon">📄</span>Document Directeur Test Global CF v2.1</div>
+            <div class="support-file"><span class="file-icon">📄</span>Tutoriel GS CF-DB v2.1 — 14 Feuilles</div>
+          </div>
+          <div class="mdp-zone">
+            <div class="mdp-input-wrap">
+              <input type="text" class="mdp-input" id="mdp-j1" placeholder="Mot de passe J1" autocomplete="off" oninput="resetMdp('j1')">
+              <button class="mdp-btn" id="btn-j1" onclick="verifyMdp('j1')">🔓 Déverr.</button>
+            </div>
+            <div class="mdp-error" id="err-j1">❌ Mot de passe incorrect. Vérifiez votre WhatsApp.</div>
+            <div class="download-zone" id="dl-j1">
+              <a href="https://drive.google.com/file/d/1TDhwYGj7KpjqNWMcTksSRFPSR1pa8c5v/view?usp=sharing" target="_blank" class="download-btn">⬇️ Document Directeur Test Global v2.1</a>
+              <a href="https://drive.google.com/file/d/1qt1mjUixhyMJyresgrpwE0swnNzUumII/view?usp=sharing" target="_blank" class="download-btn sec">⬇️ Tutoriel GS CF-DB v2.1</a>
+            </div>
+            <div class="mdp-hint">🔑 MDP envoyé par WhatsApp avant 18h00 le 2 Avril</div>
+          </div>
+        </div>
+      </div>
+      <div class="support-card" id="card-j2">
+        <div class="support-header"><span class="support-day-badge">J2 · 3 Avril · Terrain</span><h3>Déploiement TCL & Mobilisation Bénin-CI</h3></div>
+        <div class="support-body">
+          <div class="support-meta">🌱 Journée Terrain · Mission 3 commerçants TCL</div>
+          <div class="support-files"><div class="support-file"><span class="file-icon">📄</span>Plan de Lancement La Grande Réappropriation</div></div>
+          <div class="mdp-zone">
+            <div class="mdp-input-wrap">
+              <input type="text" class="mdp-input" id="mdp-j2" placeholder="Mot de passe J2" autocomplete="off" oninput="resetMdp('j2')">
+              <button class="mdp-btn" id="btn-j2" onclick="verifyMdp('j2')">🔓 Déverr.</button>
+            </div>
+            <div class="mdp-error" id="err-j2">❌ Mot de passe incorrect. Vérifiez votre WhatsApp.</div>
+            <div class="download-zone" id="dl-j2">
+              <a href="https://drive.google.com/file/d/1X-gK-hk9eNJcSMeO_-s-1VJEk4K5xRCB/view?usp=sharing" target="_blank" class="download-btn">⬇️ Plan de Lancement GR</a>
+            </div>
+            <div class="mdp-hint">🔑 MDP envoyé par WhatsApp à 7h00 le 3 Avril</div>
+          </div>
+        </div>
+      </div>
+      <div class="support-card" id="card-j3">
+        <div class="support-header"><span class="support-day-badge">J3 · 4 Avril · 19h00</span><h3>Mobilisation Intense — TCL · Bénin-CI</h3></div>
+        <div class="support-body">
+          <div class="support-meta">🔥 YouTube Live + Terrain · 90 min</div>
+          <div class="support-files"><div class="support-file"><span class="file-icon">📄</span>Guide de Fonctionnement du Webinaire CF™ v1</div></div>
+          <div class="mdp-zone">
+            <div class="mdp-input-wrap">
+              <input type="text" class="mdp-input" id="mdp-j3" placeholder="Mot de passe J3" autocomplete="off" oninput="resetMdp('j3')">
+              <button class="mdp-btn" id="btn-j3" onclick="verifyMdp('j3')">🔓 Déverr.</button>
+            </div>
+            <div class="mdp-error" id="err-j3">❌ Mot de passe incorrect. Vérifiez votre WhatsApp.</div>
+            <div class="download-zone" id="dl-j3">
+              <a href="https://drive.google.com/file/d/1wzwN3NKg3qoyUXSo7U5hxIY3iMuk9c7L/view?usp=sharing" target="_blank" class="download-btn">⬇️ Guide Webinaire CF™ v1</a>
+            </div>
+            <div class="mdp-hint">🔑 MDP envoyé par WhatsApp avant 18h00 le 4 Avril</div>
+          </div>
+        </div>
+      </div>
+      <div class="support-card coming"><div class="support-header"><span class="support-day-badge">J4 · 5 Avril</span><h3>Bilan mi-parcours & Consolidation</h3></div><div class="support-body"><div class="support-meta">📊 Journée Terrain</div><div class="support-files"><div class="support-file"><span class="file-icon">📄</span>Fiches terrain TCL + Scripts Bénin-CI</div></div><div class="mdp-zone"><div class="mdp-input-wrap"><input type="text" class="mdp-input" placeholder="Disponible le 5 Avril à 7h00" disabled><button class="mdp-btn" disabled>🔒</button></div><div class="mdp-hint">🔑 MDP envoyé à 7h00 le 5 Avril</div></div></div></div>
+      <div class="support-card coming"><div class="support-header"><span class="support-day-badge">J5 · 6 Avril · 19h00</span><h3>Session Q&A — Cas pratiques terrain</h3></div><div class="support-body"><div class="support-meta">❓ YouTube Live Q&A · 90 min</div><div class="support-files"><div class="support-file"><span class="file-icon">📄</span>Réponses Q&A compilées + Cas pratiques</div></div><div class="mdp-zone"><div class="mdp-input-wrap"><input type="text" class="mdp-input" placeholder="Disponible le 6 Avril avant 18h00" disabled><button class="mdp-btn" disabled>🔒</button></div><div class="mdp-hint">🔑 MDP envoyé avant 18h00 le 6 Avril</div></div></div></div>
+      <div class="support-card coming"><div class="support-header"><span class="support-day-badge">J6 · 7 Avril</span><h3>Terrain Final — Bilan zone</h3></div><div class="support-body"><div class="support-meta">🌱 Journée Terrain</div><div class="support-files"><div class="support-file"><span class="file-icon">📄</span>Checklist bilan + Modèle rapport final</div></div><div class="mdp-zone"><div class="mdp-input-wrap"><input type="text" class="mdp-input" placeholder="Disponible le 7 Avril à 7h00" disabled><button class="mdp-btn" disabled>🔒</button></div><div class="mdp-hint">🔑 MDP envoyé à 7h00 le 7 Avril</div></div></div></div>
+      <div class="support-card coming"><div class="support-header"><span class="support-day-badge">J7 · 8 Avril · 19h00</span><h3>Bilan Final & Feuille de route 2026-2028</h3></div><div class="support-body"><div class="support-meta">🏆 YouTube Live Bilan · Tous supports débloqués</div><div class="support-files"><div class="support-file"><span class="file-icon">📄</span>Feuille de route GR 2026-2028</div><div class="support-file"><span class="file-icon">📄</span>Tous les supports précédents accessibles</div></div><div class="mdp-zone"><div class="mdp-input-wrap"><input type="text" class="mdp-input" placeholder="Disponible le 8 Avril avant 18h00" disabled><button class="mdp-btn" disabled>🔒</button></div><div class="mdp-hint">🔑 MDP envoyé avant 18h00 le 8 Avril</div></div></div></div>
+    </div>
+    <div style="margin-top:1.5rem;padding:0.9rem 1.1rem;background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);border-radius:8px;">
+      <p style="font-family:sans-serif;font-size:0.8rem;color:var(--texte-doux);">📱 <strong style="color:var(--or);">Mots de passe</strong> : reçus par WhatsApp au +225 07 67 56 09 08 après validation inscription · <a href="#inscription" style="color:var(--or);">S'inscrire maintenant</a></p>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <h3>La Grande Réappropriation</h3>
-        <p>De Abidjan aux 14 capitales de la Zone FCFA. La Révolution Citoyenne par la Base — 2026 à 2035.</p>
-        <p style="margin-top:12px;font-size:13px;color:rgba(255,255,255,0.3);">VoteConnect SARL · RCCM CI-ABJ-03-2025-B12-03666<br>Cocody-Angré Djibi 3, Abidjan</p>
-      </div>
-      <div class="footer-col">
-        <h4>Plateformes</h4>
-        <a href="https://t.me/ChallengeFinancierbot" target="_blank">🤖 Bot CHALLENGER</a>
-        <a href="https://coachmorgans.github.io/challengefinancier/" target="_blank">🌐 ChallengeFinancier™</a>
-        <a href="https://coachmorgans.github.io/lms-cf/" target="_blank">🎓 LMS CF™</a>
-        <a href="https://coachmorgans.github.io/tcl/" target="_blank">🛒 Portail TCL</a>
-        <a href="https://coachmorgans.github.io/essai/" target="_blank">📥 L'Essai</a>
-        <a href="https://coachmorgans.github.io/wadagni-ci/" target="_blank">🇧🇯 Wadagni-CI</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="https://wa.me/2250767560908" target="_blank">💬 WhatsApp Admin</a>
-        <a href="https://youtube.com/@LFA-TV-h5z" target="_blank">📺 YouTube LFA TV</a>
-        <a href="https://www.youtube.com/@VoteConnect" target="_blank">📺 YouTube VoteConnect</a>
-        <a href="tel:+2250767814333">💳 Wave +225 07 67 81 43 33</a>
-      </div>
+    <div class="footer-brand">
+      <div style="font-size:0.97rem;font-weight:bold;color:var(--vert);margin-bottom:0.4rem;">La Grande Réappropriation</div>
+      <p>De Abidjan aux 13 capitales de la Zone FCFA. La Révolution Citoyenne par la Base — 2026 à 2035.</p>
+      <div class="rccm">VoteConnect SARL · RCCM CI-ABJ-03-2025-B12-03666<br>Cocody-Angré Djibi 3, Abidjan</div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 VoteConnect SARL · LFA-CI · <strong class="gr-strong">La Grande Réappropriation</strong> — Document Confidentiel</p>
-      <p style="color:rgba(255,255,255,0.2);">Une Afrique UNIE · SOLIDAIRE · PROSPÈRE</p>
+    <div class="footer-col">
+      <h4>Plateformes</h4>
+      <ul>
+        <li><a href="https://t.me/ChallengeFinancierbot" target="_blank">🤖 Bot CHALLENGER</a></li>
+        <li><a href="https://coachmorgans.github.io/challengefinancier/" target="_blank">🌐 ChallengeFinancier™</a></li>
+        <li><a href="https://coachmorgans.github.io/lms-cf/" target="_blank">🎓 LMS CF™</a></li>
+        <li><a href="https://coachmorgans.github.io/tcl/" target="_blank">🛒 Portail TCL</a></li>
+        <li><a href="https://coachmorgans.github.io/essai/" target="_blank">📥 L'Essai</a></li>
+        <li><a href="https://coachmorgans.github.io/wadagni-ci/" target="_blank">🇧🇯 Wadagni-CI</a></li>
+      </ul>
     </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="https://wa.me/2250767560908" target="_blank">💬 WhatsApp Admin</a></li>
+        <li><a href="https://youtube.com/@LFA-TV-h5z" target="_blank">📺 YouTube LFA TV</a></li>
+        <li><a href="https://www.youtube.com/@VoteConnect" target="_blank">📺 YouTube VoteConnect</a></li>
+        <li><a href="tel:+2250767814333">💳 Wave +225 07 67 81 43 33</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 VoteConnect SARL · LFA-CI · <strong>La Grande Réappropriation</strong> — Confidentiel</p>
+    <p>Une Afrique UNIE · SOLIDAIRE · PROSPÈRE</p>
   </div>
 </footer>
 
 <script>
-const GS_URL = 'https://script.google.com/macros/s/AKfycbxA2uROzsVFwcn_KfTImjotSI0Gt0xQJHaykvj3fXFbSqpe8O-zu0_wA5JONVjv2vqv/exec';
-
-const LANGS = {
+// ============================================================
+// TRADUCTIONS — couverture COMPLÈTE de toute la page
+// ============================================================
+var LANGS = {
   fr: {
-    "txt-badge": "Lancement officiel — 30 Mars 2026 à 7h00",
-    "txt-h1-3": "est en marche.",
-    "txt-sub-before": "De Abidjan aux 14 capitales de la Zone FCFA. Rejoignez l'équipe VoteConnect —",
-    "txt-sub-et": " et",
-    "txt-sub-after": " — et construisez le pays que vous voulez laisser à vos enfants.",
-    "txt-flag-benin": "Campagne Wadagni-CI",
-    "txt-btn-rejoins": "🌱 Je rejoins l'équipe",
-    "txt-btn-telegram": "📱 Guide Telegram",
-    "txt-btn-bot": "🤖 Ouvrir le Bot CHALLENGER",
-    "txt-countdown-label": "Compte à rebours lancement",
-    "txt-cd-j": "Jours", "txt-cd-h": "Heures", "txt-cd-m": "Min", "txt-cd-s": "Sec",
-    "txt-s1-label": "Étape 1 — Pour les nouveaux sur Telegram",
-    "txt-s1-desc": "Suivez ces 4 étapes simples pour installer Telegram et rejoindre le Bot CHALLENGER en moins de 3 minutes.",
-    "txt-tg1-title": "Télécharger Telegram",
-    "txt-tg1-desc": "Rendez-vous sur votre boutique d'applications et téléchargez Telegram. C'est gratuit.",
-    "txt-tg2-title": "Créer votre compte",
-    "txt-tg2-desc": "Ouvrez Telegram, entrez votre numéro de téléphone, puis le code SMS reçu. C'est tout !",
-    "txt-tg3-title": "Cliquer le lien Bot",
-    "txt-tg3-desc": "Cliquez sur ce lien depuis votre téléphone. Telegram va s'ouvrir automatiquement.",
-    "txt-tg4-title": "Appuyer START BOT",
-    "txt-tg-copy": "Copiez ce lien et envoyez-le à vos contacts WhatsApp pour les inviter à rejoindre le mouvement.",
-    "txt-btn-copy": "📋 Copier le lien",
-    "txt-s2-label": "Étape 2 — Le Plan Officiel",
-    "txt-s2-desc": "30 Mars → 12 Avril 2026 · 14 jours · 7 régions pilotes · 2 volets simultanés",
-    "txt-s3-label": "Étape 3 — Rejoindre l'équipe",
-    "txt-tab-animateur": "Animateur LFA-CI", "txt-tab-coord": "Coordinateur Bénin-CI",
-    "lbl-a-prenom": "Prénom *", "lbl-a-nom": "Nom *", "lbl-a-tel": "Téléphone / WhatsApp *",
-    "lbl-a-region": "Région pilote *", "lbl-a-commune": "Commune / Quartier *",
-    "lbl-a-profil": "Profil activité", "lbl-a-motivation": "Pourquoi rejoindre La Grande Réappropriation ?",
-    "txt-btn-animateur": "🌱 Je m'inscris comme Animateur LFA-CI",
-    "txt-note-animateur": "✅ Après inscription, vous recevrez le lien Bot CHALLENGER + votre accès à la Salle de Formation.",
-    "txt-success-animateur": "Votre inscription a été enregistrée. Vous allez recevoir un message WhatsApp avec le lien Bot CHALLENGER.",
-    "lbl-c-prenom": "Prénom *", "lbl-c-nom": "Nom *", "lbl-c-tel": "Téléphone / WhatsApp *",
-    "lbl-c-quartier": "Quartier à Abidjan *", "lbl-c-ville": "Ville d'origine au Bénin *",
-    "lbl-c-asso": "Communauté / Association béninoise",
-    "lbl-c-mobilisation": "Combien de personnes pouvez-vous mobiliser pour le vote ?",
-    "opt-c-estim": "-- Estimation --", "opt-c-1": "1 à 10 personnes", "opt-c-2": "10 à 50 personnes",
-    "opt-c-3": "50 à 100 personnes", "opt-c-4": "Plus de 100 personnes",
-    "txt-btn-coord": "🇧🇯 Je m'inscris comme Coordinateur Bénin-CI",
-    "txt-note-coord": "✅ Après inscription, vous recevrez le lien Bot CHALLENGER + le guide complet de mobilisation.",
-    "txt-success-coord": "Votre inscription a été enregistrée. Vous allez recevoir un message WhatsApp avec le Bot CHALLENGER.",
-    "txt-s4-label": "Étape 4 — Salle de Formation",
-    "txt-s4-desc": "Un module intensif de 3 à 7 jours, alternant théorie (YouTube Live) et actions terrain. Accès réservé aux inscrits.",
-    "txt-m1-title": "Vidéos YouTube Live",
-    "txt-m1-desc": "Sessions live animées par Coach Morgan's sur la chaîne YouTube officielle VoteConnect.",
-    "txt-m1-btn": "📺 Chaîne VoteConnect", "txt-m2-title": "Test Global CF v1",
-    "txt-m2-desc": "Le support de référence pour valider vos connaissances de l'écosystème ChallengeFinancier.",
-    "txt-m2-note": "📎 Fichier partagé après inscription validée", "txt-m3-title": "Tutoriel GS CF-DB v2.0",
-    "txt-m3-desc": "Guide complet du Google Sheets CF-DB v2.0 : enregistrer vos recrutements, suivre les métriques.",
-    "txt-m3-note": "📎 Fichier partagé après inscription validée", "txt-m4-title": "Chronogramme terrain J0→J14",
-    "txt-m4-desc": "Le plan d'action jour par jour avec vos missions exactes.",
-    "txt-m4-note": "📎 Partagé lors de la 1ère session Live",
-    "txt-btn-formation": "🌱 S'inscrire pour accéder à la formation"
+    "t-badge":"🚀 Lancement officiel — 31 Mars 2026 à 7h00",
+    "t-h1":"<span class='gr-orange'>La Grande</span><br><span class='gr-vert'>Réappropriation</span><br>est en marche.",
+    "t-p":"De Abidjan aux 13 capitales de la Zone FCFA. Rejoignez l'équipe VoteConnect — <strong>Animateurs LFA-CI</strong> et <strong>Coordinateurs Bénin-CI</strong> — et construisons la CEDEAO que nous voulons laisser à nos enfants.",
+    "t-cta1":"🌱 Je rejoins l'équipe","t-cta2":"📱 Guide Telegram",
+    "t-open-bot":"🤖 Ouvrir le Bot CHALLENGER",
+    "t-cd-label":"COMPTE À REBOURS LANCEMENT FORMATION",
+    "t-tg-tag":"Étape 1 — Pour les nouveaux sur Telegram",
+    "t-tg-title":"75% des gens ici n'ont jamais utilisé Telegram. Ce guide est pour vous.",
+    "t-tg-sub":"Suivez ces 4 étapes simples pour installer Telegram et rejoindre le Bot CHALLENGER en moins de 3 minutes.",
+    "t-s1h":"Télécharger Telegram","t-s1p":"Rendez-vous sur votre boutique d'applications et téléchargez Telegram. C'est gratuit et ne prend que 30 secondes.",
+    "t-s2h":"Créer votre compte","t-s2p":"Ouvrez Telegram, entrez votre numéro de téléphone, puis le code SMS reçu. Choisissez un prénom. C'est tout !",
+    "t-s3h":"Cliquer le lien Bot","t-s3p":"Cliquez sur ce lien depuis votre téléphone. Telegram va s'ouvrir automatiquement sur le Bot CHALLENGER.",
+    "t-s4h":"Appuyer START BOT","t-s4p":"Appuyez sur le bouton bleu <strong>'START BOT'</strong>. Le menu principal s'affiche. Vous êtes dans <strong>La Grande Réappropriation</strong> !",
+    "t-share-title":"📣 <strong>Partagez ce lien à vos contacts WhatsApp</strong> pour les inviter à rejoindre La Grande Réappropriation :",
+    "t-share-msg":"💬 Message suggéré : \"Frère/Sœur, rejoins La Grande Réappropriation — le mouvement citoyen qui transforme chaque achat en acte politique : t.me/ChallengeFinancierbot\"",
+    "t-copy-btn":"📋 Copier le lien",
+    "t-plan-tag":"Étape 2 — Le Plan Officiel","t-plan-title":"La Campagne en détail",
+    "t-plan-sub":"31 Mars → 12 Avril 2026 · 14 jours · 7 régions pilotes · 2 volets simultanés",
+    "t-insc-tag":"Étape 3 — Rejoindre l'équipe","t-insc-title":"Choisissez votre rôle",
+    "t-insc-sub":"Deux profils, une seule mission : <strong>La Grande Réappropriation</strong>.",
+    "t-tab-lfa":"🌱 Animateur LFA-CI","t-tab-benin":"🇧🇯 Coordinateur Bénin-CI",
+    "t-submit-lfa":"🌱 Je m'inscris comme Animateur LFA-CI",
+    "t-submit-benin":"🇧🇯 Je m'inscris comme Coordinateur Bénin-CI",
+    "t-note-lfa":"✅ Après inscription, vous recevrez le lien Bot CHALLENGER + votre accès à la Salle de Formation.",
+    "t-note-benin":"✅ Après inscription, vous recevrez le lien Bot CHALLENGER + le guide complet de mobilisation.",
+    "t-form-tag":"Étape 4 — Salle de Formation","t-form-title":"Votre formation pour le terrain",
+    "t-form-sub":"Module 7 jours · <strong>2→8 Avril 2026</strong> · YouTube Live + Terrain. <strong>Accès réservé aux inscrits.</strong> Saisissez le mot de passe du jour reçu par WhatsApp.",
+    "t-prog-title":"🗓️ Programme — 7 Jours · 2→8 Avril 2026",
+    /* Formulaire LFA */
+    "fl-prenom-lbl":"Prénom <span>*</span>","fl-prenom-inp.placeholder":"Votre prénom",
+    "fl-nom-lbl":"Nom <span>*</span>","fl-nom-inp.placeholder":"Votre nom",
+    "fl-tel-lbl":"Téléphone / WhatsApp <span>*</span>",
+    "fl-region-lbl":"Région pilote <span>*</span>","fl-region-opt0":"-- Choisir votre région --",
+    "fl-quartier-lbl":"Commune / Quartier <span>*</span>","fl-quartier-inp.placeholder":"Ex: Cocody, Yopougon...",
+    "fl-profil-lbl":"Profil activité","fl-profil-opt0":"-- Votre activité --",
+    "fl-profil-opt1":"Commerçant(e)","fl-profil-opt2":"Étudiant(e)","fl-profil-opt3":"Fonctionnaire",
+    "fl-profil-opt4":"Entrepreneur(e)","fl-profil-opt5":"Enseignant(e)","fl-profil-opt6":"Autre",
+    "fl-motiv-lbl":"Pourquoi rejoindre La Grande Réappropriation ?","fl-motiv-txt.placeholder":"En quelques mots...",
+    "fl-success-title":"🌱 Bienvenue, Animateur !",
+    "fl-success-msg":"Votre inscription a été enregistrée. Vous allez recevoir un message WhatsApp avec le lien Bot CHALLENGER et votre accès à la Salle de Formation.",
+    /* Formulaire Bénin */
+    "fb-prenom-lbl":"Prénom <span>*</span>","fb-prenom-inp.placeholder":"Votre prénom",
+    "fb-nom-lbl":"Nom <span>*</span>","fb-nom-inp.placeholder":"Votre nom",
+    "fb-tel-lbl":"Téléphone / WhatsApp <span>*</span>",
+    "fb-quartier-lbl":"Quartier à Abidjan <span>*</span>","fb-quartier-opt0":"-- Votre quartier --",
+    "fb-ville-lbl":"Ville / Département d'origine au Bénin <span>*</span>","fb-ville-inp.placeholder":"Ex: Cotonou, Porto-Novo...",
+    "fb-communaute-lbl":"Communauté / Association béninoise","fb-communaute-inp.placeholder":"Nom de votre association",
+    "fb-mobil-lbl":"Combien de personnes pouvez-vous mobiliser ?","fb-mobil-opt0":"-- Estimation --",
+    "fb-mobil-opt1":"1 à 10 personnes","fb-mobil-opt2":"10 à 50 personnes",
+    "fb-mobil-opt3":"50 à 100 personnes","fb-mobil-opt4":"Plus de 100 personnes",
+    "fb-success-title":"🇧🇯 Bienvenue, Coordinateur !",
+    "fb-success-msg":"Votre inscription a été enregistrée. Vous allez recevoir un message WhatsApp avec le Bot CHALLENGER et le guide complet de mobilisation."
   },
   en: {
-    "txt-badge": "Official launch — March 30, 2026 at 7AM",
-    "txt-h1-3": "is underway.",
-    "txt-sub-before": "From Abidjan to the 14 capitals of the FCFA Zone. Join the VoteConnect team —",
-    "txt-sub-et": " and",
-    "txt-sub-after": " — and build the country you want to leave to your children.",
-    "txt-flag-benin": "Wadagni Campaign",
-    "txt-btn-rejoins": "🌱 I join the team", "txt-btn-telegram": "📱 Telegram Guide",
-    "txt-btn-bot": "🤖 Open CHALLENGER Bot", "txt-countdown-label": "Launch countdown",
-    "txt-cd-j": "Days", "txt-cd-h": "Hours", "txt-cd-m": "Min", "txt-cd-s": "Sec",
-    "txt-s1-label": "Step 1 — New to Telegram",
-    "txt-s1-desc": "Follow these 4 simple steps to install Telegram and join the CHALLENGER Bot in less than 3 minutes.",
-    "txt-tg1-title": "Download Telegram", "txt-tg1-desc": "Go to your app store and download Telegram. It is free.",
-    "txt-tg2-title": "Create your account", "txt-tg2-desc": "Open Telegram, enter your phone number, then the SMS code you receive.",
-    "txt-tg3-title": "Click the Bot link", "txt-tg3-desc": "Click this link from your phone. Telegram will open automatically.",
-    "txt-tg4-title": "Press START BOT",
-    "txt-tg-copy": "Copy this link and send it to your WhatsApp contacts to invite them to join the movement.",
-    "txt-btn-copy": "📋 Copy the link",
-    "txt-s2-label": "Step 2 — The Official Plan", "txt-s2-desc": "March 30 to April 12, 2026 · 14 days · 7 pilot regions",
-    "txt-s3-label": "Step 3 — Join the team", "txt-tab-animateur": "LFA-CI Animator", "txt-tab-coord": "Benin-CI Coordinator",
-    "lbl-a-prenom": "First name *", "lbl-a-nom": "Last name *", "lbl-a-tel": "Phone / WhatsApp *",
-    "lbl-a-region": "Pilot region *", "lbl-a-commune": "District / Neighborhood *",
-    "lbl-a-profil": "Activity profile", "lbl-a-motivation": "Why join La Grande Reappropriation?",
-    "txt-btn-animateur": "🌱 I register as LFA-CI Animator",
-    "txt-note-animateur": "After registration, you will receive the CHALLENGER Bot link and access to the Training Room.",
-    "txt-success-animateur": "Your registration has been recorded. You will receive a WhatsApp message with the CHALLENGER Bot link.",
-    "lbl-c-prenom": "First name *", "lbl-c-nom": "Last name *", "lbl-c-tel": "Phone / WhatsApp *",
-    "lbl-c-quartier": "District in Abidjan *", "lbl-c-ville": "City of origin in Benin *",
-    "lbl-c-asso": "Beninese community / Association",
-    "lbl-c-mobilisation": "How many people can you mobilize for the vote?",
-    "opt-c-estim": "-- Estimate --", "opt-c-1": "1 to 10 people", "opt-c-2": "10 to 50 people",
-    "opt-c-3": "50 to 100 people", "opt-c-4": "More than 100 people",
-    "txt-btn-coord": "🇧🇯 I register as Benin-CI Coordinator",
-    "txt-note-coord": "After registration, you will receive the CHALLENGER Bot link and the complete mobilization guide.",
-    "txt-success-coord": "Your registration has been recorded. You will receive a WhatsApp message with the CHALLENGER Bot.",
-    "txt-s4-label": "Step 4 — Training Room",
-    "txt-s4-desc": "An intensive module of 3 to 7 days. Reserved for registered members.",
-    "txt-m1-title": "YouTube Live Videos", "txt-m1-desc": "Live sessions hosted by Coach Morgans on the VoteConnect YouTube channel.",
-    "txt-m1-btn": "📺 VoteConnect Channel", "txt-m2-title": "Test Global CF v1",
-    "txt-m2-desc": "The reference document to validate your knowledge of the ChallengeFinancier ecosystem.",
-    "txt-m2-note": "File shared after validated registration", "txt-m3-title": "Tutorial GS CF-DB v2.0",
-    "txt-m3-desc": "Complete guide to CF-DB v2.0 Google Sheets.",
-    "txt-m3-note": "File shared after validated registration", "txt-m4-title": "Field Schedule J0 to J14",
-    "txt-m4-desc": "The day-by-day action plan with your exact missions.",
-    "txt-m4-note": "Shared during the 1st Live session",
-    "txt-btn-formation": "🌱 Register to access training"
+    "t-badge":"🚀 Official Launch — March 31, 2026 at 7:00 AM",
+    "t-h1":"<span class='gr-orange'>The Great</span><br><span class='gr-vert'>Reappropriation</span><br>is underway.",
+    "t-p":"From Abidjan to the 13 capitals of the CFA Franc Zone. Join the VoteConnect team — <strong>LFA-CI Animators</strong> and <strong>Benin-CI Coordinators</strong> — and build the ECOWAS we want to leave to our children.",
+    "t-cta1":"🌱 Join the team","t-cta2":"📱 Telegram Guide",
+    "t-open-bot":"🤖 Open the CHALLENGER Bot",
+    "t-cd-label":"COUNTDOWN TO TRAINING LAUNCH",
+    "t-tg-tag":"Step 1 — For Telegram newcomers",
+    "t-tg-title":"75% of people here have never used Telegram. This guide is for you.",
+    "t-tg-sub":"Follow these 4 simple steps to install Telegram and join the CHALLENGER Bot in under 3 minutes.",
+    "t-s1h":"Download Telegram","t-s1p":"Go to your app store and download Telegram. It's free and only takes 30 seconds.",
+    "t-s2h":"Create your account","t-s2p":"Open Telegram, enter your phone number, then the SMS code. Choose a first name. That's all!",
+    "t-s3h":"Click the Bot link","t-s3p":"Click this link from your phone. Telegram will open automatically on the CHALLENGER Bot.",
+    "t-s4h":"Press START BOT","t-s4p":"Press the blue <strong>'START BOT'</strong> button. The main menu appears. You are in <strong>The Great Reappropriation</strong>!",
+    "t-share-title":"📣 <strong>Share this link with your WhatsApp contacts</strong> to invite them to The Great Reappropriation:",
+    "t-share-msg":"💬 Suggested: \"Friend, join The Great Reappropriation — the citizen movement that turns every purchase into a political act: t.me/ChallengeFinancierbot\"",
+    "t-copy-btn":"📋 Copy link",
+    "t-plan-tag":"Step 2 — The Official Plan","t-plan-title":"The Campaign in detail",
+    "t-plan-sub":"March 31 → April 12, 2026 · 14 days · 7 pilot regions · 2 simultaneous tracks",
+    "t-insc-tag":"Step 3 — Join the team","t-insc-title":"Choose your role",
+    "t-insc-sub":"Two profiles, one mission: <strong>The Great Reappropriation</strong>.",
+    "t-tab-lfa":"🌱 LFA-CI Animator","t-tab-benin":"🇧🇯 Benin-CI Coordinator",
+    "t-submit-lfa":"🌱 Register as LFA-CI Animator",
+    "t-submit-benin":"🇧🇯 Register as Benin-CI Coordinator",
+    "t-note-lfa":"✅ After registration, you will receive the Bot CHALLENGER link + your training access.",
+    "t-note-benin":"✅ After registration, you will receive the Bot CHALLENGER link + the full mobilization guide.",
+    "t-form-tag":"Step 4 — Training Room","t-form-title":"Your training for the field",
+    "t-form-sub":"7-day module · <strong>April 2→8, 2026</strong> · YouTube Live + Field. <strong>Reserved for registered participants.</strong> Enter the daily password received via WhatsApp.",
+    "t-prog-title":"🗓️ Programme — 7 Days · April 2→8, 2026",
+    /* Form LFA */
+    "fl-prenom-lbl":"First name <span>*</span>","fl-prenom-inp.placeholder":"Your first name",
+    "fl-nom-lbl":"Last name <span>*</span>","fl-nom-inp.placeholder":"Your last name",
+    "fl-tel-lbl":"Phone / WhatsApp <span>*</span>",
+    "fl-region-lbl":"Pilot region <span>*</span>","fl-region-opt0":"-- Choose your region --",
+    "fl-quartier-lbl":"District / Neighbourhood <span>*</span>","fl-quartier-inp.placeholder":"Ex: Cocody, Yopougon...",
+    "fl-profil-lbl":"Activity profile","fl-profil-opt0":"-- Your main activity --",
+    "fl-profil-opt1":"Merchant","fl-profil-opt2":"Student","fl-profil-opt3":"Civil servant",
+    "fl-profil-opt4":"Entrepreneur","fl-profil-opt5":"Teacher","fl-profil-opt6":"Other",
+    "fl-motiv-lbl":"Why join The Great Reappropriation?","fl-motiv-txt.placeholder":"In a few words...",
+    "fl-success-title":"🌱 Welcome, Animator!",
+    "fl-success-msg":"Your registration has been recorded. You will receive a WhatsApp message with the Bot CHALLENGER link and your access to the Training Room.",
+    /* Form Bénin */
+    "fb-prenom-lbl":"First name <span>*</span>","fb-prenom-inp.placeholder":"Your first name",
+    "fb-nom-lbl":"Last name <span>*</span>","fb-nom-inp.placeholder":"Your last name",
+    "fb-tel-lbl":"Phone / WhatsApp <span>*</span>",
+    "fb-quartier-lbl":"Neighbourhood in Abidjan <span>*</span>","fb-quartier-opt0":"-- Your neighbourhood --",
+    "fb-ville-lbl":"City / Region of origin in Benin <span>*</span>","fb-ville-inp.placeholder":"Ex: Cotonou, Porto-Novo...",
+    "fb-communaute-lbl":"Beninese community / Association","fb-communaute-inp.placeholder":"Name of your association",
+    "fb-mobil-lbl":"How many people can you mobilize to vote?","fb-mobil-opt0":"-- Estimate --",
+    "fb-mobil-opt1":"1 to 10 people","fb-mobil-opt2":"10 to 50 people",
+    "fb-mobil-opt3":"50 to 100 people","fb-mobil-opt4":"More than 100 people",
+    "fb-success-title":"🇧🇯 Welcome, Coordinator!",
+    "fb-success-msg":"Your registration has been recorded. You will receive a WhatsApp message with the Bot CHALLENGER link and the full mobilization guide."
   },
   fon: {
-    "txt-badge": "Lancement officiel — 30 Mars 2026",
-    "txt-h1-3": "ɖò yi.",
-    "txt-sub-before": "Sín Abidjan jɔ azɔxwé 14 tɔn lɛ bǐ mɛ. Wá na mɔ hudo nú VoteConnect —",
-    "txt-sub-et": " kpo",
-    "txt-sub-after": " — bo wá dó agbɔ̌n towe lɛ kpɔ́.",
-    "txt-flag-benin": "Azɔ Wadagni-CI",
-    "txt-btn-rejoins": "🌱 Un wá", "txt-btn-telegram": "📱 Kplɔ́n Telegram",
-    "txt-btn-bot": "🤖 Mɔ Bot CHALLENGER", "txt-countdown-label": "Hwenu e kpò dó",
-    "txt-cd-j": "Azǎn", "txt-cd-h": "Hwe", "txt-cd-m": "Min", "txt-cd-s": "Sec",
-    "txt-s1-label": "Nǔ gando 1 — Telegram tɔn",
-    "txt-s1-desc": "Kpɔ́ nǔ gando enɛ lɛ bǐ bo wá mɔ Bot CHALLENGER ɖò ganmɛ 3 jɛji mɛ.",
-    "txt-tg1-title": "Zǎn Telegram", "txt-tg1-desc": "Yi agun xwégbe towe bo zǎn Telegram. Ðò fí wà bɔ na è é.",
-    "txt-tg2-title": "Dó compte towe", "txt-tg2-desc": "Mɔ Telegram, hiɛn nomɛ towe, bo ɖexlɛ́ code SMS ɔ.",
-    "txt-tg3-title": "Gba link Bot ɔ", "txt-tg3-desc": "Gba link ɔ bo wá kpɔ́ Bot CHALLENGER.",
-    "txt-tg4-title": "Gba START BOT ɔ",
-    "txt-tg-copy": "Zǎn link elɔ bo sɛ́n ɖó xɔ́ntɔn towe lɛ.",
-    "txt-btn-copy": "📋 Zǎn link ɔ",
-    "txt-s2-label": "Nǔ gando 2 — Taabu tɔn", "txt-s2-desc": "30 Mars — 12 Avril 2026 · Fí 14 · Tò pilote 7",
-    "txt-s3-label": "Nǔ gando 3 — Wá sín xwé mɛ", "txt-tab-animateur": "Animateur LFA-CI", "txt-tab-coord": "Coordinateur Bénin-CI",
-    "lbl-a-prenom": "Nyikɔ towe *", "lbl-a-nom": "Nyi kɔ gando *", "lbl-a-tel": "Telefonu towe *",
-    "lbl-a-region": "Tò pilote *", "lbl-a-commune": "Commune towe *",
-    "lbl-a-profil": "Azɔ towe", "lbl-a-motivation": "Etɛ wu a ko wà?",
-    "txt-btn-animateur": "🌱 Un ɖó nyikɔ ce dó Animateur LFA-CI",
-    "txt-note-animateur": "Ðò bɛ́ wǔ hú, a na mɔ link Bot CHALLENGER.",
-    "txt-success-animateur": "A ɖó nyikɔ towe. A na mɔ whatsapp kpo link Bot CHALLENGER kpo.",
-    "lbl-c-prenom": "Nyikɔ towe *", "lbl-c-nom": "Nyi kɔ gando *", "lbl-c-tel": "Telefonu towe *",
-    "lbl-c-quartier": "Agblanagan ɖò Abidjan *", "lbl-c-ville": "Dɔ̌ towe ɖò Bénin *",
-    "lbl-c-asso": "Gbɛ̌tɔ lɛ tɔn", "lbl-c-mobilisation": "Gbɛ̌tɔ lɛ tɛnmɛ jɛ nú a sixu bló azɔ ɖé?",
-    "opt-c-estim": "-- Tɛnmɛ --", "opt-c-1": "Mɛ 1 jɔ 10", "opt-c-2": "Mɛ 10 jɔ 50",
-    "opt-c-3": "Mɛ 50 jɔ 100", "opt-c-4": "Mɛ 100 jɔ síìn",
-    "txt-btn-coord": "🇧🇯 Un ɖó nyikɔ ce dó Coordinateur Bénin-CI",
-    "txt-note-coord": "Ðò bɛ́ wǔ hú, a na mɔ link Bot CHALLENGER kpo kplɔ́nlɛ̀do ɖaxó ɔ kpo.",
-    "txt-success-coord": "A ɖó nyikɔ towe. A na mɔ WhatsApp kpo Bot CHALLENGER kpo.",
-    "txt-s4-label": "Nǔ gando 4 — Xwégbe Kplɔ́n tɔn",
-    "txt-s4-desc": "Module ɖokpo sín jɛ 3 jɔ 7 tɔn.",
-    "txt-m1-title": "YouTube Live", "txt-m1-desc": "Kplɔ́n ɖe YouTube Live jí kpo Coach Morgans kpo.",
-    "txt-m1-btn": "📺 YouTube VoteConnect", "txt-m2-title": "Test Global CF v1",
-    "txt-m2-desc": "Document e na d'alɔ we bo tuùn ChallengeFinancier.",
-    "txt-m2-note": "Fixi a na mɔ d'bɛ́ wǔ hú", "txt-m3-title": "Tutoriel GS CF-DB v2.0",
-    "txt-m3-desc": "Kplɔ́nlɛ̀do Google Sheets CF-DB v2.0 tɔn.",
-    "txt-m3-note": "Fixi a na mɔ d'bɛ́ wǔ hú", "txt-m4-title": "Taabu J0 jɔ J14",
-    "txt-m4-desc": "Azɔ e a na bló sín azǎn ɖe jɛ azǎn ɖevo.",
-    "txt-m4-note": "Live gbigbɔ ɖíe",
-    "txt-btn-formation": "🌱 Ðó nyikɔ ce bo mɔ kplɔ́n"
+    "t-badge":"🚀 Azɔ Tɔ́n — Mars 31, 2026 · 7h00",
+    "t-h1":"<span class='gr-orange'>Réappropriation</span><br><span class='gr-vert'>Tɔ́n</span><br>ɖó jí.",
+    "t-p":"Sín Abidjan jí fí ɖé 13 tò FCFA tɔn mɛ. Wlí akɔ nú VoteConnect — <strong>Animateurs LFA-CI</strong> kpo <strong>Coordinateurs Bénin-CI</strong> kpo — bo wà CEDEAO e mǐ jló na sɔ́ nú vǐ mǐtɔn lɛ é.",
+    "t-cta1":"🌱 Un wlí akɔ","t-cta2":"📱 Telegram Tutɔ́",
+    "t-open-bot":"🤖 Vɔ́ Bot CHALLENGER",
+    "t-cd-label":"AKƆ̀ NÚ AZƆ GBIGBƆ TƆN",
+    "t-tg-tag":"Ðɛ 1 — Mɛ e ko ɖu Telegram kpɔ́n ɖé ǎ lɛ é",
+    "t-tg-title":"Mɛ 75% dɔ ko ɖu Telegram ɖé ǎ. Tutɔ́ elɔ nyí mɛ yetɔn.",
+    "t-tg-sub":"Hɛn ɖɛ ɛnɛ elɔ lɛ bo zán Telegram bo wlí Bot CHALLENGER mɛ — sin tɔ́ héji 3.",
+    "t-s1h":"Ðu Telegram","t-s1p":"Yì sín boutique towe bo ðu Telegram. Éɖé wɛ é nyí bɔ é vɛ́ nú sin 30 ɖé.",
+    "t-s2h":"Wlán akɔ towe","t-s2p":"Vɔ́ Telegram, ɖó nɔ́ towe, gudo tɔn SMS code ɔ. Sɔ́ nyikɔ towe. Éɖé ɔ wɛ.",
+    "t-s3h":"Klán lien Bot","t-s3p":"Klán lien elɔ sín fon towe. Telegram na vɔ́ sín Bot CHALLENGER.",
+    "t-s4h":"Dó START BOT","t-s4p":"Dó bouton blɛu <strong>'START BOT'</strong>. Menu ɔ na xlɛ́. A ɖo <strong>La Grande Réappropriation</strong> mɛ !",
+    "t-share-title":"📣 <strong>Sɛ́n lien elɔ nú asì towe lɛ WhatsApp</strong> bo ylɔ ye wá La Grande Réappropriation :",
+    "t-share-msg":"💬 Message: \"Nɔví, wá La Grande Réappropriation — akɔ dido ɔ vomɛ gbɔjɛ achat fɔɔ: t.me/ChallengeFinancierbot\"",
+    "t-copy-btn":"📋 Dó lien",
+    "t-plan-tag":"Ðɛ 2 — Plan Officiel","t-plan-title":"Campaign ɔ sín nu",
+    "t-plan-sub":"Mars 31 → Avril 12, 2026 · Azɔ 14 · Fí naan 7 · Volet 2",
+    "t-insc-tag":"Ðɛ 3 — Wlí akɔ","t-insc-title":"Sɔ́ rɔle towe",
+    "t-insc-sub":"Profil wè, mission ɖokpó : <strong>La Grande Réappropriation</strong>.",
+    "t-tab-lfa":"🌱 Animateur LFA-CI","t-tab-benin":"🇧🇯 Coordinateur Bénin-CI",
+    "t-submit-lfa":"🌱 Un wlí akɔ dó Animateur LFA-CI","t-submit-benin":"🇧🇯 Un wlí akɔ dó Coordinateur Bénin-CI",
+    "t-note-lfa":"✅ Azɔ hwenu e a wlán ɔ, a na ɖó lien Bot CHALLENGER kpo accès formation towe kpo.",
+    "t-note-benin":"✅ Azɔ hwenu e a wlán ɔ, a na ɖó lien Bot CHALLENGER kpo guide mobilisation ɔ kpo.",
+    "t-form-tag":"Ðɛ 4 — Salle de Formation","t-form-title":"Formation towe nú fí tɔn",
+    "t-form-sub":"Azɔ 7 · <strong>Avril 2→8, 2026</strong> · YouTube Live + Terrain. <strong>Mɛ e wlán ɔ wɛ sixu wá.</strong> Ðó mot de passe azɔ ɔ tɔn e a ɖó WhatsApp mɛ.",
+    "t-prog-title":"🗓️ Programme — Azɔ 7 · Avril 2→8",
+    /* Formulaire LFA - Fon */
+    "fl-prenom-lbl":"Nyikɔ akɔ <span>*</span>","fl-prenom-inp.placeholder":"Nyikɔ towe",
+    "fl-nom-lbl":"Nyikɔ xwédo <span>*</span>","fl-nom-inp.placeholder":"Nyikɔ xwédo towe",
+    "fl-tel-lbl":"Fón / WhatsApp <span>*</span>",
+    "fl-region-lbl":"Fí towe <span>*</span>","fl-region-opt0":"-- Sɔ́ fí towe --",
+    "fl-quartier-lbl":"Quartier / Commune <span>*</span>","fl-quartier-inp.placeholder":"Gbèji: Cocody, Yopougon...",
+    "fl-profil-lbl":"Azɔ towe","fl-profil-opt0":"-- Azɔ towe --",
+    "fl-profil-opt1":"Azɔtɔ","fl-profil-opt2":"Kplɔ́nkplɔn mɛ","fl-profil-opt3":"Gbɛ̌ dotó",
+    "fl-profil-opt4":"Entreprise ɖó","fl-profil-opt5":"Kplɔntɔ","fl-profil-opt6":"Fí vovo",
+    "fl-motiv-lbl":"Etɛ wu a jló wlí akɔ nú La Grande Réappropriation?","fl-motiv-txt.placeholder":"Nǔ kpɛví ɖé...",
+    "fl-success-title":"🌱 Wá zán ! Animateur !",
+    "fl-success-msg":"A wlán jɛ. A na ɖó WhatsApp message kpo lien Bot CHALLENGER kpo accès formation towe kpo.",
+    /* Formulaire Bénin - Fon */
+    "fb-prenom-lbl":"Nyikɔ akɔ <span>*</span>","fb-prenom-inp.placeholder":"Nyikɔ towe",
+    "fb-nom-lbl":"Nyikɔ xwédo <span>*</span>","fb-nom-inp.placeholder":"Nyikɔ xwédo towe",
+    "fb-tel-lbl":"Fón / WhatsApp <span>*</span>",
+    "fb-quartier-lbl":"Quartier ɖo Abidjan <span>*</span>","fb-quartier-opt0":"-- Quartier towe --",
+    "fb-ville-lbl":"Tò / Département ɖo Bénin <span>*</span>","fb-ville-inp.placeholder":"Gbèji: Cotonou, Porto-Novo...",
+    "fb-communaute-lbl":"Communauté / Association Bénin tɔn","fb-communaute-inp.placeholder":"Nyikɔ association towe",
+    "fb-mobil-lbl":"Mɛ lɛ fɛnú a sixu wlí ye nú azɔ?","fb-mobil-opt0":"-- Mɛ lɛ --",
+    "fb-mobil-opt1":"Mɛ 1 → 10","fb-mobil-opt2":"Mɛ 10 → 50",
+    "fb-mobil-opt3":"Mɛ 50 → 100","fb-mobil-opt4":"Mɛ 100 wu",
+    "fb-success-title":"🇧🇯 Wá zán ! Coordinateur !",
+    "fb-success-msg":"A wlán jɛ. A na ɖó WhatsApp message kpo lien Bot CHALLENGER kpo guide mobilisation ɔ kpo."
   },
   yoruba: {
-    "txt-badge": "Ibẹrẹ osise — 30 Oṣu Kẹta 2026",
-    "txt-h1-3": "ti bẹrẹ.",
-    "txt-sub-before": "Lati Abidjan si awọn olu-ilu 14 ti Agbegbe FCFA. Darapọ mọ ẹgbẹ VoteConnect —",
-    "txt-sub-et": " ati",
-    "txt-sub-after": " — ki o si kọ orilẹ-ede ti o fẹ fi silẹ fun awọn ọmọ rẹ.",
-    "txt-flag-benin": "Ipolongo Wadagni",
-    "txt-btn-rejoins": "🌱 Mo darapọ mọ", "txt-btn-telegram": "📱 Itọsọna Telegram",
-    "txt-btn-bot": "🤖 Ṣii Bot CHALLENGER", "txt-countdown-label": "Iṣiro isọdọtun ibẹrẹ",
-    "txt-cd-j": "Ọjọ", "txt-cd-h": "Wakati", "txt-cd-m": "Ìṣẹ́jú", "txt-cd-s": "Aaya",
-    "txt-s1-label": "Igbesẹ 1 — Fun awọn tuntun si Telegram",
-    "txt-s1-desc": "Tẹle awọn igbesẹ 4 wọnyi lati fi Telegram sori ẹrọ ati darapọ mọ Bot CHALLENGER.",
-    "txt-tg1-title": "Gba Telegram", "txt-tg1-desc": "Lọ si ile itaja app rẹ ki o gba Telegram. O jẹ ọfẹ.",
-    "txt-tg2-title": "Ṣẹda iroyin rẹ", "txt-tg2-desc": "Ṣii Telegram, tẹ nọmba foonu rẹ, lẹhinna koodu SMS.",
-    "txt-tg3-title": "Tẹ ọna asopọ Bot", "txt-tg3-desc": "Tẹ ọna asopọ yii lati foonu rẹ. Telegram yoo ṣii laifọwọyi.",
-    "txt-tg4-title": "Tẹ START BOT",
-    "txt-tg-copy": "Daakọ ọna asopọ yii ki o fi ranṣẹ si awọn olubasọrọ WhatsApp rẹ.",
-    "txt-btn-copy": "📋 Daakọ ọna asopọ",
-    "txt-s2-label": "Igbesẹ 2 — Eto Osise", "txt-s2-desc": "Oṣu Kẹta 30 si Oṣu Kẹrin 12, 2026 · Ọjọ 14 · Agbegbe awakọ 7",
-    "txt-s3-label": "Igbesẹ 3 — Darapọ mọ ẹgbẹ", "txt-tab-animateur": "Alakoso LFA-CI", "txt-tab-coord": "Alakoso Bénin-CI",
-    "lbl-a-prenom": "Orukọ akọkọ *", "lbl-a-nom": "Orukọ idile *", "lbl-a-tel": "Foonu / WhatsApp *",
-    "lbl-a-region": "Agbegbe awakọ *", "lbl-a-commune": "Agbegbe / Agbala *",
-    "lbl-a-profil": "Profaili iṣẹ", "lbl-a-motivation": "Kini idi ti o fi fẹ darapọ mọ?",
-    "txt-btn-animateur": "🌱 Mo forukọsilẹ bi Alakoso LFA-CI",
-    "txt-note-animateur": "Lẹhin forukọsilẹ, iwọ yoo gba ọna asopọ Bot CHALLENGER.",
-    "txt-success-animateur": "Forukọsilẹ rẹ ti gbasilẹ. Iwọ yoo gba ifiranṣẹ WhatsApp pẹlu ọna asopọ Bot.",
-    "lbl-c-prenom": "Orukọ akọkọ *", "lbl-c-nom": "Orukọ idile *", "lbl-c-tel": "Foonu / WhatsApp *",
-    "lbl-c-quartier": "Agbegbe ni Abidjan *", "lbl-c-ville": "Ilu abinibi ni Bénin *",
-    "lbl-c-asso": "Agbegbe / Ẹgbẹ ara Bénin",
-    "lbl-c-mobilisation": "Elo ni eniyan ti o le gba fun idibo?",
-    "opt-c-estim": "-- Iṣiro --", "opt-c-1": "Eniyan 1 si 10", "opt-c-2": "Eniyan 10 si 50",
-    "opt-c-3": "Eniyan 50 si 100", "opt-c-4": "Ju eniyan 100 lọ",
-    "txt-btn-coord": "🇧🇯 Mo forukọsilẹ bi Alakoso Bénin-CI",
-    "txt-note-coord": "Lẹhin forukọsilẹ, iwọ yoo gba ọna asopọ Bot CHALLENGER ati itọsọna pipe.",
-    "txt-success-coord": "Forukọsilẹ rẹ ti gbasilẹ. Iwọ yoo gba ifiranṣẹ WhatsApp pẹlu Bot CHALLENGER.",
-    "txt-s4-label": "Igbesẹ 4 — Yara Ikẹkọ",
-    "txt-s4-desc": "Ẹkọ apoti-giga kan ti ọjọ 3 si 7. Fun awọn ti o forukọsilẹ nikan.",
-    "txt-m1-title": "Fidio YouTube Live", "txt-m1-desc": "Awọn igba akẹkọ live nipasẹ Coach Morgans lori YouTube.",
-    "txt-m1-btn": "📺 Ikanni VoteConnect", "txt-m2-title": "Test Global CF v1",
-    "txt-m2-desc": "Iwe itọkasi lati jẹrisi imọ rẹ nipa eto ChallengeFinancier.",
-    "txt-m2-note": "Faili ti pin lẹhin forukọsilẹ", "txt-m3-title": "Itọsọna GS CF-DB v2.0",
-    "txt-m3-desc": "Itọsọna pipe ti Google Sheets CF-DB v2.0.",
-    "txt-m3-note": "Faili ti pin lẹhin forukọsilẹ", "txt-m4-title": "Jadiri Aaye J0 si J14",
-    "txt-m4-desc": "Eto iṣe ọjọ-si-ọjọ pẹlu awọn iṣẹ rẹ gangan.",
-    "txt-m4-note": "Pin lakoko igba Live akọkọ",
-    "txt-btn-formation": "🌱 Forukọsilẹ lati wọle si ikẹkọ"
+    "t-badge":"🚀 Ifilọsilẹ Osise — Oṣu Kẹta 31, 2026 · 7h00",
+    "t-h1":"<span class='gr-orange'>Ìgbà-Àtúntọ</span><br><span class='gr-vert'>Nlá</span><br>ti bẹrẹ.",
+    "t-p":"Láti Abidjan sí ipò 13 ti Agbègbè FCFA. Darapọ mọ ẹgbẹ VoteConnect — <strong>Awọn Animateur LFA-CI</strong> àti <strong>Awọn Coordinator Bénin-CI</strong> — kí a si kọ ECOWAS tí a fẹ fi silẹ fún awọn ọmọ wa.",
+    "t-cta1":"🌱 Mo darapọ mọ ẹgbẹ","t-cta2":"📱 Itọsọna Telegram",
+    "t-open-bot":"🤖 Ṣii Bot CHALLENGER",
+    "t-cd-label":"IṢIRÒ SÍ ÌBẸ̀RẸ̀ IKẸKỌ",
+    "t-tg-tag":"Igbese 1 — Fún awọn tuntun lori Telegram",
+    "t-tg-title":"75% eniyan nibi ti ko lo Telegram rí. Itọsọna yii jẹ fun yin.",
+    "t-tg-sub":"Tẹle awọn igbese 4 wọnyi lati fi sori Telegram ki o darapọ mọ Bot CHALLENGER ni kere ju iṣẹju 3.",
+    "t-s1h":"Ṣe igbasilẹ Telegram","t-s1p":"Lo si itaja ohun elo rẹ ki o ṣe igbasilẹ Telegram. Ọfẹ ni o si gba aaya 30 nikan.",
+    "t-s2h":"Ṣẹda akọọlẹ rẹ","t-s2p":"Ṣii Telegram, tẹ nọmba foonu rẹ, lẹhinna koodu SMS. Yan orukọ akọkọ. Iyẹn ni gbogbo!",
+    "t-s3h":"Tẹ ọna asopọ Bot","t-s3p":"Tẹ ọna asopọ yii lati foonu rẹ. Telegram yoo ṣii laifọwọyi lori Bot CHALLENGER.",
+    "t-s4h":"Tẹ START BOT","t-s4p":"Tẹ bọtini buluu <strong>'START BOT'</strong>. Akojọ akọkọ yoo han. O wa ninu <strong>La Grande Réappropriation</strong>!",
+    "t-share-title":"📣 <strong>Pin ọna asopọ yii si awọn olubasọrọ WhatsApp rẹ</strong> lati pe wọn wọle si La Grande Réappropriation:",
+    "t-share-msg":"💬 Ifiranṣẹ: \"Arakunrin, darapọ mọ La Grande Réappropriation — agbeka ilu ti n yi rira kọọkan di iṣe oloselu: t.me/ChallengeFinancierbot\"",
+    "t-copy-btn":"📋 Daakọ ọna asopọ",
+    "t-plan-tag":"Igbese 2 — Eto Osise","t-plan-title":"Alaye Ipolongo",
+    "t-plan-sub":"Oṣu Kẹta 31 → Oṣu Kẹrin 12, 2026 · Ọjọ 14 · Agbegbe 7 · Ẹka 2",
+    "t-insc-tag":"Igbese 3 — Darapọ mọ ẹgbẹ","t-insc-title":"Yan ipa rẹ",
+    "t-insc-sub":"Profaili meji, iṣẹ apinfunni kan : <strong>La Grande Réappropriation</strong>.",
+    "t-tab-lfa":"🌱 Animateur LFA-CI","t-tab-benin":"🇧🇯 Coordinator Bénin-CI",
+    "t-submit-lfa":"🌱 Mo forukọsilẹ gẹgẹ bi Animateur LFA-CI","t-submit-benin":"🇧🇯 Mo forukọsilẹ gẹgẹ bi Coordinator Bénin-CI",
+    "t-note-lfa":"✅ Lẹhin iforukọsilẹ, iwọ yoo gba ọna asopọ Bot CHALLENGER + iwọle ikẹkọ rẹ.",
+    "t-note-benin":"✅ Lẹhin iforukọsilẹ, iwọ yoo gba ọna asopọ Bot CHALLENGER + itọsọna iṣipopada pipe.",
+    "t-form-tag":"Igbese 4 — Yara Ikẹkọ","t-form-title":"Ikẹkọ rẹ fun aaye",
+    "t-form-sub":"Ẹkọ ọjọ 7 · <strong>Kẹrin 2→8, 2026</strong> · YouTube Live + Aaye. <strong>Fun awọn ti o forukọsilẹ nikan.</strong> Tẹ ọrọ igbaniwọle ọjọ ti a fi ranṣẹ nipasẹ WhatsApp.",
+    "t-prog-title":"🗓️ Eto — Ọjọ 7 · Kẹrin 2→8, 2026",
+    /* Formulaire LFA - Yoruba */
+    "fl-prenom-lbl":"Orukọ akọkọ <span>*</span>","fl-prenom-inp.placeholder":"Orukọ akọkọ rẹ",
+    "fl-nom-lbl":"Orukọ idile <span>*</span>","fl-nom-inp.placeholder":"Orukọ idile rẹ",
+    "fl-tel-lbl":"Foonu / WhatsApp <span>*</span>",
+    "fl-region-lbl":"Agbegbe awakọ <span>*</span>","fl-region-opt0":"-- Yan agbegbe rẹ --",
+    "fl-quartier-lbl":"Agbegbe ilu <span>*</span>","fl-quartier-inp.placeholder":"Àp.: Cocody, Yopougon...",
+    "fl-profil-lbl":"Profaili iṣẹ","fl-profil-opt0":"-- Iṣẹ akọkọ rẹ --",
+    "fl-profil-opt1":"Oniṣowo","fl-profil-opt2":"Akẹkọọ","fl-profil-opt3":"Oṣiṣẹ ijọba",
+    "fl-profil-opt4":"Onigbowo","fl-profil-opt5":"Olukọni","fl-profil-opt6":"Miiran",
+    "fl-motiv-lbl":"Idi ti o fẹ darapọ mọ La Grande Réappropriation?","fl-motiv-txt.placeholder":"Ni awọn ọrọ diẹ...",
+    "fl-success-title":"🌱 Kaabo, Animator!",
+    "fl-success-msg":"A ti gbasilẹ iforukọsilẹ rẹ. Iwọ yoo gba ifiranṣẹ WhatsApp pẹlu ọna asopọ Bot CHALLENGER ati iwọle Yara Ikẹkọ rẹ.",
+    /* Formulaire Bénin - Yoruba */
+    "fb-prenom-lbl":"Orukọ akọkọ <span>*</span>","fb-prenom-inp.placeholder":"Orukọ akọkọ rẹ",
+    "fb-nom-lbl":"Orukọ idile <span>*</span>","fb-nom-inp.placeholder":"Orukọ idile rẹ",
+    "fb-tel-lbl":"Foonu / WhatsApp <span>*</span>",
+    "fb-quartier-lbl":"Agbegbe ni Abidjan <span>*</span>","fb-quartier-opt0":"-- Agbegbe rẹ --",
+    "fb-ville-lbl":"Ilu / Ẹka ni Benin <span>*</span>","fb-ville-inp.placeholder":"Àp.: Cotonou, Porto-Novo...",
+    "fb-communaute-lbl":"Agbegbe / Ẹgbẹ Beninese","fb-communaute-inp.placeholder":"Orukọ ẹgbẹ rẹ",
+    "fb-mobil-lbl":"Melo ni eniyan ti o le ṣajọpọ lati dibo?","fb-mobil-opt0":"-- Iṣiro --",
+    "fb-mobil-opt1":"Eniyan 1 si 10","fb-mobil-opt2":"Eniyan 10 si 50",
+    "fb-mobil-opt3":"Eniyan 50 si 100","fb-mobil-opt4":"Ju eniyan 100 lọ",
+    "fb-success-title":"🇧🇯 Kaabo, Coordinator!",
+    "fb-success-msg":"A ti gbasilẹ iforukọsilẹ rẹ. Iwọ yoo gba ifiranṣẹ WhatsApp pẹlu ọna asopọ Bot CHALLENGER ati itọsọna iṣipopada pipe."
   }
 };
 
-function setLang(lang) {
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.lang-btn').forEach(b => {
-    if (b.getAttribute('onclick').includes(lang)) b.classList.add('active');
-  });
-  const dict = LANGS[lang];
-  if (!dict) return;
-  Object.entries(dict).forEach(([id, text]) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = text;
-  });
-  document.documentElement.lang = lang;
-}
-
-function showTab(tab) {
-  document.querySelectorAll('.ins-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.ins-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-' + tab).classList.add('active');
-  const tabs = document.querySelectorAll('.ins-tab');
-  if (tab === 'animateur') tabs[0].classList.add('active');
-  else tabs[1].classList.add('active');
-}
-
-function copyLink() {
-  navigator.clipboard.writeText('https://t.me/ChallengeFinancierbot').then(() => {
-    const btn = document.getElementById('txt-btn-copy');
-    if (btn) { btn.textContent = '✅ Lien copié !'; setTimeout(() => { btn.textContent = '📋 Copier le lien'; }, 2000); }
+var currentLang = 'fr';
+function setLang(lang, btn) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.remove('active'); });
+  if(btn) btn.classList.add('active');
+  var texts = LANGS[lang];
+  if(!texts) return;
+  Object.keys(texts).forEach(function(key){
+    var val = texts[key];
+    // Clés de type "id.placeholder" → setAttribute placeholder
+    if(key.indexOf('.placeholder') !== -1) {
+      var id = key.replace('.placeholder','');
+      var el = document.getElementById(id);
+      if(el) el.setAttribute('placeholder', val);
+    } else {
+      // innerHTML normal
+      var el = document.getElementById(key);
+      if(el) el.innerHTML = val;
+    }
   });
 }
 
-async function submitForm(e, type) {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('.form-submit');
-  btn.textContent = '⏳ Envoi en cours...';
-  btn.disabled = true;
-  const data = new FormData(form);
-  const body = { action: type === 'animateur' ? 'addApprenant' : 'addBenin' };
-  if (type === 'animateur') {
-    body.prenom = data.get('prenom'); body.nom = data.get('nom');
-    body.telephone = data.get('telephone'); body.zone_tcl = data.get('region');
-    body.communaute = data.get('commune'); body.statut_paiement = 'Animateur-actif';
-    body.notes = 'Animateur LFA-CI · Profil: ' + (data.get('profil') || '') + ' · ' + (data.get('motivation') || '');
-  } else {
-    body.prenom = data.get('prenom'); body.nom = data.get('nom');
-    body.whatsapp = data.get('telephone'); body.quartier_abidjan = data.get('quartier_abidjan');
-    body.ville_benin = data.get('ville_benin'); body.statut = 'mobilisé';
-    body.commercant_tcl = false; body.source = 'Landing Page Grande Réappropriation';
-  }
-  try {
-    await fetch(GS_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-  } catch(e) {}
-  form.style.display = 'none';
-  document.getElementById('success-' + type).classList.add('visible');
-  const counter = document.getElementById('counter-' + (type === 'animateur' ? 'animateurs' : 'coords'));
-  if (counter) counter.textContent = parseInt(counter.textContent) + 1;
-}
-
+// ============================================================
+// COUNTDOWN
+// ============================================================
 function updateCountdown() {
-  const target = new Date('2026-03-30T07:00:00');
-  const voteTarget = new Date('2026-04-12T07:00:00');
-  const now = new Date();
-  const diff = target - now;
-  const joursVote = Math.max(0, Math.ceil((voteTarget - now) / 86400000));
-  const jv1 = document.getElementById('jours-vote'); if (jv1) jv1.textContent = joursVote;
-  const jv2 = document.getElementById('counter-jours'); if (jv2) jv2.textContent = joursVote;
-  if (diff <= 0) { ['cd-j','cd-h','cd-m','cd-s'].forEach(id => { const e = document.getElementById(id); if(e) e.textContent='00'; }); return; }
-  const j = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000);
-  const m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
-  const set = (id, val) => { const e = document.getElementById(id); if(e) e.textContent = String(val).padStart(2,'0'); };
-  set('cd-j',j); set('cd-h',h); set('cd-m',m); set('cd-s',s);
+  var target = new Date("2026-04-02T19:00:00").getTime();
+  var now = new Date().getTime();
+  var diff = target - now;
+  if (diff <= 0) {
+    ['j','h','m','s'].forEach(function(u){ var e=document.getElementById('cd-'+u); if(e) e.textContent='00'; });
+  } else {
+    document.getElementById('cd-j').textContent = String(Math.floor(diff/(1000*60*60*24))).padStart(2,'0');
+    document.getElementById('cd-h').textContent = String(Math.floor((diff%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(Math.floor((diff%(1000*60*60))/(1000*60))).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(Math.floor((diff%(1000*60))/1000)).padStart(2,'0');
+  }
+  var benin = new Date("2026-04-12T07:00:00").getTime();
+  var jb = Math.max(0,Math.floor((benin-now)/(1000*60*60*24)));
+  var e1=document.getElementById('jours-benin-stat'); if(e1) e1.textContent='J-'+jb;
+  var e2=document.getElementById('stat-jours'); if(e2) e2.textContent=jb;
 }
-setInterval(updateCountdown, 1000);
-updateCountdown();
+setInterval(updateCountdown,1000); updateCountdown();
+
+// ============================================================
+// COPIER — CORRECTION 3 : double méthode clipboard + execCommand
+// ============================================================
+function copyLink() {
+  var url = 'https://t.me/ChallengeFinancierbot';
+  var btn = document.getElementById('t-copy-btn');
+  function showOk() {
+    if(btn){ btn.textContent='✅ Copié !'; setTimeout(function(){ btn.innerHTML = (LANGS[currentLang]||LANGS.fr)['t-copy-btn']||'📋 Copier le lien'; },2000); }
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(showOk).catch(function(){ fallbackCopy(url, showOk); });
+  } else {
+    fallbackCopy(url, showOk);
+  }
+}
+function fallbackCopy(text, cb) {
+  var inp = document.getElementById('fallback-copy');
+  if(!inp){ inp = document.createElement('textarea'); inp.id='fallback-copy'; inp.style.cssText='position:fixed;top:0;left:0;opacity:0.01;pointer-events:none;'; document.body.appendChild(inp); }
+  inp.value = text; inp.removeAttribute('readonly'); inp.select(); inp.setSelectionRange(0,9999);
+  try { document.execCommand('copy'); if(cb) cb(); } catch(e) { alert('Lien copié : '+text); }
+  inp.setAttribute('readonly','');
+}
+
+// ============================================================
+// MDP
+// ============================================================
+var MDP = { j1:"GR-J1-2026", j2:"GR-J2-2026", j3:"GR-J3-2026" };
+function verifyMdp(day) {
+  var inp=document.getElementById('mdp-'+day), err=document.getElementById('err-'+day),
+      dl=document.getElementById('dl-'+day), btn=document.getElementById('btn-'+day);
+  if(!inp) return;
+  if(inp.value.trim().toUpperCase()===MDP[day].toUpperCase()){
+    inp.classList.remove('error'); inp.classList.add('success');
+    err.classList.remove('visible'); dl.classList.add('visible');
+    document.getElementById('card-'+day).classList.add('unlock-pulse');
+    inp.disabled=true; if(btn){btn.textContent='✅';btn.style.background='var(--vert)';}
+  } else {
+    inp.classList.add('error'); inp.classList.remove('success'); err.classList.add('visible');
+  }
+}
+function resetMdp(day){
+  var i=document.getElementById('mdp-'+day),e=document.getElementById('err-'+day);
+  if(i)i.classList.remove('error','success'); if(e)e.classList.remove('visible');
+}
+document.querySelectorAll('.mdp-input').forEach(function(inp){
+  inp.addEventListener('keydown',function(e){ if(e.key==='Enter'){var d=inp.id.replace('mdp-','');verifyMdp(d);} });
+});
+
+// ============================================================
+// FORMULAIRES
+// ============================================================
+var GS_URL="https://script.google.com/macros/s/AKfycbxA2uROzsVFwcn_KfTImjotSI0Gt0xQJHaykvj3fXFbSqpe8O-zu0_wA5JONVjv2vqv/exec";
+function submitForm(e,type){
+  e.preventDefault();
+  var form=e.target, obj={};
+  new FormData(form).forEach(function(v,k){obj[k]=v;});
+  obj.action=(type==='lfa')?'addApprenant':'addBenin';
+  obj.source='Landing Page Grande Réappropriation';
+  if(type==='benin') obj.whatsapp=obj.telephone;
+  var btn=form.querySelector('.form-submit'); btn.disabled=true; btn.textContent='Envoi...';
+  fetch(GS_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(obj)})
+    .catch(function(){}).finally(function(){
+      form.style.display='none';
+      document.getElementById('success-'+type).classList.add('visible');
+      var el=document.getElementById(type==='lfa'?'stat-animateurs':'stat-coordinateurs');
+      if(el) el.textContent=(parseInt(el.textContent)||0)+1;
+    });
+}
+
+// ============================================================
+// TABS
+// ============================================================
+function switchTab(type,btn){
+  document.querySelectorAll('.role-tab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.form-panel').forEach(function(p){p.classList.remove('active');});
+  if(btn) btn.classList.add('active');
+  document.getElementById('panel-'+type).classList.add('active');
+}
 </script>
 </body>
 </html>
