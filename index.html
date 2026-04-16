@@ -45,8 +45,6 @@ nav {
 .nav-logo .gr-abbr { background: var(--or); color: var(--noir); font-size: 0.78rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; }
 .nav-logo .gr-full { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--blanc); }
 .nav-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-
-/* ── v2.1 : Bouton connexion simplifié dans nav ── */
 .nav-cx-btn {
   display: inline-flex; align-items: center; gap: 5px;
   background: rgba(255,255,255,0.15); color: var(--blanc);
@@ -56,18 +54,15 @@ nav {
   white-space: nowrap; transition: background .2s;
 }
 .nav-cx-btn:hover { background: rgba(255,255,255,0.25); }
-
 .lang-switch { display: flex; gap: 2px; background: rgba(255,255,255,0.10); border-radius: 20px; padding: 3px 4px; }
 .lang-switch button { background: none; border: none; color: rgba(255,255,255,0.7); font-size: 0.72rem; font-weight: 700; cursor: pointer; padding: 2px 6px; border-radius: 12px; transition: all .2s; }
 .lang-switch button.active { background: var(--or); color: var(--noir); }
-
 .subnav { position: sticky; top: 52px; z-index: 199; background: #0c3d1e; border-bottom: 2px solid var(--vert); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .subnav::-webkit-scrollbar { display: none; }
 .subnav-inner { display: flex; align-items: center; padding: 0 4%; gap: 0; min-width: max-content; }
 .subnav-inner a { color: rgba(255,255,255,0.78); font-size: 0.78rem; font-weight: 600; padding: 10px 14px; white-space: nowrap; display: block; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color .15s, border-color .15s; }
 .subnav-inner a:hover { color: var(--or); border-color: var(--or); }
 .subnav-inner .sn-cta { color: var(--or); font-weight: 700; border-left: 1px solid rgba(255,255,255,0.12); margin-left: 4px; }
-
 @media (min-width: 900px) {
   nav { height: 60px; padding: 0 5%; }
   .nav-logo { font-size: 0.95rem; gap: 8px; }
@@ -99,7 +94,6 @@ nav {
 .hstat-val { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--or); line-height: 1; }
 .hstat-lbl { font-size: 0.66rem; color: rgba(255,255,255,0.60); margin-top: 4px; line-height: 1.3; }
 .hcard-footer { margin-top: 11px; text-align: center; font-size: 0.70rem; color: rgba(255,255,255,0.45); font-style: italic; }
-
 @media (min-width: 900px) {
   .hero { padding: 78px var(--px) 78px; }
   .hero-inner { flex-direction: row; align-items: center; gap: 52px; }
@@ -307,7 +301,7 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
 .plat-step-badge.ps-3 { background: var(--vert); color: var(--blanc); }
 .plat-notice { text-align: center; font-size: 0.82rem; color: var(--gris); margin-top: 18px; font-style: italic; }
 
-/* ── v2.1 : Bannière "Déjà inscrit" — connexion simplifiée ── */
+/* BANNIÈRE CONNEXION */
 .cx-banner {
   background: rgba(255,255,255,0.07);
   border: 1px solid rgba(201,168,76,0.40);
@@ -328,57 +322,66 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
 }
 .btn-cx-ppl:hover { opacity: 0.85; }
 
-/* ── v2.1 : Bloc paiement Wave — Essai NGD ── */
+/* ══════════════════════════════════════════════════════
+   BLOC PAIEMENT WAVE — v3.1 (Audit PDF intégré)
+   Logique : 3 formules cliquables → redirection LP ESSAI
+   ══════════════════════════════════════════════════════ */
 .wave-payment-bloc {
   background: rgba(255,255,255,0.06);
-  border: 1.5px solid rgba(201,168,76,0.35);
+  border: 1.5px solid rgba(201,168,76,0.45);
   border-radius: var(--radius);
   padding: 20px 18px;
   margin-top: 16px;
 }
 .wave-payment-bloc h4 {
   font-size: 0.95rem; font-weight: 700; color: var(--or-light);
-  margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
 }
-.wave-formules { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.wave-payment-intro {
+  font-size: 0.80rem; color: rgba(255,255,255,0.65);
+  margin-bottom: 14px; font-style: italic;
+}
+.wave-formules { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+
+/* v3.1 : chaque formule est un lien cliquable → LP ESSAI */
 .wave-formule {
   display: flex; align-items: center; justify-content: space-between;
   background: rgba(255,255,255,0.08); border-radius: 8px;
-  padding: 10px 14px; border: 1px solid rgba(255,255,255,0.12);
-  transition: border-color .2s;
+  padding: 12px 14px; border: 1.5px solid rgba(255,255,255,0.12);
+  transition: border-color .2s, background .2s, transform .15s;
+  text-decoration: none; cursor: pointer;
 }
-.wave-formule:hover { border-color: var(--or); }
-.wf-label { font-size: 0.84rem; color: var(--blanc); font-weight: 500; }
-.wf-price { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; color: var(--or); }
-.wave-instruction {
-  font-size: 0.82rem; color: rgba(255,255,255,0.70); line-height: 1.6;
-  margin-bottom: 12px; padding: 10px 14px;
-  background: rgba(255,255,255,0.05); border-radius: 6px;
-  border-left: 3px solid var(--or);
+.wave-formule:hover {
+  border-color: var(--or);
+  background: rgba(201,168,76,0.15);
+  transform: translateX(4px);
 }
-.wave-instruction strong { color: var(--or); }
-.wave-btns { display: flex; flex-direction: column; gap: 8px; }
-@media (min-width: 480px) { .wave-btns { flex-direction: row; } }
-.btn-wave-direct {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+.wf-left { display: flex; flex-direction: column; gap: 2px; }
+.wf-label { font-size: 0.86rem; color: var(--blanc); font-weight: 600; }
+.wf-desc  { font-size: 0.72rem; color: rgba(255,255,255,0.50); }
+.wf-right { display: flex; align-items: center; gap: 8px; }
+.wf-price { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--or); }
+.wf-arrow { font-size: 1rem; color: var(--or); }
+
+/* Bouton principal → LP ESSAI */
+.btn-essai-principal {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
   background: var(--or); color: var(--noir);
   font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-  font-size: 0.88rem; padding: 11px 20px; border-radius: 6px;
-  transition: opacity .15s; flex: 1; text-align: center;
+  font-size: 0.92rem; padding: 13px 20px; border-radius: 8px;
+  transition: opacity .15s, transform .15s; width: 100%;
+  text-align: center; text-decoration: none; margin-bottom: 10px;
 }
-.btn-wave-direct:hover { opacity: 0.85; }
-.btn-whatsapp-confirm {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  background: #25D366; color: var(--blanc);
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-  font-size: 0.88rem; padding: 11px 20px; border-radius: 6px;
-  transition: opacity .15s; flex: 1; text-align: center;
-}
-.btn-whatsapp-confirm:hover { opacity: 0.85; }
+.btn-essai-principal:hover { opacity: 0.88; transform: translateY(-2px); }
+
 .wave-after-msg {
   font-size: 0.78rem; color: rgba(255,255,255,0.55);
-  margin-top: 10px; font-style: italic; text-align: center;
+  margin-top: 0; font-style: italic; text-align: center;
+  background: rgba(26,122,60,0.20); border-radius: 6px;
+  padding: 8px 10px; border-left: 3px solid var(--vert);
+  line-height: 1.5;
 }
+.wave-after-msg strong { color: var(--or-light); font-style: normal; }
 
 /* FORMULAIRES */
 .profil-bullets { list-style: none; margin-bottom: 20px; }
@@ -418,7 +421,6 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
     <a href="#telegram"    data-fr="Guide Telegram" data-en="Telegram Guide">Guide Telegram</a>
   </div>
   <div class="nav-right">
-    <!-- v2.1 : Bouton connexion simplifié → LP PPL -->
     <a href="https://coachmorgans.github.io/vers-plus-de-pouvoir-local/#connexion"
        class="nav-cx-btn"
        data-fr="🔓 Déjà inscrit ?" data-en="🔓 Already registered?">🔓 Déjà inscrit ?</a>
@@ -504,7 +506,7 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
   </div>
 </div>
 
-<!-- NGD -->
+<!-- NGD PILIERS -->
 <section class="section" id="ngd">
   <div class="section-inner">
     <p class="section-kicker" data-fr="Qui sommes-nous" data-en="Who we are">Qui sommes-nous</p>
@@ -556,8 +558,6 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
       <div class="ps-step"><span class="ps-num">3</span><span class="ps-lbl">Formation Certifiante + Candidature 2028</span></div>
     </div>
     <div class="plat-grid">
-
-      <!-- Étape 1 : Essai Autobiographique -->
       <div class="plat-card fu">
         <div class="plat-step-badge">Étape 1 — OBLIGATOIRE</div>
         <div class="plat-head ph-or"><div class="plat-icon">📖</div><h3>L'Essai Autobiographique</h3><p>L'Architecte d'une Révolution Silencieuse + Adhésion NGD</p></div>
@@ -572,8 +572,6 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
           <a href="https://coachmorgans.github.io/challengefinancier/" target="_blank" class="btn-plat bp-out plat-btn-lock" id="btn-eco1">🌐 Découvrir l'Écosystème</a>
         </div>
       </div>
-
-      <!-- Étape 2 : Portail TCL → v2.1 : lien Bot CHALLENGER -->
       <div class="plat-card fu">
         <div class="plat-step-badge ps-2">Étape 2 — Après Préinscription</div>
         <div class="plat-head ph-bleu"><div class="plat-icon">🛒</div><h3>Portail TCL — 3 Boutiques en 1</h3><p>Territorialité Citoyenne Libre · Commerce local & Bitcoin</p></div>
@@ -584,13 +582,10 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
           <li>Emplois : Coursier-Livreur · GZ · Partenaire TCL</li>
         </ul></div>
         <div class="plat-foot">
-          <!-- v2.1 : Portail TCL → Bot CHALLENGER (création portefeuille Mi Sikah) -->
           <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="btn-plat bp-bleu plat-btn-lock" id="btn-tcl">🤖 Accéder au TCL via Bot CHALLENGER</a>
           <a href="https://coachmorgans.github.io/challengefinancier/" target="_blank" class="btn-plat bp-out plat-btn-lock" id="btn-eco2">🌐 Découvrir l'Écosystème</a>
         </div>
       </div>
-
-      <!-- Étape 3 : LMS -->
       <div class="plat-card fu">
         <div class="plat-step-badge ps-3">Étape 3 — Après Mi Sikah</div>
         <div class="plat-head ph-vert"><div class="plat-icon">🎓</div><h3>ChallengeFinancier™ LMS</h3><p>La formation certifiante en finances décentralisées</p></div>
@@ -617,7 +612,6 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
     <h2 class="section-title" data-fr="Choisissez votre profil — Enregistrez-vous" data-en="Choose your profile — Register">Choisissez votre profil — Enregistrez-vous</h2>
     <p class="section-sub" data-fr="L'enregistrement est OBLIGATOIRE et déverrouille les 3 plateformes de l'écosystème VoteConnect." data-en="Registration is MANDATORY and unlocks the 3 VoteConnect ecosystem platforms.">L'enregistrement est OBLIGATOIRE et déverrouille les 3 plateformes de l'écosystème VoteConnect.</p>
 
-    <!-- v2.1 : Bannière connexion simplifiée -->
     <div class="cx-banner">
       <div class="cx-banner-txt">
         <strong>Déjà inscrit sur La Grande Réappropriation ou Vers Plus de Pouvoir Local ?</strong><br>
@@ -629,7 +623,9 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
 
     <div class="profils-grid">
 
-      <!-- CARTE 1 : Animateur NGD -->
+      <!-- ══════════════════════════════════════
+           CARTE 1 : Animateur NGD (Citoyen CI)
+           ══════════════════════════════════════ -->
       <div class="profil-card fu">
         <div class="profil-ico ico-vert">🌱</div>
         <h3>Animateur NGD</h3>
@@ -685,37 +681,70 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
           </button>
         </form>
 
-        <!-- v2.1 : Bloc paiement Wave direct (Essai NGD — étapes 3 & 4 PDF) -->
+        <!-- ══════════════════════════════════════════════════════
+             BLOC PAIEMENT v3.1 — 3 formules → LP ESSAI direct
+             (s'affiche après enregistrement confirmé)
+             ══════════════════════════════════════════════════════ -->
         <div class="wave-payment-bloc" id="wave-bloc-animateur" style="display:none">
-          <h4>💳 Paiement Essai NGD — Choisissez votre formule</h4>
+          <h4>🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI</h4>
+          <p class="wave-payment-intro">Cliquez directement la formule de votre choix — vous êtes redirigé sur la LP ESSAI pour finaliser votre adhésion NGD et télécharger l'Essai Autobiographique.</p>
+
           <div class="wave-formules">
-            <div class="wave-formule"><span class="wf-label">🌱 Sympathisant NGD</span><span class="wf-price">2 500 FCFA</span></div>
-            <div class="wave-formule"><span class="wf-label">📋 Adhérent Statutaire NGD</span><span class="wf-price">5 000 FCFA</span></div>
-            <div class="wave-formule"><span class="wf-label">🏛️ Cadre Actif + Colistier LFA-CI 2028</span><span class="wf-price">10 000 FCFA</span></div>
-          </div>
-          <div class="wave-instruction">
-            <strong>Comment payer :</strong><br>
-            1️⃣ Cliquez le bouton Wave ci-dessous — payez le montant de votre formule<br>
-            2️⃣ Revenez ici et cliquez <strong>« Confirmer via WhatsApp »</strong><br>
-            3️⃣ Vous recevrez votre <strong>Code d'Activation à 4 chiffres</strong> pour débloquer l'Essai
-          </div>
-          <div class="wave-btns">
-            <!-- v2.1 : lien Wave direct (remplace image ibb.co) -->
-            <a href="https://pay.wave.com/m/M_ci_QlW5ke-hYGbA/c/ci/"
-               target="_blank" class="btn-wave-direct">
-              💳 Payer via Wave — VoteConnect Formation
+            <!-- Formule 1 : Sympathisant → LP ESSAI avec présélection f=2500 -->
+            <a href="https://coachmorgans.github.io/essai/#adhesion-ngd?f=2500"
+               target="_blank" class="wave-formule">
+              <div class="wf-left">
+                <span class="wf-label">🌱 Sympathisant NGD</span>
+                <span class="wf-desc">Essai PDF complet · Newsletter NGD · Acte de soutien citoyen</span>
+              </div>
+              <div class="wf-right">
+                <span class="wf-price">2 500 FCFA</span>
+                <span class="wf-arrow">→</span>
+              </div>
             </a>
-            <!-- v2.1 : WhatsApp Admin corrigé : 0767560908 -->
-            <a href="https://wa.me/2250767560908?text=Bonjour%20Coach%20Morgan's%2C%20j'ai%20effectu%C3%A9%20mon%20paiement%20Wave%20pour%20l'Essai%20NGD.%20Voici%20ma%20capture%20d'%C3%A9cran."
-               target="_blank" class="btn-whatsapp-confirm">
-              💬 Confirmer via WhatsApp
+            <!-- Formule 2 : Adhérent → LP ESSAI avec présélection f=5000 -->
+            <a href="https://coachmorgans.github.io/essai/#adhesion-ngd?f=5000"
+               target="_blank" class="wave-formule">
+              <div class="wf-left">
+                <span class="wf-label">📋 Adhérent Statutaire NGD</span>
+                <span class="wf-desc">Essai PDF + carte membre NGD · Accès réseau 509 Leaders</span>
+              </div>
+              <div class="wf-right">
+                <span class="wf-price">5 000 FCFA</span>
+                <span class="wf-arrow">→</span>
+              </div>
+            </a>
+            <!-- Formule 3 : Cadre Actif → LP ESSAI avec présélection f=10000 -->
+            <a href="https://coachmorgans.github.io/essai/#adhesion-ngd?f=10000"
+               target="_blank" class="wave-formule">
+              <div class="wf-left">
+                <span class="wf-label">🏛️ Cadre Actif + Colistier LFA-CI 2028</span>
+                <span class="wf-desc">Essai PDF + Carte Cadre · Dossier Candidat Colistier LFA-CI · Formations ChallengeFinancier™</span>
+              </div>
+              <div class="wf-right">
+                <span class="wf-price">10 000 FCFA</span>
+                <span class="wf-arrow">→</span>
+              </div>
             </a>
           </div>
-          <p class="wave-after-msg">Après confirmation, votre Code d'Activation 4 chiffres vous sera envoyé sous 15 minutes.</p>
+
+          <!-- Bouton principal LP ESSAI -->
+          <a href="https://coachmorgans.github.io/essai/#adhesion-ngd"
+             target="_blank" class="btn-essai-principal">
+            🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI
+          </a>
+
+          <p class="wave-after-msg">
+            Après paiement Wave : cliquez <strong>J'AI EFFECTUÉ LE PAIEMENT</strong> sur la LP ESSAI —
+            votre <strong>Code d'Activation</strong> NGD vous est envoyé automatiquement via WhatsApp.
+            Téléchargez votre ESSAI en 1 minute.
+          </p>
         </div>
       </div>
 
-      <!-- CARTE 2 : Délégué-Pays NGD -->
+      <!-- ══════════════════════════════════════
+           CARTE 2 : Délégué-Pays NGD
+           ══════════════════════════════════════ -->
       <div class="profil-card fu">
         <div class="profil-ico ico-or">🌍</div>
         <h3>Délégué-Pays NGD</h3>
@@ -784,31 +813,57 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
           </button>
         </form>
 
-        <!-- v2.1 : Bloc paiement Wave direct (Délégué) -->
+        <!-- BLOC PAIEMENT v3.1 — Délégué -->
         <div class="wave-payment-bloc" id="wave-bloc-delegue" style="display:none">
-          <h4>💳 Paiement Essai NGD — Choisissez votre formule</h4>
+          <h4>🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI</h4>
+          <p class="wave-payment-intro">Cliquez directement la formule de votre choix — vous êtes redirigé sur la LP ESSAI pour finaliser votre adhésion NGD et télécharger l'Essai Autobiographique.</p>
+
           <div class="wave-formules">
-            <div class="wave-formule"><span class="wf-label">🌱 Sympathisant NGD</span><span class="wf-price">2 500 FCFA</span></div>
-            <div class="wave-formule"><span class="wf-label">📋 Adhérent Statutaire NGD</span><span class="wf-price">5 000 FCFA</span></div>
-            <div class="wave-formule"><span class="wf-label">🏛️ Cadre Actif + Colistier LFA-CI 2028</span><span class="wf-price">10 000 FCFA</span></div>
-          </div>
-          <div class="wave-instruction">
-            <strong>Comment payer :</strong><br>
-            1️⃣ Cliquez le bouton Wave ci-dessous — payez le montant de votre formule<br>
-            2️⃣ Revenez ici et cliquez <strong>« Confirmer via WhatsApp »</strong><br>
-            3️⃣ Vous recevrez votre <strong>Code d'Activation à 4 chiffres</strong> pour débloquer l'Essai
-          </div>
-          <div class="wave-btns">
-            <a href="https://pay.wave.com/m/M_ci_QlW5ke-hYGbA/c/ci/"
-               target="_blank" class="btn-wave-direct">
-              💳 Payer via Wave — VoteConnect Formation
+            <a href="https://coachmorgans.github.io/essai/#adhesion-ngd?f=2500"
+               target="_blank" class="wave-formule">
+              <div class="wf-left">
+                <span class="wf-label">🌱 Sympathisant NGD</span>
+                <span class="wf-desc">Essai PDF complet · Newsletter NGD · Acte de soutien citoyen</span>
+              </div>
+              <div class="wf-right">
+                <span class="wf-price">2 500 FCFA</span>
+                <span class="wf-arrow">→</span>
+              </div>
             </a>
-            <a href="https://wa.me/2250767560908?text=Bonjour%20Coach%20Morgan's%2C%20j'ai%20effectu%C3%A9%20mon%20paiement%20Wave%20pour%20l'Essai%20NGD.%20Voici%20ma%20capture%20d'%C3%A9cran."
-               target="_blank" class="btn-whatsapp-confirm">
-              💬 Confirmer via WhatsApp
+            <a href="https://coachmorgans.github.io/essai/#adhesion-ngd?f=5000"
+               target="_blank" class="wave-formule">
+              <div class="wf-left">
+                <span class="wf-label">📋 Adhérent Statutaire NGD</span>
+                <span class="wf-desc">Essai PDF + carte membre NGD · Accès réseau 509 Leaders</span>
+              </div>
+              <div class="wf-right">
+                <span class="wf-price">5 000 FCFA</span>
+                <span class="wf-arrow">→</span>
+              </div>
+            </a>
+            <a href="https://coachmorgans.github.io/essai/#adhesion-ngd?f=10000"
+               target="_blank" class="wave-formule">
+              <div class="wf-left">
+                <span class="wf-label">🏛️ Cadre Actif + Colistier LFA-CI 2028</span>
+                <span class="wf-desc">Essai PDF + Carte Cadre · Dossier Candidat Colistier LFA-CI · Formations ChallengeFinancier™</span>
+              </div>
+              <div class="wf-right">
+                <span class="wf-price">10 000 FCFA</span>
+                <span class="wf-arrow">→</span>
+              </div>
             </a>
           </div>
-          <p class="wave-after-msg">Après confirmation, votre Code d'Activation 4 chiffres vous sera envoyé sous 15 minutes.</p>
+
+          <a href="https://coachmorgans.github.io/essai/#adhesion-ngd"
+             target="_blank" class="btn-essai-principal">
+            🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI
+          </a>
+
+          <p class="wave-after-msg">
+            Après paiement Wave : cliquez <strong>J'AI EFFECTUÉ LE PAIEMENT</strong> sur la LP ESSAI —
+            votre <strong>Code d'Activation</strong> NGD vous est envoyé automatiquement via WhatsApp.
+            Téléchargez votre ESSAI en 1 minute.
+          </p>
         </div>
       </div>
 
@@ -946,7 +1001,6 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
         <ul>
           <li><a href="https://t.me/ChallengeFinancierbot" target="_blank">🤖 Bot CHALLENGER</a></li>
           <li><a href="https://coachmorgans.github.io/lms-cf/" target="_blank">🎓 LMS ChallengeFinancier™</a></li>
-          <!-- v2.1 : TCL → Bot -->
           <li><a href="https://t.me/ChallengeFinancierbot" target="_blank">🛒 Portail TCL via Bot</a></li>
           <li><a href="https://coachmorgans.github.io/essai/" target="_blank">📖 L'Essai + Adhésion NGD</a></li>
         </ul>
@@ -962,9 +1016,7 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
       <div class="fcol">
         <h5>Contact</h5>
         <ul>
-          <!-- v2.1 : WhatsApp Admin corrigé : 0767560908 -->
           <li><a href="https://wa.me/2250767560908" target="_blank">💬 WhatsApp Admin</a></li>
-          <!-- v2.1 : ChallengeF TV remplace LFA TV -->
           <li><a href="https://youtube.com/@voteconnect?si=iJhrKcktcZLeHQJb" target="_blank">📺 ChallengeF TV</a></li>
           <li><a href="https://www.youtube.com/@VoteConnect" target="_blank">📺 YouTube VoteConnect</a></li>
           <li><a href="https://t.me/ChallengeFinancierbot" target="_blank">📱 Telegram Bot</a></li>
@@ -979,10 +1031,15 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
 </footer>
 
 <script>
+/* ═══════════════════════════════════════════════════════════
+   CONFIGURATION
+   ═══════════════════════════════════════════════════════════ */
 const GS_URL         = 'https://script.google.com/macros/s/AKfycbzdqCRk06C35clJhQcDS1AN3eZvzq4JO5UjsRU1E7y1pDfTu-xHt6ppSM6pD0UnGn10/exec';
 const DATE_FIN_ENREG = new Date('2026-04-30T23:59:59');
 
-/* COMPTEUR */
+/* ═══════════════════════════════════════════════════════════
+   COMPTEUR
+   ═══════════════════════════════════════════════════════════ */
 function majCompteur() {
   const diff = DATE_FIN_ENREG - new Date();
   const el   = document.getElementById('heroCountdown');
@@ -1004,7 +1061,9 @@ function majCompteur() {
 majCompteur();
 setInterval(majCompteur, 1000);
 
-/* LANGUE */
+/* ═══════════════════════════════════════════════════════════
+   LANGUE
+   ═══════════════════════════════════════════════════════════ */
 let lang = 'fr';
 function setLang(l) {
   lang = l;
@@ -1017,7 +1076,9 @@ function setLang(l) {
   });
 }
 
-/* ACTIVATION BOUTONS PLATEFORMES */
+/* ═══════════════════════════════════════════════════════════
+   ACTIVATION BOUTONS PLATEFORMES
+   ═══════════════════════════════════════════════════════════ */
 function activerBoutonsPlateformes() {
   document.querySelectorAll('.plat-btn-lock').forEach(btn => btn.classList.add('active'));
   const notice = document.getElementById('plat-notice');
@@ -1032,7 +1093,42 @@ if (sessionStorage.getItem('ngd_registered') === '1') {
   document.addEventListener('DOMContentLoaded', activerBoutonsPlateformes);
 }
 
-/* SOUMISSION FORMULAIRES */
+/* ═══════════════════════════════════════════════════════════
+   NORMALISATION TÉLÉPHONE
+   ═══════════════════════════════════════════════════════════ */
+function normaliserTel(tel) {
+  // Supprime espaces, tirets
+  let t = tel.replace(/[\s\-\.]/g, '');
+  // +225 ou 00225 → 225XXXXXXXX
+  t = t.replace(/^(\+|00)225/, '225');
+  // Si commence par 0 et 10 chiffres → enlève le 0 initial (local ivoirien)
+  if (/^0\d{9}$/.test(t)) t = '225' + t.slice(1);
+  // Si 9 chiffres sans indicatif → ajoute 225
+  if (/^\d{9}$/.test(t)) t = '225' + t;
+  return t;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VÉRIFICATION ANTI-DOUBLON via CF-DB
+   ═══════════════════════════════════════════════════════════ */
+async function verifierDoublon(telephone) {
+  try {
+    const telNorm = normaliserTel(telephone);
+    const url = `${GS_URL}?action=verifier_telephone&telephone=${encodeURIComponent(telNorm)}`;
+    const resp = await fetch(url, { method: 'GET' });
+    if (!resp.ok) return false; // Si erreur réseau → on laisse passer (fail open)
+    const data = await resp.json();
+    return data.existe === true;
+  } catch (e) {
+    // En cas d'erreur (CORS, réseau) → fail open, ne pas bloquer l'inscription
+    return false;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SOUMISSION FORMULAIRES — v3.1
+   Ajout : vérification anti-doublon AVANT POST
+   ═══════════════════════════════════════════════════════════ */
 async function soumettreFormulaire(event, profil) {
   event.preventDefault();
   const form      = event.target;
@@ -1041,16 +1137,31 @@ async function soumettreFormulaire(event, profil) {
   const btnLoad   = form.querySelector('.btn-loading');
   const msgEl     = document.getElementById('msg-' + profil);
 
-  submitBtn.disabled   = true;
+  submitBtn.disabled    = true;
   btnText.style.display = 'none';
   btnLoad.style.display = 'inline';
-  msgEl.className      = 'form-msg';
-  msgEl.textContent    = '';
+  msgEl.className       = 'form-msg';
+  msgEl.textContent     = '';
 
   const donnees = new FormData(form);
   const payload = { profil, source: 'LP_GR', timestamp: new Date().toISOString() };
   donnees.forEach((val, key) => { payload[key] = val; });
 
+  /* ── Étape 1 : Vérification anti-doublon ── */
+  const telephone = payload.telephone || '';
+  if (telephone) {
+    const doublon = await verifierDoublon(telephone);
+    if (doublon) {
+      msgEl.className   = 'form-msg error';
+      msgEl.textContent = '❌ Ces identifiants sont déjà utilisé par un Citoyen-Client NGD. Si vous êtes déjà inscrit, cliquez "Déjà inscrit ?" en haut de page.';
+      submitBtn.disabled    = false;
+      btnText.style.display = 'inline';
+      btnLoad.style.display = 'none';
+      return;
+    }
+  }
+
+  /* ── Étape 2 : Enregistrement CF-DB ── */
   try {
     await fetch(GS_URL, {
       method: 'POST', mode: 'no-cors',
@@ -1066,7 +1177,7 @@ async function soumettreFormulaire(event, profil) {
     form.reset();
     activerBoutonsPlateformes();
 
-    // v2.1 : Afficher le bloc de paiement Wave après enregistrement
+    // Afficher le bloc de paiement v3.1 (3 formules → LP ESSAI)
     const waveBloc = document.getElementById('wave-bloc-' + profil);
     if (waveBloc) {
       waveBloc.style.display = 'block';
@@ -1079,13 +1190,15 @@ async function soumettreFormulaire(event, profil) {
     msgEl.className   = 'form-msg error';
     msgEl.textContent = '❌ Erreur réseau. Vérifiez votre connexion et réessayez.';
   } finally {
-    submitBtn.disabled   = false;
+    submitBtn.disabled    = false;
     btnText.style.display = 'inline';
     btnLoad.style.display = 'none';
   }
 }
 
-/* DROPDOWN PAYS → PLACEHOLDER VILLE */
+/* ═══════════════════════════════════════════════════════════
+   DROPDOWN PAYS → PLACEHOLDER VILLE
+   ═══════════════════════════════════════════════════════════ */
 const placeholderVilles = {
   'Bénin': 'Ex: Cotonou, Porto-Novo, Parakou...',
   'Burkina Faso': 'Ex: Ouagadougou, Bobo-Dioulasso...',
@@ -1100,7 +1213,9 @@ function mettreAJourRegions(pays) {
   if (input && placeholderVilles[pays]) input.placeholder = placeholderVilles[pays];
 }
 
-/* COPIER LIEN BOT */
+/* ═══════════════════════════════════════════════════════════
+   COPIER LIEN BOT
+   ═══════════════════════════════════════════════════════════ */
 function copyLink() {
   const url = 'https://t.me/ChallengeFinancierbot';
   const btn = document.getElementById('copyBtn');
@@ -1113,7 +1228,9 @@ function copyLink() {
   setTimeout(() => { btn.textContent = '📋 Copier'; btn.classList.remove('done'); }, 2200);
 }
 
-/* ANIMATIONS SCROLL */
+/* ═══════════════════════════════════════════════════════════
+   ANIMATIONS SCROLL
+   ═══════════════════════════════════════════════════════════ */
 const obs = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
