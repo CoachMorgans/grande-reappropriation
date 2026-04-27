@@ -9,477 +9,319 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-:root {
-  --vert:      #1a7a3c;
-  --vert-dark: #0f4e25;
-  --vert-pale: #e8f5ee;
-  --or:        #c9a84c;
-  --or-light:  #f5e9c8;
-  --noir:      #0d0d0d;
-  --gris:      #5a5a5a;
-  --gris-clair:#f4f4f2;
-  --blanc:     #ffffff;
-  --radius:    12px;
-  --shadow:    0 4px 24px rgba(0,0,0,0.10);
-  --px:        5vw;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body { font-family: 'DM Sans', sans-serif; color: var(--noir); background: var(--blanc); line-height: 1.6; overflow-x: hidden; }
-img { max-width: 100%; display: block; }
-h1,h2,h3,h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.01em; }
-a { text-decoration: none; }
-.ngd-hl { color: var(--or); font-weight: 700; font-style: normal; }
-.pays-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 0.82rem; font-weight: 700; color: var(--vert-dark); padding: 3px 6px; white-space: nowrap; }
-.pays-tag.pilote { background: var(--vert); color: var(--blanc); border-radius: 4px; padding: 3px 8px; }
-
-/* NAV */
-nav {
-  position: sticky; top: 0; z-index: 200;
-  background: var(--vert-dark);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 4%; height: 52px;
-  box-shadow: 0 1px 8px rgba(0,0,0,0.25);
-}
-.nav-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--blanc); display: flex; align-items: center; gap: 7px; white-space: nowrap; flex-shrink: 1; overflow: hidden; min-width: 0; letter-spacing: 0.01em; }
-.nav-logo .gr-abbr { background: var(--or); color: var(--noir); font-size: 0.78rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; }
-.nav-logo .gr-full { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--blanc); }
-.nav-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.nav-cx-btn {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: rgba(255,255,255,0.15); color: var(--blanc);
-  border: 1px solid rgba(255,255,255,0.30);
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-  font-size: 0.72rem; padding: 5px 10px; border-radius: 20px;
-  white-space: nowrap; transition: background .2s;
-}
-.nav-cx-btn:hover { background: rgba(255,255,255,0.25); }
-.lang-switch { display: flex; gap: 2px; background: rgba(255,255,255,0.10); border-radius: 20px; padding: 3px 4px; }
-.lang-switch button { background: none; border: none; color: rgba(255,255,255,0.7); font-size: 0.72rem; font-weight: 700; cursor: pointer; padding: 2px 6px; border-radius: 12px; transition: all .2s; }
-.lang-switch button.active { background: var(--or); color: var(--noir); }
-.subnav { position: sticky; top: 52px; z-index: 199; background: #0c3d1e; border-bottom: 2px solid var(--vert); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-.subnav::-webkit-scrollbar { display: none; }
-.subnav-inner { display: flex; align-items: center; padding: 0 4%; gap: 0; min-width: max-content; }
-.subnav-inner a { color: rgba(255,255,255,0.78); font-size: 0.78rem; font-weight: 600; padding: 10px 14px; white-space: nowrap; display: block; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color .15s, border-color .15s; }
-.subnav-inner a:hover { color: var(--or); border-color: var(--or); }
-.subnav-inner .sn-cta { color: var(--or); font-weight: 700; border-left: 1px solid rgba(255,255,255,0.12); margin-left: 4px; }
-@media (min-width: 900px) {
-  nav { height: 60px; padding: 0 5%; }
-  .nav-logo { font-size: 0.95rem; gap: 8px; }
-  .nav-logo .gr-full { display: block; }
-  .subnav { display: none; }
-  .nav-desktop-links { display: flex; align-items: center; gap: 18px; margin: 0 auto 0 24px; }
-  .nav-desktop-links a { color: rgba(255,255,255,0.82); font-size: 0.82rem; font-weight: 500; white-space: nowrap; transition: color .2s; }
-  .nav-desktop-links a:hover { color: var(--or); }
-}
-.nav-desktop-links { display: none; }
-
-/* HERO */
-.hero { background: linear-gradient(160deg, var(--vert-dark) 0%, #1a5c32 60%, var(--vert) 100%); color: var(--blanc); padding: 44px var(--px) 48px; position: relative; overflow: hidden; }
-.hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-.hero-inner { max-width: 1060px; margin: 0 auto; position: relative; display: flex; flex-direction: column; gap: 32px; }
-.hero-kicker { display: inline-flex; align-items: center; gap: 8px; width: fit-content; max-width: 100%; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.20); border-radius: 20px; padding: 6px 14px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--or-light); }
-.hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.9rem, 8.5vw, 3.2rem); font-weight: 700; line-height: 1.08; letter-spacing: 0.01em; margin: 14px 0 16px; }
-.hero h1 em { color: var(--or); font-style: normal; }
-.hero-lead { font-size: clamp(0.88rem, 2.8vw, 1.02rem); color: rgba(255,255,255,0.85); line-height: 1.65; margin-bottom: 26px; }
-.hero-btns { display: flex; flex-direction: column; gap: 11px; }
-.hero-btns a { width: 100%; text-align: center; }
-.hero-card { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 18px 16px; backdrop-filter: blur(8px); }
-.hcard-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.hcard-top img { width: 52px; height: 52px; object-fit: contain; flex-shrink: 0; }
-.hcard-title { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.85); line-height: 1.4; }
-.hcard-title strong { font-family: 'Barlow Condensed', sans-serif; color: var(--or); font-size: 1.1rem; font-weight: 700; display: block; letter-spacing: 0.02em; }
-.hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
-.hstat { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 11px 8px; text-align: center; }
-.hstat-val { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--or); line-height: 1; }
-.hstat-lbl { font-size: 0.66rem; color: rgba(255,255,255,0.60); margin-top: 4px; line-height: 1.3; }
-.hcard-footer { margin-top: 11px; text-align: center; font-size: 0.70rem; color: rgba(255,255,255,0.45); font-style: italic; }
-@media (min-width: 900px) {
-  .hero { padding: 78px var(--px) 78px; }
-  .hero-inner { flex-direction: row; align-items: center; gap: 52px; }
-  .hero-text { flex: 1; min-width: 0; }
-  .hero-card { width: 300px; flex-shrink: 0; padding: 26px 20px; }
-  .hero-btns { flex-direction: row; }
-  .hero-btns a { width: auto; }
-  .hcard-top img { width: 68px; height: 68px; }
-  .hstat-val { font-size: 1.45rem; }
-}
-
-/* BOUTONS GLOBAUX */
-.btn-or { background: var(--or); color: var(--noir); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.92rem; padding: 13px 24px; border-radius: 8px; border: none; cursor: pointer; display: inline-block; transition: transform .15s, box-shadow .15s; }
-.btn-or:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,0.4); }
-.btn-blanc { background: transparent; color: var(--blanc); border: 2px solid rgba(255,255,255,0.5); font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.92rem; padding: 11px 22px; border-radius: 8px; display: inline-block; transition: background .2s, border-color .2s; }
-.btn-blanc:hover { background: rgba(255,255,255,0.10); border-color: var(--blanc); }
-
-/* BANDE UEMOA */
-.uemoa-band { background: var(--gris-clair); border-top: 3px solid var(--vert); border-bottom: 3px solid var(--vert); padding: 14px var(--px); }
-.uemoa-inner { max-width: 1060px; margin: 0 auto; display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
-.uemoa-lbl { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--vert-dark); white-space: nowrap; margin-right: 4px; }
-.pays-chip { display: inline-flex; align-items: center; gap: 5px; background: var(--blanc); border: 1.5px solid var(--vert); color: var(--vert-dark); font-size: 0.78rem; font-weight: 700; padding: 5px 11px; border-radius: 20px; white-space: nowrap; }
-.pays-chip.pilote { background: var(--vert); color: var(--blanc); }
-
-/* SECTIONS BASE */
-.section { padding: 56px var(--px); }
-.section-inner { max-width: 1060px; margin: 0 auto; }
-.section-kicker { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.11em; text-transform: uppercase; color: var(--vert); margin-bottom: 8px; }
-.section-title { font-size: clamp(1.3rem, 3.5vw, 1.75rem); font-weight: 700; line-height: 1.15; margin-bottom: 11px; letter-spacing: 0.01em; }
-.section-sub { font-size: clamp(0.87rem, 2.4vw, 0.96rem); color: var(--gris); line-height: 1.65; margin-bottom: 32px; max-width: 640px; }
-
-/* NGD PILIERS */
-.piliers-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
-.pilier-card { border: 1.5px solid #e0e0e0; border-radius: var(--radius); padding: 20px 16px; transition: border-color .2s, box-shadow .2s; }
-.pilier-card:hover { border-color: var(--vert); box-shadow: 0 4px 14px rgba(26,122,60,0.10); }
-.pilier-icon { font-size: 1.6rem; margin-bottom: 9px; }
-.pilier-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--vert-dark); margin-bottom: 5px; }
-.pilier-card p  { font-size: 0.83rem; color: var(--gris); line-height: 1.55; }
-@media (min-width: 520px)  { .piliers-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 900px)  { .piliers-grid { grid-template-columns: repeat(3,1fr); } }
-
-/* CALENDRIER */
-.cal-bg { background: var(--gris-clair); }
-.pays-timeline { border: 1.5px solid #d8d8d8; border-radius: var(--radius); overflow: hidden; margin-top: 34px; }
-.pays-row { display: flex; align-items: center; gap: 11px; padding: 13px 15px; border-bottom: 1px solid #e8e8e8; transition: background .15s; }
-.pays-row:last-child { border-bottom: none; }
-.pays-row:hover { background: var(--vert-pale); }
-.pays-row.pr-pilote { background: #eef9f2; }
-.pays-flag { font-size: 1.3rem; flex-shrink: 0; }
-.pays-info { flex: 1; min-width: 0; }
-.pays-nom { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.88rem; line-height: 1.2; }
-.pays-cap { font-size: 0.70rem; color: var(--gris); }
-.badge-p { display: inline-block; background: var(--vert); color: var(--blanc); font-size: 0.60rem; font-weight: 700; padding: 2px 6px; border-radius: 9px; margin-left: 5px; vertical-align: middle; }
-.pays-date { flex-shrink: 0; text-align: right; }
-.pays-annee { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.98rem; color: var(--vert-dark); }
-.pays-detail { font-size: 0.68rem; color: var(--gris); }
-
-/* PLATEFORMES */
-.plat-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 34px; }
-@media (min-width: 660px)  { .plat-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1000px) { .plat-grid { grid-template-columns: repeat(3,1fr); } }
-.plat-card { border-radius: var(--radius); overflow: hidden; border: 1.5px solid #e0e0e0; display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s; }
-.plat-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
-.plat-head { padding: 22px 18px 16px; }
-.ph-vert { background: linear-gradient(135deg,var(--vert-dark),var(--vert)); color: var(--blanc); }
-.ph-or   { background: linear-gradient(135deg,#7a5a10,var(--or)); color: var(--noir); }
-.ph-bleu { background: linear-gradient(135deg,#1a3a7a,#2d5cbf); color: var(--blanc); }
-.plat-icon { font-size: 1.7rem; margin-bottom: 7px; }
-.plat-head h3 { font-size: 0.97rem; font-weight: 800; margin-bottom: 3px; }
-.plat-head p  { font-size: 0.78rem; opacity: 0.88; line-height: 1.4; }
-.plat-body { padding: 16px 18px; flex: 1; }
-.plat-features { list-style: none; }
-.plat-features li { font-size: 0.83rem; color: var(--gris); padding: 5px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: flex-start; gap: 7px; }
-.plat-features li:last-child { border-bottom: none; }
-.plat-features li::before { content: '✓'; color: var(--vert); font-weight: 700; flex-shrink: 0; }
-.plat-foot { padding: 13px 18px; border-top: 1px solid #f0f0f0; display: flex; flex-direction: column; gap: 7px; }
-.btn-plat { display: block; text-align: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.82rem; padding: 10px 14px; border-radius: 6px; transition: opacity .15s; }
-.btn-plat:hover { opacity: 0.84; }
-.bp-vert  { background: var(--vert); color: var(--blanc); }
-.bp-or    { background: var(--or);   color: var(--noir); }
-.bp-bleu  { background: #2d5cbf;     color: var(--blanc); }
-.bp-out   { background: transparent; color: var(--gris); border: 1.5px solid #ccc; font-weight: 500; }
-.plat-btn-lock { opacity: 0.40; pointer-events: none; cursor: not-allowed; filter: grayscale(0.5); }
-.plat-btn-lock.active { opacity: 1; pointer-events: auto; cursor: pointer; filter: none; }
-
-/* PROFILS */
-.profils-bg { background: var(--vert-dark); color: var(--blanc); }
-.profils-bg .section-kicker { color: var(--or-light); }
-.profils-bg .section-title  { color: var(--blanc); }
-.profils-bg .section-sub    { color: rgba(255,255,255,0.70); }
-.profils-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
-@media (min-width: 660px) { .profils-grid { grid-template-columns: 1fr 1fr; } }
-.profil-card { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.13); border-radius: var(--radius); padding: 26px 20px; }
-.profil-ico { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 14px; }
-.ico-vert { background: rgba(26,122,60,0.55); }
-.ico-or   { background: rgba(201,168,76,0.30); }
-.profil-card h3 { font-size: 1.02rem; font-weight: 800; color: var(--or-light); margin-bottom: 3px; }
-.profil-card .psub { font-size: 0.78rem; color: rgba(255,255,255,0.52); font-style: italic; margin-bottom: 14px; }
-.profil-card ul { list-style: none; }
-.profil-card ul li { font-size: 0.84rem; color: rgba(255,255,255,0.82); padding: 4px 0; display: flex; gap: 7px; align-items: flex-start; }
-.profil-card ul li::before { content: '🌱'; font-size: 0.76rem; flex-shrink: 0; margin-top: 3px; }
-
-/* LFA */
-.lfa-card { border: 2px solid var(--or); border-radius: var(--radius); overflow: hidden; background: linear-gradient(135deg,#fffdf5,#fff9e6); margin-top: 34px; }
-.lfa-body { padding: 26px 22px; }
-.lfa-badge { display: inline-flex; background: var(--or); color: var(--noir); font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
-.lfa-body h3 { font-size: clamp(0.95rem, 2.8vw, 1.15rem); font-weight: 800; color: var(--vert-dark); margin-bottom: 10px; }
-.lfa-body p  { font-size: 0.86rem; color: var(--gris); line-height: 1.6; }
-.lfa-regions { background: var(--or-light); padding: 18px 22px; }
-.lfa-regions h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--vert-dark); margin-bottom: 9px; }
-.lfa-regions ul { list-style: none; }
-.lfa-regions ul li { font-size: 0.80rem; color: var(--gris); padding: 3px 0; display: flex; align-items: center; gap: 5px; }
-.lfa-regions ul li::before { content: '📍'; font-size: 0.72rem; }
-@media (min-width: 660px) { .lfa-card { display: grid; grid-template-columns: 1fr 230px; } .lfa-regions { border-left: 2px solid var(--or); } }
-
-/* BOT */
-.bot-bg { background: var(--gris-clair); }
-.bot-card { background: var(--blanc); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-top: 34px; }
-.bot-body { padding: 26px 20px; }
-.bot-body h3 { font-size: clamp(1.05rem, 3vw, 1.35rem); font-weight: 800; margin-bottom: 9px; }
-.bot-body p  { font-size: 0.86rem; color: var(--gris); line-height: 1.6; margin-bottom: 18px; }
-.bot-features { display: flex; flex-direction: column; gap: 9px; margin-bottom: 22px; }
-.bot-feat { display: flex; gap: 9px; font-size: 0.84rem; color: var(--gris); align-items: flex-start; }
-.bot-feat .bi { font-size: 0.98rem; flex-shrink: 0; margin-top: 2px; }
-.btn-tg { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: #229ED9; color: var(--blanc); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.9rem; padding: 13px 20px; border-radius: 8px; transition: opacity .15s; }
-.btn-tg:hover { opacity: 0.88; }
-.bot-visual { background: linear-gradient(180deg,var(--vert-dark),#0d3a1e); padding: 26px 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.bot-logo { width: 78px; height: 78px; border-radius: 50%; object-fit: contain; }
-.bot-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--blanc); letter-spacing: 0.02em; }
-.bot-handle { font-size: 0.78rem; color: rgba(255,255,255,0.52); }
-.bot-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; width: 100%; }
-.bst { background: rgba(255,255,255,0.10); border-radius: 7px; padding: 11px 7px; text-align: center; }
-.bv  { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--or); letter-spacing: 0.02em; }
-.bl  { font-size: 0.65rem; color: rgba(255,255,255,0.52); margin-top: 3px; }
-@media (min-width: 660px) { .bot-card { display: grid; grid-template-columns: 1fr 240px; } .btn-tg { width: auto; } }
-
-/* GUIDE TELEGRAM */
-.tg-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 34px; }
-@media (min-width: 520px)  { .tg-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1000px) { .tg-grid { grid-template-columns: repeat(5,1fr); } }
-.tg-step { border: 1.5px solid #e8e8e8; border-radius: var(--radius); padding: 20px 15px; text-align: center; transition: border-color .2s; }
-.tg-step:hover { border-color: var(--vert); }
-.tg-step.step5 { border-color: var(--vert); background: var(--vert-pale); }
-.step-num { width: 38px; height: 38px; border-radius: 50%; background: var(--vert); color: var(--blanc); font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 11px; }
-.step-num.gold { background: var(--or); color: var(--noir); }
-.tg-step h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 7px; }
-.tg-step p  { font-size: 0.78rem; color: var(--gris); line-height: 1.5; }
-.tg-links { margin-top: 9px; display: flex; flex-direction: column; gap: 5px; }
-.tg-links a { font-size: 0.76rem; font-weight: 600; color: var(--vert); border: 1px solid var(--vert); border-radius: 4px; padding: 5px 7px; transition: background .15s; }
-.tg-links a:hover { background: var(--vert-pale); }
-.share-btns { display: flex; flex-direction: column; gap: 6px; margin-top: 9px; }
-.shr { display: flex; align-items: center; gap: 6px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.74rem; padding: 7px 9px; border-radius: 6px; transition: opacity .15s; }
-.shr:hover { opacity: 0.82; }
-.shr svg { width: 13px; height: 13px; flex-shrink: 0; }
-.s-wa { background: #25D366; color: var(--blanc); }
-.s-tg { background: #229ED9; color: var(--blanc); }
-.s-ms { background: #0084FF; color: var(--blanc); }
-.copy-row { display: flex; align-items: center; gap: 5px; background: rgba(26,122,60,0.08); border: 1px solid var(--vert); border-radius: 6px; padding: 5px 8px; margin-top: 9px; }
-.copy-lnk { font-size: 0.68rem; color: var(--vert-dark); font-weight: 600; flex: 1; word-break: break-all; }
-.copy-btn { background: var(--vert); color: var(--blanc); border: none; border-radius: 4px; font-size: 0.68rem; font-weight: 700; padding: 4px 7px; cursor: pointer; flex-shrink: 0; white-space: nowrap; transition: background .15s; }
-.copy-btn:hover { background: var(--vert-dark); }
-.copy-btn.done  { background: var(--or); color: var(--noir); }
-
-/* FOOTER */
-footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 26px; }
-.footer-inner { max-width: 1060px; margin: 0 auto; }
-.footer-grid { display: grid; grid-template-columns: 1fr; gap: 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,0.09); margin-bottom: 22px; }
-@media (min-width: 520px)  { .footer-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 900px)  { .footer-grid { grid-template-columns: 1.8fr 1fr 1fr 1fr; } }
-.footer-brand .flogo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--or); margin-bottom: 9px; letter-spacing: 0.02em; }
-.footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.52); line-height: 1.6; }
-.footer-brand .legal { font-size: 0.70rem; color: rgba(255,255,255,0.30); margin-top: 11px; }
-.fcol h5 { font-family: 'DM Sans', sans-serif; font-size: 0.70rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--or); margin-bottom: 11px; }
-.fcol ul { list-style: none; }
-.fcol ul li { margin-bottom: 7px; }
-.fcol ul li a { font-size: 0.78rem; color: rgba(255,255,255,0.65); transition: color .2s; }
-.fcol ul li a:hover { color: var(--or); }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 9px; }
-.footer-bottom p { font-size: 0.73rem; color: rgba(255,255,255,0.32); }
-.footer-motto { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--vert); letter-spacing: 0.04em; }
-
-/* ANIMATIONS */
-.fu { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
-.fu.on { opacity: 1; transform: translateY(0); }
-
-/* COMPTEUR */
-.countdown-label { font-size: 0.68rem; color: rgba(255,255,255,0.60); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; text-align: center; }
-.countdown-date  { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--or); text-align: center; margin-bottom: 10px; }
-.countdown-timer { display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 10px; }
-.cd-bloc { display: flex; flex-direction: column; align-items: center; min-width: 40px; }
-.cd-val  { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--blanc); background: rgba(255,255,255,0.12); border-radius: 6px; padding: 4px 8px; min-width: 44px; text-align: center; line-height: 1; }
-.cd-lbl  { font-size: 0.58rem; color: rgba(255,255,255,0.55); margin-top: 3px; }
-.cd-sep  { font-size: 1.4rem; font-weight: 700; color: var(--or); align-self: flex-start; margin-top: 6px; }
-.countdown-next  { font-size: 0.68rem; color: rgba(255,255,255,0.65); text-align: center; font-style: italic; line-height: 1.4; }
-.countdown-ended { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; color: var(--or); text-align: center; padding: 8px; }
-
-/* PARCOURS STEPS */
-.parcours-steps { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; background: rgba(26,122,60,0.06); border: 1.5px solid var(--vert); border-radius: var(--radius); padding: 14px 16px; }
-.ps-step { display: flex; align-items: center; gap: 8px; }
-.ps-num  { width: 26px; height: 26px; border-radius: 50%; background: var(--vert); color: var(--blanc); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.ps-lbl  { font-size: 0.8rem; color: var(--gris); font-weight: 500; }
-.ps-arrow { color: var(--vert); font-size: 1rem; font-weight: 700; }
-.plat-step-badge { background: var(--or); color: var(--noir); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.05em; padding: 5px 14px; text-align: center; }
-.plat-step-badge.ps-2 { background: #2d5cbf; color: var(--blanc); }
-.plat-step-badge.ps-3 { background: var(--vert); color: var(--blanc); }
-.plat-notice { text-align: center; font-size: 0.82rem; color: var(--gris); margin-top: 18px; font-style: italic; }
-
-/* BANNIÈRE CONNEXION */
-.cx-banner {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(201,168,76,0.40);
-  border-radius: var(--radius);
-  padding: 14px 18px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 12px;
-  margin-bottom: 28px;
-}
-.cx-banner-txt { font-size: 0.86rem; color: rgba(255,255,255,0.82); }
-.cx-banner-txt strong { color: var(--or); }
-.btn-cx-ppl {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--or); color: var(--noir);
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-  font-size: 0.85rem; padding: 9px 18px; border-radius: 6px;
-  white-space: nowrap; transition: opacity .15s; flex-shrink: 0;
-}
-.btn-cx-ppl:hover { opacity: 0.85; }
-
-/* ══════════════════════════════════════════════════════
-   BLOC PAIEMENT WAVE — v3.1 (Audit PDF intégré)
-   Logique : 3 formules cliquables → redirection LP ESSAI
-   ══════════════════════════════════════════════════════ */
-.wave-payment-bloc {
-  background: rgba(255,255,255,0.06);
-  border: 1.5px solid rgba(201,168,76,0.45);
-  border-radius: var(--radius);
-  padding: 20px 18px;
-  margin-top: 16px;
-}
-.wave-payment-bloc h4 {
-  font-size: 0.95rem; font-weight: 700; color: var(--or-light);
-  margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
-}
-.wave-payment-intro {
-  font-size: 0.80rem; color: rgba(255,255,255,0.65);
-  margin-bottom: 14px; font-style: italic;
-}
-.wave-formules { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-
-/* v3.1 : chaque formule est un lien cliquable → LP ESSAI */
-.wave-formule {
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(255,255,255,0.08); border-radius: 8px;
-  padding: 12px 14px; border: 1.5px solid rgba(255,255,255,0.12);
-  transition: border-color .2s, background .2s, transform .15s;
-  text-decoration: none; cursor: pointer;
-}
-.wave-formule:hover {
-  border-color: var(--or);
-  background: rgba(201,168,76,0.15);
-  transform: translateX(4px);
-}
-.wf-left { display: flex; flex-direction: column; gap: 2px; }
-.wf-label { font-size: 0.86rem; color: var(--blanc); font-weight: 600; }
-.wf-desc  { font-size: 0.72rem; color: rgba(255,255,255,0.50); }
-.wf-right { display: flex; align-items: center; gap: 8px; }
-.wf-price { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--or); }
-.wf-arrow { font-size: 1rem; color: var(--or); }
-
-/* Bouton principal → LP ESSAI */
-.btn-essai-principal {
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  background: var(--or); color: var(--noir);
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-  font-size: 0.92rem; padding: 13px 20px; border-radius: 8px;
-  transition: opacity .15s, transform .15s; width: 100%;
-  text-align: center; text-decoration: none; margin-bottom: 10px;
-}
-.btn-essai-principal:hover { opacity: 0.88; transform: translateY(-2px); }
-
-.wave-after-msg {
-  font-size: 0.78rem; color: rgba(255,255,255,0.55);
-  margin-top: 0; font-style: italic; text-align: center;
-  background: rgba(26,122,60,0.20); border-radius: 6px;
-  padding: 8px 10px; border-left: 3px solid var(--vert);
-  line-height: 1.5;
-}
-.wave-after-msg strong { color: var(--or-light); font-style: normal; }
-
-/* FORMULAIRES */
-.profil-bullets { list-style: none; margin-bottom: 20px; }
-.profil-bullets li { font-size: 0.84rem; color: rgba(255,255,255,0.82); padding: 4px 0; display: flex; gap: 7px; align-items: flex-start; }
-.profil-bullets li::before { content: '🌱'; font-size: 0.76rem; flex-shrink: 0; margin-top: 3px; }
-.profil-form { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 18px; margin-top: 4px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-@media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
-.form-group { display: flex; flex-direction: column; gap: 4px; }
-.form-full { margin-bottom: 10px; }
-.form-group label, .form-full label { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.70); letter-spacing: 0.03em; }
-.form-group input, .form-group select, .form-group textarea, .form-full textarea { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.22); border-radius: 6px; padding: 9px 11px; color: var(--blanc); font-size: 0.84rem; font-family: 'DM Sans', sans-serif; width: 100%; outline: none; transition: border-color .2s; }
-.form-group input::placeholder, .form-group textarea::placeholder, .form-full textarea::placeholder { color: rgba(255,255,255,0.35); }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus, .form-full textarea:focus { border-color: var(--or); }
-.form-group select { appearance: none; cursor: pointer; }
-.form-group select option { background: var(--vert-dark); color: var(--blanc); }
-.form-msg { font-size: 0.82rem; padding: 8px 12px; border-radius: 6px; margin-bottom: 10px; display: none; }
-.form-msg.success { background: rgba(26,122,60,0.30); color: #7fffab; border: 1px solid rgba(26,122,60,0.5); display: block; }
-.form-msg.error   { background: rgba(220,50,50,0.20); color: #ffaaaa; border: 1px solid rgba(220,50,50,0.4); display: block; }
-.btn-submit { width: 100%; background: var(--or); color: var(--noir); border: none; border-radius: 8px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; padding: 13px 20px; transition: opacity .2s, transform .15s; margin-top: 4px; }
-.btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
-.btn-submit:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+:root{--vert:#1a7a3c;--vert-dark:#0f4e25;--vert-pale:#e8f5ee;--or:#c9a84c;--or-light:#f5e9c8;--noir:#0d0d0d;--gris:#5a5a5a;--gris-clair:#f4f4f2;--blanc:#ffffff;--radius:12px;--shadow:0 4px 24px rgba(0,0,0,0.10);--px:5vw;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'DM Sans',sans-serif;color:var(--noir);background:var(--blanc);line-height:1.6;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.01em;}
+a{text-decoration:none;}
+.ngd-hl{color:var(--or);font-weight:700;font-style:normal;}
+.pays-tag{display:inline-flex;align-items:center;gap:4px;font-size:0.82rem;font-weight:700;color:var(--vert-dark);padding:3px 6px;white-space:nowrap;}
+.pays-tag.pilote{background:var(--vert);color:var(--blanc);border-radius:4px;padding:3px 8px;}
+nav{position:sticky;top:0;z-index:200;background:var(--vert-dark);display:flex;align-items:center;justify-content:space-between;padding:0 4%;height:52px;box-shadow:0 1px 8px rgba(0,0,0,0.25);}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:var(--blanc);display:flex;align-items:center;gap:7px;white-space:nowrap;flex-shrink:1;overflow:hidden;min-width:0;letter-spacing:0.01em;}
+.nav-logo .gr-abbr{background:var(--or);color:var(--noir);font-size:0.78rem;font-weight:800;padding:2px 8px;border-radius:4px;flex-shrink:0;}
+.nav-logo .gr-full{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--blanc);}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.nav-cx-btn{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.15);color:var(--blanc);border:1px solid rgba(255,255,255,0.30);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;padding:5px 10px;border-radius:20px;white-space:nowrap;transition:background .2s;}
+.nav-cx-btn:hover{background:rgba(255,255,255,0.25);}
+.lang-switch{display:flex;gap:2px;background:rgba(255,255,255,0.10);border-radius:20px;padding:3px 4px;}
+.lang-switch button{background:none;border:none;color:rgba(255,255,255,0.7);font-size:0.72rem;font-weight:700;cursor:pointer;padding:2px 6px;border-radius:12px;transition:all .2s;}
+.lang-switch button.active{background:var(--or);color:var(--noir);}
+.subnav{position:sticky;top:52px;z-index:199;background:#0c3d1e;border-bottom:2px solid var(--vert);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.subnav::-webkit-scrollbar{display:none;}
+.subnav-inner{display:flex;align-items:center;padding:0 4%;gap:0;min-width:max-content;}
+.subnav-inner a{color:rgba(255,255,255,0.78);font-size:0.78rem;font-weight:600;padding:10px 14px;white-space:nowrap;display:block;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color .15s,border-color .15s;}
+.subnav-inner a:hover{color:var(--or);border-color:var(--or);}
+.subnav-inner .sn-cta{color:var(--or);font-weight:700;border-left:1px solid rgba(255,255,255,0.12);margin-left:4px;}
+@media(min-width:900px){nav{height:60px;padding:0 5%;}.nav-logo{font-size:0.95rem;gap:8px;}.nav-logo .gr-full{display:block;}.subnav{display:none;}.nav-desktop-links{display:flex;align-items:center;gap:18px;margin:0 auto 0 24px;}.nav-desktop-links a{color:rgba(255,255,255,0.82);font-size:0.82rem;font-weight:500;white-space:nowrap;transition:color .2s;}.nav-desktop-links a:hover{color:var(--or);}}
+.nav-desktop-links{display:none;}
+.hero{background:linear-gradient(160deg,var(--vert-dark) 0%,#1a5c32 60%,var(--vert) 100%);color:var(--blanc);padding:44px var(--px) 48px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.hero-inner{max-width:1060px;margin:0 auto;position:relative;display:flex;flex-direction:column;gap:32px;}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;width:fit-content;max-width:100%;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.20);border-radius:20px;padding:6px 14px;font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--or-light);}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.9rem,8.5vw,3.2rem);font-weight:700;line-height:1.08;letter-spacing:0.01em;margin:14px 0 16px;}
+.hero h1 em{color:var(--or);font-style:normal;}
+.hero-lead{font-size:clamp(0.88rem,2.8vw,1.02rem);color:rgba(255,255,255,0.85);line-height:1.65;margin-bottom:26px;}
+.hero-btns{display:flex;flex-direction:column;gap:11px;}
+.hero-btns a{width:100%;text-align:center;}
+.hero-card{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.18);border-radius:var(--radius);padding:18px 16px;backdrop-filter:blur(8px);}
+.hcard-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.hcard-top img{width:52px;height:52px;object-fit:contain;flex-shrink:0;}
+.hcard-title{font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.85);line-height:1.4;}
+.hcard-title strong{font-family:'Barlow Condensed',sans-serif;color:var(--or);font-size:1.1rem;font-weight:700;display:block;letter-spacing:0.02em;}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.hstat{background:rgba(255,255,255,0.08);border-radius:8px;padding:11px 8px;text-align:center;}
+.hstat-val{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;color:var(--or);line-height:1;}
+.hstat-lbl{font-size:0.66rem;color:rgba(255,255,255,0.60);margin-top:4px;line-height:1.3;}
+.hcard-footer{margin-top:11px;text-align:center;font-size:0.70rem;color:rgba(255,255,255,0.45);font-style:italic;}
+@media(min-width:900px){.hero{padding:78px var(--px) 78px;}.hero-inner{flex-direction:row;align-items:center;gap:52px;}.hero-text{flex:1;min-width:0;}.hero-card{width:300px;flex-shrink:0;padding:26px 20px;}.hero-btns{flex-direction:row;}.hero-btns a{width:auto;}.hcard-top img{width:68px;height:68px;}.hstat-val{font-size:1.45rem;}}
+.btn-or{background:var(--or);color:var(--noir);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.92rem;padding:13px 24px;border-radius:8px;border:none;cursor:pointer;display:inline-block;transition:transform .15s,box-shadow .15s;}
+.btn-or:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,168,76,0.4);}
+.btn-blanc{background:transparent;color:var(--blanc);border:2px solid rgba(255,255,255,0.5);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.92rem;padding:11px 22px;border-radius:8px;display:inline-block;transition:background .2s,border-color .2s;}
+.btn-blanc:hover{background:rgba(255,255,255,0.10);border-color:var(--blanc);}
+.uemoa-band{background:var(--gris-clair);border-top:3px solid var(--vert);border-bottom:3px solid var(--vert);padding:14px var(--px);}
+.uemoa-inner{max-width:1060px;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;gap:7px;}
+.uemoa-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:0.07em;text-transform:uppercase;color:var(--vert-dark);white-space:nowrap;margin-right:4px;}
+.pays-chip{display:inline-flex;align-items:center;gap:5px;background:var(--blanc);border:1.5px solid var(--vert);color:var(--vert-dark);font-size:0.78rem;font-weight:700;padding:5px 11px;border-radius:20px;white-space:nowrap;}
+.pays-chip.pilote{background:var(--vert);color:var(--blanc);}
+.section{padding:56px var(--px);}
+.section-inner{max-width:1060px;margin:0 auto;}
+.section-kicker{font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.11em;text-transform:uppercase;color:var(--vert);margin-bottom:8px;}
+.section-title{font-size:clamp(1.3rem,3.5vw,1.75rem);font-weight:700;line-height:1.15;margin-bottom:11px;letter-spacing:0.01em;}
+.section-sub{font-size:clamp(0.87rem,2.4vw,0.96rem);color:var(--gris);line-height:1.65;margin-bottom:32px;max-width:640px;}
+.piliers-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+.pilier-card{border:1.5px solid #e0e0e0;border-radius:var(--radius);padding:20px 16px;transition:border-color .2s,box-shadow .2s;}
+.pilier-card:hover{border-color:var(--vert);box-shadow:0 4px 14px rgba(26,122,60,0.10);}
+.pilier-icon{font-size:1.6rem;margin-bottom:9px;}
+.pilier-card h4{font-size:0.95rem;font-weight:700;color:var(--vert-dark);margin-bottom:5px;}
+.pilier-card p{font-size:0.83rem;color:var(--gris);line-height:1.55;}
+@media(min-width:520px){.piliers-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:900px){.piliers-grid{grid-template-columns:repeat(3,1fr);}}
+.cal-bg{background:var(--gris-clair);}
+.pays-timeline{border:1.5px solid #d8d8d8;border-radius:var(--radius);overflow:hidden;margin-top:34px;}
+.pays-row{display:flex;align-items:center;gap:11px;padding:13px 15px;border-bottom:1px solid #e8e8e8;transition:background .15s;}
+.pays-row:last-child{border-bottom:none;}
+.pays-row:hover{background:var(--vert-pale);}
+.pays-row.pr-pilote{background:#eef9f2;}
+.pays-flag{font-size:1.3rem;flex-shrink:0;}
+.pays-info{flex:1;min-width:0;}
+.pays-nom{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.88rem;line-height:1.2;}
+.pays-cap{font-size:0.70rem;color:var(--gris);}
+.badge-p{display:inline-block;background:var(--vert);color:var(--blanc);font-size:0.60rem;font-weight:700;padding:2px 6px;border-radius:9px;margin-left:5px;vertical-align:middle;}
+.pays-date{flex-shrink:0;text-align:right;}
+.pays-annee{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:0.98rem;color:var(--vert-dark);}
+.pays-detail{font-size:0.68rem;color:var(--gris);}
+.plat-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:34px;}
+@media(min-width:660px){.plat-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:1000px){.plat-grid{grid-template-columns:repeat(3,1fr);}}
+.plat-card{border-radius:var(--radius);overflow:hidden;border:1.5px solid #e0e0e0;display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s;}
+.plat-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
+.plat-head{padding:22px 18px 16px;}
+.ph-vert{background:linear-gradient(135deg,var(--vert-dark),var(--vert));color:var(--blanc);}
+.ph-or{background:linear-gradient(135deg,#7a5a10,var(--or));color:var(--noir);}
+.ph-bleu{background:linear-gradient(135deg,#1a3a7a,#2d5cbf);color:var(--blanc);}
+.plat-icon{font-size:1.7rem;margin-bottom:7px;}
+.plat-head h3{font-size:0.97rem;font-weight:800;margin-bottom:3px;}
+.plat-head p{font-size:0.78rem;opacity:0.88;line-height:1.4;}
+.plat-body{padding:16px 18px;flex:1;}
+.plat-features{list-style:none;}
+.plat-features li{font-size:0.83rem;color:var(--gris);padding:5px 0;border-bottom:1px solid #f0f0f0;display:flex;align-items:flex-start;gap:7px;}
+.plat-features li:last-child{border-bottom:none;}
+.plat-features li::before{content:'✓';color:var(--vert);font-weight:700;flex-shrink:0;}
+.plat-foot{padding:13px 18px;border-top:1px solid #f0f0f0;display:flex;flex-direction:column;gap:7px;}
+.btn-plat{display:block;text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.82rem;padding:10px 14px;border-radius:6px;transition:opacity .15s;}
+.btn-plat:hover{opacity:0.84;}
+.bp-vert{background:var(--vert);color:var(--blanc);}
+.bp-or{background:var(--or);color:var(--noir);}
+.bp-bleu{background:#2d5cbf;color:var(--blanc);}
+.bp-out{background:transparent;color:var(--gris);border:1.5px solid #ccc;font-weight:500;}
+.plat-btn-lock{opacity:0.40;pointer-events:none;cursor:not-allowed;filter:grayscale(0.5);}
+.plat-btn-lock.active{opacity:1;pointer-events:auto;cursor:pointer;filter:none;}
+.profils-bg{background:var(--vert-dark);color:var(--blanc);}
+.profils-bg .section-kicker{color:var(--or-light);}
+.profils-bg .section-title{color:var(--blanc);}
+.profils-bg .section-sub{color:rgba(255,255,255,0.70);}
+.profils-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+@media(min-width:660px){.profils-grid{grid-template-columns:1fr 1fr;}}
+.profil-card{background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.13);border-radius:var(--radius);padding:26px 20px;}
+.profil-ico{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:14px;}
+.ico-vert{background:rgba(26,122,60,0.55);}
+.ico-or{background:rgba(201,168,76,0.30);}
+.profil-card h3{font-size:1.02rem;font-weight:800;color:var(--or-light);margin-bottom:3px;}
+.profil-card .psub{font-size:0.78rem;color:rgba(255,255,255,0.52);font-style:italic;margin-bottom:14px;}
+.profil-card ul{list-style:none;}
+.profil-card ul li{font-size:0.84rem;color:rgba(255,255,255,0.82);padding:4px 0;display:flex;gap:7px;align-items:flex-start;}
+.profil-card ul li::before{content:'🌱';font-size:0.76rem;flex-shrink:0;margin-top:3px;}
+.lfa-card{border:2px solid var(--or);border-radius:var(--radius);overflow:hidden;background:linear-gradient(135deg,#fffdf5,#fff9e6);margin-top:34px;}
+.lfa-body{padding:26px 22px;}
+.lfa-badge{display:inline-flex;background:var(--or);color:var(--noir);font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:12px;}
+.lfa-body h3{font-size:clamp(0.95rem,2.8vw,1.15rem);font-weight:800;color:var(--vert-dark);margin-bottom:10px;}
+.lfa-body p{font-size:0.86rem;color:var(--gris);line-height:1.6;}
+.lfa-regions{background:var(--or-light);padding:18px 22px;}
+.lfa-regions h4{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--vert-dark);margin-bottom:9px;}
+.lfa-regions ul{list-style:none;}
+.lfa-regions ul li{font-size:0.80rem;color:var(--gris);padding:3px 0;display:flex;align-items:center;gap:5px;}
+.lfa-regions ul li::before{content:'📍';font-size:0.72rem;}
+@media(min-width:660px){.lfa-card{display:grid;grid-template-columns:1fr 230px;}.lfa-regions{border-left:2px solid var(--or);}}
+.bot-bg{background:var(--gris-clair);}
+.bot-card{background:var(--blanc);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-top:34px;}
+.bot-body{padding:26px 20px;}
+.bot-body h3{font-size:clamp(1.05rem,3vw,1.35rem);font-weight:800;margin-bottom:9px;}
+.bot-body p{font-size:0.86rem;color:var(--gris);line-height:1.6;margin-bottom:18px;}
+.bot-features{display:flex;flex-direction:column;gap:9px;margin-bottom:22px;}
+.bot-feat{display:flex;gap:9px;font-size:0.84rem;color:var(--gris);align-items:flex-start;}
+.bot-feat .bi{font-size:0.98rem;flex-shrink:0;margin-top:2px;}
+.btn-tg{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#229ED9;color:var(--blanc);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;padding:13px 20px;border-radius:8px;transition:opacity .15s;}
+.btn-tg:hover{opacity:0.88;}
+.bot-visual{background:linear-gradient(180deg,var(--vert-dark),#0d3a1e);padding:26px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;}
+.bot-logo{width:78px;height:78px;border-radius:50%;object-fit:contain;}
+.bot-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:var(--blanc);letter-spacing:0.02em;}
+.bot-handle{font-size:0.78rem;color:rgba(255,255,255,0.52);}
+.bot-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;width:100%;}
+.bst{background:rgba(255,255,255,0.10);border-radius:7px;padding:11px 7px;text-align:center;}
+.bv{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:700;color:var(--or);letter-spacing:0.02em;}
+.bl{font-size:0.65rem;color:rgba(255,255,255,0.52);margin-top:3px;}
+@media(min-width:660px){.bot-card{display:grid;grid-template-columns:1fr 240px;}.btn-tg{width:auto;}}
+.tg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:34px;}
+@media(min-width:520px){.tg-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:1000px){.tg-grid{grid-template-columns:repeat(5,1fr);}}
+.tg-step{border:1.5px solid #e8e8e8;border-radius:var(--radius);padding:20px 15px;text-align:center;transition:border-color .2s;}
+.tg-step:hover{border-color:var(--vert);}
+.tg-step.step5{border-color:var(--vert);background:var(--vert-pale);}
+.step-num{width:38px;height:38px;border-radius:50%;background:var(--vert);color:var(--blanc);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:0.95rem;display:flex;align-items:center;justify-content:center;margin:0 auto 11px;}
+.step-num.gold{background:var(--or);color:var(--noir);}
+.tg-step h4{font-size:0.88rem;font-weight:700;margin-bottom:7px;}
+.tg-step p{font-size:0.78rem;color:var(--gris);line-height:1.5;}
+.tg-links{margin-top:9px;display:flex;flex-direction:column;gap:5px;}
+.tg-links a{font-size:0.76rem;font-weight:600;color:var(--vert);border:1px solid var(--vert);border-radius:4px;padding:5px 7px;transition:background .15s;}
+.tg-links a:hover{background:var(--vert-pale);}
+.share-btns{display:flex;flex-direction:column;gap:6px;margin-top:9px;}
+.shr{display:flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.74rem;padding:7px 9px;border-radius:6px;transition:opacity .15s;}
+.shr:hover{opacity:0.82;}
+.shr svg{width:13px;height:13px;flex-shrink:0;}
+.s-wa{background:#25D366;color:var(--blanc);}
+.s-tg{background:#229ED9;color:var(--blanc);}
+.s-ms{background:#0084FF;color:var(--blanc);}
+.copy-row{display:flex;align-items:center;gap:5px;background:rgba(26,122,60,0.08);border:1px solid var(--vert);border-radius:6px;padding:5px 8px;margin-top:9px;}
+.copy-lnk{font-size:0.68rem;color:var(--vert-dark);font-weight:600;flex:1;word-break:break-all;}
+.copy-btn{background:var(--vert);color:var(--blanc);border:none;border-radius:4px;font-size:0.68rem;font-weight:700;padding:4px 7px;cursor:pointer;flex-shrink:0;white-space:nowrap;transition:background .15s;}
+.copy-btn:hover{background:var(--vert-dark);}
+.copy-btn.done{background:var(--or);color:var(--noir);}
+footer{background:var(--noir);color:var(--blanc);padding:48px var(--px) 26px;}
+.footer-inner{max-width:1060px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:28px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,0.09);margin-bottom:22px;}
+@media(min-width:520px){.footer-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:900px){.footer-grid{grid-template-columns:1.8fr 1fr 1fr 1fr;}}
+.footer-brand .flogo{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:700;color:var(--or);margin-bottom:9px;letter-spacing:0.02em;}
+.footer-brand p{font-size:0.78rem;color:rgba(255,255,255,0.52);line-height:1.6;}
+.footer-brand .legal{font-size:0.70rem;color:rgba(255,255,255,0.30);margin-top:11px;}
+.fcol h5{font-family:'DM Sans',sans-serif;font-size:0.70rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--or);margin-bottom:11px;}
+.fcol ul{list-style:none;}
+.fcol ul li{margin-bottom:7px;}
+.fcol ul li a{font-size:0.78rem;color:rgba(255,255,255,0.65);transition:color .2s;}
+.fcol ul li a:hover{color:var(--or);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:9px;}
+.footer-bottom p{font-size:0.73rem;color:rgba(255,255,255,0.32);}
+.footer-motto{font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;color:var(--vert);letter-spacing:0.04em;}
+.fu{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease;}
+.fu.on{opacity:1;transform:translateY(0);}
+.countdown-label{font-size:0.68rem;color:rgba(255,255,255,0.60);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;text-align:center;}
+.countdown-date{font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;color:var(--or);text-align:center;margin-bottom:10px;}
+.countdown-timer{display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:10px;}
+.cd-bloc{display:flex;flex-direction:column;align-items:center;min-width:40px;}
+.cd-val{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:700;color:var(--blanc);background:rgba(255,255,255,0.12);border-radius:6px;padding:4px 8px;min-width:44px;text-align:center;line-height:1;}
+.cd-lbl{font-size:0.58rem;color:rgba(255,255,255,0.55);margin-top:3px;}
+.cd-sep{font-size:1.4rem;font-weight:700;color:var(--or);align-self:flex-start;margin-top:6px;}
+.countdown-next{font-size:0.68rem;color:rgba(255,255,255,0.65);text-align:center;font-style:italic;line-height:1.4;}
+.countdown-ended{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:var(--or);text-align:center;padding:8px;}
+.parcours-steps{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:28px;background:rgba(26,122,60,0.06);border:1.5px solid var(--vert);border-radius:var(--radius);padding:14px 16px;}
+.ps-step{display:flex;align-items:center;gap:8px;}
+.ps-num{width:26px;height:26px;border-radius:50%;background:var(--vert);color:var(--blanc);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ps-lbl{font-size:0.8rem;color:var(--gris);font-weight:500;}
+.ps-arrow{color:var(--vert);font-size:1rem;font-weight:700;}
+.plat-step-badge{background:var(--or);color:var(--noir);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:0.05em;padding:5px 14px;text-align:center;}
+.plat-step-badge.ps-2{background:#2d5cbf;color:var(--blanc);}
+.plat-step-badge.ps-3{background:var(--vert);color:var(--blanc);}
+.plat-notice{text-align:center;font-size:0.82rem;color:var(--gris);margin-top:18px;font-style:italic;}
+.cx-banner{background:rgba(255,255,255,0.07);border:1px solid rgba(201,168,76,0.40);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:28px;}
+.cx-banner-txt{font-size:0.86rem;color:rgba(255,255,255,0.82);}
+.cx-banner-txt strong{color:var(--or);}
+.btn-cx-ppl{display:inline-flex;align-items:center;gap:6px;background:var(--or);color:var(--noir);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;padding:9px 18px;border-radius:6px;white-space:nowrap;transition:opacity .15s;flex-shrink:0;}
+.btn-cx-ppl:hover{opacity:0.85;}
+.wave-payment-bloc{background:rgba(255,255,255,0.06);border:1.5px solid rgba(201,168,76,0.45);border-radius:var(--radius);padding:20px 18px;margin-top:16px;}
+.wave-payment-bloc h4{font-size:0.95rem;font-weight:700;color:var(--or-light);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.wave-payment-intro{font-size:0.80rem;color:rgba(255,255,255,0.65);margin-bottom:14px;font-style:italic;}
+.wave-formules{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.wave-formule{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.08);border-radius:8px;padding:12px 14px;border:1.5px solid rgba(255,255,255,0.12);transition:border-color .2s,background .2s,transform .15s;text-decoration:none;cursor:pointer;}
+.wave-formule:hover{border-color:var(--or);background:rgba(201,168,76,0.15);transform:translateX(4px);}
+.wf-left{display:flex;flex-direction:column;gap:2px;}
+.wf-label{font-size:0.86rem;color:var(--blanc);font-weight:600;}
+.wf-desc{font-size:0.72rem;color:rgba(255,255,255,0.50);}
+.wf-right{display:flex;align-items:center;gap:8px;}
+.wf-price{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;color:var(--or);}
+.wf-arrow{font-size:1rem;color:var(--or);}
+.btn-essai-principal{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--or);color:var(--noir);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.92rem;padding:13px 20px;border-radius:8px;transition:opacity .15s,transform .15s;width:100%;text-align:center;text-decoration:none;margin-bottom:10px;}
+.btn-essai-principal:hover{opacity:0.88;transform:translateY(-2px);}
+.wave-after-msg{font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:0;font-style:italic;text-align:center;background:rgba(26,122,60,0.20);border-radius:6px;padding:8px 10px;border-left:3px solid var(--vert);line-height:1.5;}
+.wave-after-msg strong{color:var(--or-light);font-style:normal;}
+.profil-bullets{list-style:none;margin-bottom:20px;}
+.profil-bullets li{font-size:0.84rem;color:rgba(255,255,255,0.82);padding:4px 0;display:flex;gap:7px;align-items:flex-start;}
+.profil-bullets li::before{content:'🌱';font-size:0.76rem;flex-shrink:0;margin-top:3px;}
+.profil-form{border-top:1px solid rgba(255,255,255,0.15);padding-top:18px;margin-top:4px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+@media(max-width:480px){.form-row{grid-template-columns:1fr;}}
+.form-group{display:flex;flex-direction:column;gap:4px;}
+.form-full{margin-bottom:10px;}
+.form-group label,.form-full label{font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.70);letter-spacing:0.03em;}
+.form-group input,.form-group select,.form-group textarea,.form-full textarea{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.22);border-radius:6px;padding:9px 11px;color:var(--blanc);font-size:0.84rem;font-family:'DM Sans',sans-serif;width:100%;outline:none;transition:border-color .2s;}
+.form-group input::placeholder,.form-group textarea::placeholder,.form-full textarea::placeholder{color:rgba(255,255,255,0.35);}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus,.form-full textarea:focus{border-color:var(--or);}
+.form-group select{appearance:none;cursor:pointer;}
+.form-group select option{background:var(--vert-dark);color:var(--blanc);}
+.form-msg{font-size:0.82rem;padding:8px 12px;border-radius:6px;margin-bottom:10px;display:none;}
+.form-msg.success{background:rgba(26,122,60,0.30);color:#7fffab;border:1px solid rgba(26,122,60,0.5);display:block;}
+.form-msg.error{background:rgba(220,50,50,0.20);color:#ffaaaa;border:1px solid rgba(220,50,50,0.4);display:block;}
+.btn-submit{width:100%;background:var(--or);color:var(--noir);border:none;border-radius:8px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.95rem;padding:13px 20px;transition:opacity .2s,transform .15s;margin-top:4px;}
+.btn-submit:hover{opacity:0.88;transform:translateY(-1px);}
+.btn-submit:disabled{opacity:0.55;cursor:not-allowed;transform:none;}
 </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
   <a href="#top" class="nav-logo">
     <span class="gr-abbr">GR</span>
     <span class="gr-full" data-fr="La Grande Réappropriation" data-en="La Grande Réappropriation">La Grande Réappropriation</span>
   </a>
   <div class="nav-desktop-links">
-    <a href="#uemoa"       data-fr="8 États UEMOA"  data-en="8 UEMOA States">8 États UEMOA</a>
-    <a href="#plateformes" data-fr="Plateformes"    data-en="Platforms">Plateformes</a>
-    <a href="#profils"     data-fr="Rejoindre"      data-en="Join">Rejoindre</a>
-    <a href="#telegram"    data-fr="Guide Telegram" data-en="Telegram Guide">Guide Telegram</a>
+    <a href="#uemoa" data-fr="8 États UEMOA" data-en="8 UEMOA States">8 États UEMOA</a>
+    <a href="#plateformes" data-fr="Plateformes" data-en="Platforms">Plateformes</a>
+    <a href="#profils" data-fr="Rejoindre" data-en="Join">Rejoindre</a>
+    <a href="#telegram" data-fr="Guide Telegram" data-en="Telegram Guide">Guide Telegram</a>
   </div>
   <div class="nav-right">
-    <a href="https://coachmorgans.github.io/vers-plus-de-pouvoir-local/#connexion"
-       class="nav-cx-btn"
-       data-fr="🔓 Déjà inscrit ?" data-en="🔓 Already registered?">🔓 Déjà inscrit ?</a>
+    <a href="https://coachmorgans.github.io/vers-plus-de-pouvoir-local/#connexion" class="nav-cx-btn" data-fr="🔓 Déjà inscrit ?" data-en="🔓 Already registered?">🔓 Déjà inscrit ?</a>
     <div class="lang-switch">
       <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
-      <button id="btn-en"               onclick="setLang('en')">EN</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
     </div>
   </div>
 </nav>
-
-<!-- SOUS-NAV -->
 <div class="subnav" id="subnav">
   <div class="subnav-inner">
-    <a href="#uemoa"       data-fr="8 États UEMOA"  data-en="8 UEMOA States">8 États UEMOA</a>
-    <a href="#plateformes" data-fr="Plateformes"    data-en="Platforms">Plateformes</a>
-    <a href="#profils"     data-fr="Rejoindre"      data-en="Join">Rejoindre</a>
-    <a href="#telegram"    data-fr="Guide Telegram" data-en="Telegram Guide">Guide Telegram</a>
+    <a href="#uemoa" data-fr="8 États UEMOA" data-en="8 UEMOA States">8 États UEMOA</a>
+    <a href="#plateformes" data-fr="Plateformes" data-en="Platforms">Plateformes</a>
+    <a href="#profils" data-fr="Rejoindre" data-en="Join">Rejoindre</a>
+    <a href="#telegram" data-fr="Guide Telegram" data-en="Telegram Guide">Guide Telegram</a>
     <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="sn-cta">🤖 Bot CHALLENGER</a>
   </div>
 </div>
-
-<!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-kicker">
-        <span>🌍</span>
-        <span data-fr="La Révolution Citoyenne par la Base" data-en="The Citizen Revolution from the Ground Up">La Révolution Citoyenne par la Base</span>
-      </div>
-      <h1 data-fr="La <em>Grande Réappropriation</em> est en marche." data-en="The <em>Great Reappropriation</em> is underway.">
-        La <em>Grande Réappropriation</em> est en marche.
-      </h1>
-      <p class="hero-lead"
-         data-fr="Les 8 États UEMOA se réveillent. <strong class='ngd-hl'>Nouvelles Générations pour le Développement</strong> — Construisons une Société Civile panafricaine forte, face à l'UEMOA Institutionnel."
-         data-en="The 8 UEMOA States are awakening. <strong class='ngd-hl'>Nouvelles Générations pour le Développement</strong> — Building a strong pan-African Civil Society, to face Institutional UEMOA.">
-        Les 8 États UEMOA se réveillent. <strong class="ngd-hl">Nouvelles Générations pour le Développement</strong> — Construisons une Société Civile panafricaine forte, face à l'UEMOA Institutionnel.
-      </p>
+      <div class="hero-kicker"><span>🌍</span><span data-fr="La Révolution Citoyenne par la Base" data-en="The Citizen Revolution from the Ground Up">La Révolution Citoyenne par la Base</span></div>
+      <h1 data-fr="La <em>Grande Réappropriation</em> est en marche." data-en="The <em>Great Reappropriation</em> is underway.">La <em>Grande Réappropriation</em> est en marche.</h1>
+      <p class="hero-lead" data-fr="Les 8 États UEMOA se réveillent. <strong class='ngd-hl'>Nouvelles Générations pour le Développement</strong> — Construisons une Société Civile panafricaine forte, face à l'UEMOA Institutionnel." data-en="The 8 UEMOA States are awakening. <strong class='ngd-hl'>Nouvelles Générations pour le Développement</strong> — Building a strong pan-African Civil Society to face Institutional UEMOA.">Les 8 États UEMOA se réveillent. <strong class="ngd-hl">Nouvelles Générations pour le Développement</strong> — Construisons une Société Civile panafricaine forte, face à l'UEMOA Institutionnel.</p>
       <div class="hero-btns">
-        <a href="#profils"     class="btn-or"   data-fr="🌱 Rejoindre NGD"         data-en="🌱 Join NGD">🌱 Rejoindre NGD</a>
+        <a href="#profils" class="btn-or" data-fr="🌱 Rejoindre NGD" data-en="🌱 Join NGD">🌱 Rejoindre NGD</a>
         <a href="#plateformes" class="btn-blanc" data-fr="Accéder aux Plateformes" data-en="Access Platforms">Accéder aux Plateformes</a>
       </div>
     </div>
     <div class="hero-card">
       <div class="hcard-top">
         <img src="https://i.ibb.co/Zzh8yN7P/Logo-NGD.png" alt="NGD" onerror="this.style.display='none'">
-        <div class="hcard-title">
-          <strong>NGD</strong>
-          <span data-fr="Nouvelles Générations pour le Développement — Le Club des 8" data-en="Nouvelles Générations pour le Développement — The Club of 8">Nouvelles Générations pour le Développement — Le Club des 8</span>
-        </div>
+        <div class="hcard-title"><strong>NGD</strong><span data-fr="Nouvelles Générations pour le Développement — Le Club des 8" data-en="Nouvelles Générations pour le Développement — The Club of 8">Nouvelles Générations pour le Développement — Le Club des 8</span></div>
       </div>
       <div class="hero-stats">
         <div class="hstat"><div class="hstat-val">8</div><div class="hstat-lbl" data-fr="États UEMOA" data-en="UEMOA States">États UEMOA</div></div>
-        <div class="hstat"><div class="hstat-val">509</div><div class="hstat-lbl" data-fr="Réseauteurs Certifiés" data-en="Certified Networkers">Réseauteurs Certifiés</div></div>
+        <div class="hstat"><div class="hstat-val">350</div><div class="hstat-lbl" data-fr="Réseauteurs Certifiés" data-en="Certified Networkers">Réseauteurs Certifiés</div></div>
         <div class="hstat"><div class="hstat-val">2030</div><div class="hstat-lbl" data-fr="Grande année électorale FCFA" data-en="Major FCFA election year">Grande année électorale FCFA</div></div>
         <div class="hstat"><div class="hstat-val">∞</div><div class="hstat-lbl" data-fr="Durée de l'organisation" data-en="Organization duration">Durée de l'organisation</div></div>
       </div>
       <div class="hcard-footer">
-        <div class="countdown-label" data-fr="⏳ Enregistrements ouverts jusqu'au" data-en="⏳ Registrations open until">⏳ Enregistrements ouverts jusqu'au</div>
-        <div class="countdown-date">30 Avril 2026</div>
+        <div class="countdown-label" data-fr="⏳ ENREGISTREMENTS : 27 Avril → 30 Juin 2026" data-en="⏳ REGISTRATIONS: April 27 → June 30, 2026">⏳ ENREGISTREMENTS : 27 Avril → 30 Juin 2026</div>
+        <div class="countdown-date" data-fr="30 Juin 2026" data-en="June 30, 2026">30 Juin 2026</div>
         <div class="countdown-timer" id="heroCountdown">
           <div class="cd-bloc"><span class="cd-val" id="cd-j">00</span><span class="cd-lbl" data-fr="Jours" data-en="Days">Jours</span></div>
           <span class="cd-sep">:</span>
@@ -489,165 +331,143 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
           <span class="cd-sep">:</span>
           <div class="cd-bloc"><span class="cd-val" id="cd-s">00</span><span class="cd-lbl">Sec</span></div>
         </div>
-        <div class="countdown-next" data-fr="🚀 1er Mai : Session Inaugurale — 509 Réseauteurs" data-en="🚀 May 1st: Inaugural Session — 509 Networkers">🚀 1er Mai : Session Inaugurale — 509 Réseauteurs</div>
+        <div class="countdown-next" data-fr="🚀 1er Juillet : Session Inaugurale — 350 Réseauteurs" data-en="🚀 July 1st: Inaugural Session — 350 Networkers">🚀 1er Juillet : Session Inaugurale — 350 Réseauteurs</div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- BANDE UEMOA -->
 <div class="uemoa-band">
   <div class="uemoa-inner">
     <span class="uemoa-lbl" data-fr="Zone d'Action :" data-en="Action Zone:">Zone d'Action :</span>
     <span class="pays-tag pilote">🇨🇮 CI</span>
-    <span class="pays-tag">🇸🇳 SN</span><span class="pays-tag">🇧🇯 BJ</span>
-    <span class="pays-tag">🇲🇱 ML</span><span class="pays-tag">🇧🇫 BF</span>
-    <span class="pays-tag">🇳🇪 NE</span><span class="pays-tag">🇬🇼 GW</span><span class="pays-tag">🇹🇬 TG</span>
+    <span class="pays-tag">🇸🇳 SN</span><span class="pays-tag">🇧🇯 BJ</span><span class="pays-tag">🇲🇱 ML</span><span class="pays-tag">🇧🇫 BF</span><span class="pays-tag">🇳🇪 NE</span><span class="pays-tag">🇬🇼 GW</span><span class="pays-tag">🇹🇬 TG</span>
   </div>
 </div>
-
-<!-- NGD PILIERS -->
 <section class="section" id="ngd">
   <div class="section-inner">
     <p class="section-kicker" data-fr="Qui sommes-nous" data-en="Who we are">Qui sommes-nous</p>
     <h2 class="section-title">Nouvelles Générations pour le Développement</h2>
-    <p class="section-sub" data-fr="Organisation internationale supranationale, non partisane mais politiquement engagée pour la démocratie participative. Fondée à Yamoussoukro le 31 août 2025, NGD promeut l'émancipation économique et politique des populations africaines francophones par les technologies décentralisées — Bitcoin, Blockchain, Territorialité Citoyenne." data-en="An international supranational organization, non-partisan but politically committed to participatory democracy. Founded in Yamoussoukro on August 31, 2025, NGD promotes the economic and political empowerment of French-speaking African populations through decentralized technologies.">
-      Organisation internationale supranationale, non partisane mais politiquement engagée pour la démocratie participative. Fondée à Yamoussoukro le 31 août 2025, NGD promeut l'émancipation économique et politique des populations africaines francophones par les technologies décentralisées — Bitcoin, Blockchain, Territorialité Citoyenne.
-    </p>
+    <p class="section-sub" data-fr="Organisation internationale supranationale, non partisane mais politiquement engagée pour la démocratie participative. Fondée à Yamoussoukro le 31 août 2025, NGD promeut l'émancipation économique et politique des populations africaines francophones par les technologies décentralisées — Bitcoin, Blockchain, Territorialité Citoyenne." data-en="An international supranational organization, non-partisan but politically committed to participatory democracy. Founded in Yamoussoukro on August 31, 2025, NGD promotes the economic and political empowerment of French-speaking African populations through decentralized technologies — Bitcoin, Blockchain, Citizen Territoriality.">Organisation internationale supranationale, non partisane mais politiquement engagée pour la démocratie participative. Fondée à Yamoussoukro le 31 août 2025, NGD promeut l'émancipation économique et politique des populations africaines francophones par les technologies décentralisées — Bitcoin, Blockchain, Territorialité Citoyenne.</p>
     <div class="piliers-grid">
-      <div class="pilier-card fu"><div class="pilier-icon">🏦</div><h4>Inclusion Financière Décentralisée</h4><p>10 000 Consultants Financiers Ruraux d'ici 2030. 500 points Bitcoin en zones rurales.</p></div>
-      <div class="pilier-card fu"><div class="pilier-icon">🎓</div><h4>Innovation Tech & Éducation</h4><p>Académies NGD dans chaque capitale. Programmes de formation certifiante en langues locales.</p></div>
-      <div class="pilier-card fu"><div class="pilier-icon">🤝</div><h4>Autonomisation des Communautés</h4><p>1 000 coopératives vers l'économie numérique. Financement participatif communautaire.</p></div>
-      <div class="pilier-card fu"><div class="pilier-icon">🏛️</div><h4>Plaidoyer Institutionnel</h4><p>Dialogue gouvernements. Lobbying pour reconnaissance légale des assemblées citoyennes.</p></div>
-      <div class="pilier-card fu"><div class="pilier-icon">🌱</div><h4>Développement Durable</h4><p>Projets environnementaux financés par Blockchain. Économie circulaire via Tokens communautaires.</p></div>
-      <div class="pilier-card fu"><div class="pilier-icon">🗳️</div><h4>Territorialité Citoyenne Libre</h4><p>Implantation territoriale via processus électoraux. Gouvernance alternative en zones pilotes.</p></div>
+      <div class="pilier-card fu"><div class="pilier-icon">🏦</div><h4 data-fr="Inclusion Financière Décentralisée" data-en="Decentralized Financial Inclusion">Inclusion Financière Décentralisée</h4><p data-fr="10 000 Consultants Financiers Ruraux d'ici 2030. 500 points Bitcoin en zones rurales." data-en="10,000 Rural Financial Consultants by 2030. 500 Bitcoin access points in rural areas.">10 000 Consultants Financiers Ruraux d'ici 2030. 500 points Bitcoin en zones rurales.</p></div>
+      <div class="pilier-card fu"><div class="pilier-icon">🎓</div><h4 data-fr="Innovation Tech &amp; Éducation" data-en="Tech Innovation &amp; Education">Innovation Tech &amp; Éducation</h4><p data-fr="Académies NGD dans chaque capitale. Programmes de formation certifiante en langues locales." data-en="NGD Academies in every capital. Certified training programs in local languages.">Académies NGD dans chaque capitale. Programmes de formation certifiante en langues locales.</p></div>
+      <div class="pilier-card fu"><div class="pilier-icon">🤝</div><h4 data-fr="Autonomisation des Communautés" data-en="Community Empowerment">Autonomisation des Communautés</h4><p data-fr="1 000 coopératives vers l'économie numérique. Financement participatif communautaire." data-en="1,000 cooperatives toward the digital economy. Community crowdfunding.">1 000 coopératives vers l'économie numérique. Financement participatif communautaire.</p></div>
+      <div class="pilier-card fu"><div class="pilier-icon">🏛️</div><h4 data-fr="Plaidoyer Institutionnel" data-en="Institutional Advocacy">Plaidoyer Institutionnel</h4><p data-fr="Dialogue gouvernements. Lobbying pour reconnaissance légale des assemblées citoyennes." data-en="Government dialogue. Lobbying for legal recognition of citizen assemblies.">Dialogue gouvernements. Lobbying pour reconnaissance légale des assemblées citoyennes.</p></div>
+      <div class="pilier-card fu"><div class="pilier-icon">🌱</div><h4 data-fr="Développement Durable" data-en="Sustainable Development">Développement Durable</h4><p data-fr="Projets environnementaux financés par Blockchain. Économie circulaire via Tokens communautaires." data-en="Blockchain-funded environmental projects. Circular economy through community tokens.">Projets environnementaux financés par Blockchain. Économie circulaire via Tokens communautaires.</p></div>
+      <div class="pilier-card fu"><div class="pilier-icon">🗳️</div><h4 data-fr="Territorialité Citoyenne Libre" data-en="Free Citizen Territoriality">Territorialité Citoyenne Libre</h4><p data-fr="Implantation territoriale via processus électoraux. Gouvernance alternative en zones pilotes." data-en="Territorial deployment through electoral processes. Alternative governance in pilot zones.">Implantation territoriale via processus électoraux. Gouvernance alternative en zones pilotes.</p></div>
     </div>
   </div>
 </section>
-
-<!-- CALENDRIER UEMOA -->
 <section class="section cal-bg" id="uemoa">
   <div class="section-inner">
     <p class="section-kicker" data-fr="Chronogramme Électoral" data-en="Electoral Timetable">Chronogramme Électoral</p>
     <h2 class="section-title" data-fr="Les 8 États UEMOA — Séquence d'Expansion NGD" data-en="The 8 UEMOA States — NGD Expansion Sequence">Les 8 États UEMOA — Séquence d'Expansion NGD</h2>
     <p class="section-sub" data-fr="La Côte d'Ivoire est le laboratoire fondateur. La réplication suit l'ordre chronologique des élections présidentielles dans la Zone UEMOA." data-en="Côte d'Ivoire is the founding laboratory. Replication follows the chronological order of presidential elections in the UEMOA Zone.">La Côte d'Ivoire est le laboratoire fondateur. La réplication suit l'ordre chronologique des élections présidentielles dans la Zone UEMOA.</p>
     <div class="pays-timeline">
-      <div class="pays-row pr-pilote"><span class="pays-flag">🇨🇮</span><div class="pays-info"><div class="pays-nom">Côte d'Ivoire <span class="badge-p">PILOTE</span></div><div class="pays-cap">Yamoussoukro · Abidjan</div></div><div class="pays-date"><div class="pays-annee">2025–26</div><div class="pays-detail">Phase active</div></div></div>
-      <div class="pays-row"><span class="pays-flag">🇧🇯</span><div class="pays-info"><div class="pays-nom">Bénin</div><div class="pays-cap">Cotonou · Porto-Novo</div></div><div class="pays-date"><div class="pays-annee">2026</div><div class="pays-detail">12 Avr. 2026</div></div></div>
-      <div class="pays-row"><span class="pays-flag">🇬🇼</span><div class="pays-info"><div class="pays-nom">Guinée-Bissau</div><div class="pays-cap">Bissau</div></div><div class="pays-date"><div class="pays-annee">2028</div><div class="pays-detail">Élections</div></div></div>
-      <div class="pays-row"><span class="pays-flag">🇧🇫</span><div class="pays-info"><div class="pays-nom">Burkina Faso</div><div class="pays-cap">Ouagadougou</div></div><div class="pays-date"><div class="pays-annee">2027+</div><div class="pays-detail">Transition</div></div></div>
-      <div class="pays-row"><span class="pays-flag">🇲🇱</span><div class="pays-info"><div class="pays-nom">Mali</div><div class="pays-cap">Bamako</div></div><div class="pays-date"><div class="pays-annee">2028+</div><div class="pays-detail">Transition</div></div></div>
-      <div class="pays-row"><span class="pays-flag">🇸🇳</span><div class="pays-info"><div class="pays-nom">Sénégal</div><div class="pays-cap">Dakar</div></div><div class="pays-date"><div class="pays-annee">2029</div><div class="pays-detail">Prochain scrutin</div></div></div>
-      <div class="pays-row"><span class="pays-flag">🇳🇪</span><div class="pays-info"><div class="pays-nom">Niger</div><div class="pays-cap">Niamey</div></div><div class="pays-date"><div class="pays-annee">2030</div><div class="pays-detail">Si normalisation</div></div></div>
-      <div class="pays-row"><span class="pays-flag">🇹🇬</span><div class="pays-info"><div class="pays-nom">Togo</div><div class="pays-cap">Lomé</div></div><div class="pays-date"><div class="pays-annee">2030</div><div class="pays-detail">Prévu</div></div></div>
+      <div class="pays-row pr-pilote"><span class="pays-flag">🇨🇮</span><div class="pays-info"><div class="pays-nom">Côte d'Ivoire <span class="badge-p" data-fr="PILOTE" data-en="PILOT">PILOTE</span></div><div class="pays-cap">Yamoussoukro · Abidjan</div></div><div class="pays-date"><div class="pays-annee">2025–26</div><div class="pays-detail" data-fr="Phase active" data-en="Active phase">Phase active</div></div></div>
+      <div class="pays-row"><span class="pays-flag">🇧🇯</span><div class="pays-info"><div class="pays-nom">Bénin</div><div class="pays-cap">Cotonou · Porto-Novo</div></div><div class="pays-date"><div class="pays-annee">2026</div><div class="pays-detail" data-fr="12 Avr. 2026" data-en="Apr. 12, 2026">12 Avr. 2026</div></div></div>
+      <div class="pays-row"><span class="pays-flag">🇬🇼</span><div class="pays-info"><div class="pays-nom">Guinée-Bissau</div><div class="pays-cap">Bissau</div></div><div class="pays-date"><div class="pays-annee">2028</div><div class="pays-detail" data-fr="Élections" data-en="Elections">Élections</div></div></div>
+      <div class="pays-row"><span class="pays-flag">🇧🇫</span><div class="pays-info"><div class="pays-nom">Burkina Faso</div><div class="pays-cap">Ouagadougou</div></div><div class="pays-date"><div class="pays-annee">2027+</div><div class="pays-detail" data-fr="Transition" data-en="Transition">Transition</div></div></div>
+      <div class="pays-row"><span class="pays-flag">🇲🇱</span><div class="pays-info"><div class="pays-nom">Mali</div><div class="pays-cap">Bamako</div></div><div class="pays-date"><div class="pays-annee">2028+</div><div class="pays-detail" data-fr="Transition" data-en="Transition">Transition</div></div></div>
+      <div class="pays-row"><span class="pays-flag">🇸🇳</span><div class="pays-info"><div class="pays-nom">Sénégal</div><div class="pays-cap">Dakar</div></div><div class="pays-date"><div class="pays-annee">2029</div><div class="pays-detail" data-fr="Prochain scrutin" data-en="Next election">Prochain scrutin</div></div></div>
+      <div class="pays-row"><span class="pays-flag">🇳🇪</span><div class="pays-info"><div class="pays-nom">Niger</div><div class="pays-cap">Niamey</div></div><div class="pays-date"><div class="pays-annee">2030</div><div class="pays-detail" data-fr="Si normalisation" data-en="If normalization">Si normalisation</div></div></div>
+      <div class="pays-row"><span class="pays-flag">🇹🇬</span><div class="pays-info"><div class="pays-nom">Togo</div><div class="pays-cap">Lomé</div></div><div class="pays-date"><div class="pays-annee">2030</div><div class="pays-detail" data-fr="Prévu" data-en="Planned">Prévu</div></div></div>
     </div>
   </div>
 </section>
-
-<!-- PLATEFORMES -->
 <section class="section" id="plateformes">
   <div class="section-inner">
     <p class="section-kicker" data-fr="Écosystème VoteConnect" data-en="VoteConnect Ecosystem">Écosystème VoteConnect</p>
     <h2 class="section-title" data-fr="3 Plateformes — Parcours Citoyen-Client" data-en="3 Platforms — Citizen-Client Journey">3 Plateformes — Parcours Citoyen-Client</h2>
     <p class="section-sub" data-fr="Suivez les 3 étapes obligatoires du parcours. L'enregistrement NGD déverrouille l'accès à chaque plateforme." data-en="Follow the 3 mandatory journey steps. NGD registration unlocks access to each platform.">Suivez les 3 étapes obligatoires du parcours. L'enregistrement NGD déverrouille l'accès à chaque plateforme.</p>
     <div class="parcours-steps">
-      <div class="ps-step"><span class="ps-num">1</span><span class="ps-lbl">Préinscription OBLIGATOIRE</span></div>
+      <div class="ps-step"><span class="ps-num">1</span><span class="ps-lbl" data-fr="Préinscription OBLIGATOIRE" data-en="MANDATORY Pre-registration">Préinscription OBLIGATOIRE</span></div>
       <div class="ps-arrow">→</div>
-      <div class="ps-step"><span class="ps-num">2</span><span class="ps-lbl">Commerce TCL + Portefeuille Mi Sikah</span></div>
+      <div class="ps-step"><span class="ps-num">2</span><span class="ps-lbl" data-fr="Commerce TCL + Portefeuille Mi Sikah" data-en="TCL Commerce + Mi Sikah Wallet">Commerce TCL + Portefeuille Mi Sikah</span></div>
       <div class="ps-arrow">→</div>
-      <div class="ps-step"><span class="ps-num">3</span><span class="ps-lbl">Formation Certifiante + Candidature 2028</span></div>
+      <div class="ps-step"><span class="ps-num">3</span><span class="ps-lbl" data-fr="Formation Certifiante + Candidature 2028" data-en="Certified Training + 2028 Candidacy">Formation Certifiante + Candidature 2028</span></div>
     </div>
     <div class="plat-grid">
       <div class="plat-card fu">
-        <div class="plat-step-badge">Étape 1 — OBLIGATOIRE</div>
-        <div class="plat-head ph-or"><div class="plat-icon">📖</div><h3>L'Essai Autobiographique</h3><p>L'Architecte d'une Révolution Silencieuse + Adhésion NGD</p></div>
+        <div class="plat-step-badge" data-fr="Étape 1 — OBLIGATOIRE" data-en="Step 1 — MANDATORY">Étape 1 — OBLIGATOIRE</div>
+        <div class="plat-head ph-or"><div class="plat-icon">📖</div><h3 data-fr="L'Essai Autobiographique" data-en="The Autobiographical Essay">L'Essai Autobiographique</h3><p data-fr="L'Architecte d'une Révolution Silencieuse + Adhésion NGD" data-en="The Architect of a Silent Revolution + NGD Membership">L'Architecte d'une Révolution Silencieuse + Adhésion NGD</p></div>
         <div class="plat-body"><ul class="plat-features">
-          <li>47 pages · Référence idéologique NGD</li>
-          <li>DOCX + PDF · Filigrane personnalisé</li>
-          <li>Adhésion NGD incluse · Autorise accès Portail TCL</li>
-          <li>Wave Business · Bon de Commande automatique</li>
+          <li data-fr="47 pages · Référence idéologique NGD" data-en="47 pages · NGD ideological reference">47 pages · Référence idéologique NGD</li>
+          <li data-fr="DOCX + PDF · Filigrane personnalisé" data-en="DOCX + PDF · Personalized watermark">DOCX + PDF · Filigrane personnalisé</li>
+          <li data-fr="Adhésion NGD incluse · Autorise accès Portail TCL" data-en="NGD membership included · Grants TCL Portal access">Adhésion NGD incluse · Autorise accès Portail TCL</li>
+          <li data-fr="Wave Business · Bon de Commande automatique" data-en="Wave Business · Automatic order form">Wave Business · Bon de Commande automatique</li>
         </ul></div>
         <div class="plat-foot">
-          <a href="https://coachmorgans.github.io/essai/" target="_blank" class="btn-plat bp-or plat-btn-lock" id="btn-essai">📖 Se Préinscrire / Acheter l'ESSAI</a>
-          <a href="https://coachmorgans.github.io/challengefinancier/" target="_blank" class="btn-plat bp-out plat-btn-lock" id="btn-eco1">🌐 Découvrir l'Écosystème</a>
+          <a href="https://coachmorgans.github.io/essai/" target="_blank" class="btn-plat bp-or plat-btn-lock" id="btn-essai" data-fr="📖 Se Préinscrire / Acheter l'ESSAI" data-en="📖 Pre-register / Buy the ESSAY">📖 Se Préinscrire / Acheter l'ESSAI</a>
+          <a href="https://coachmorgans.github.io/challengefinancier/" target="_blank" class="btn-plat bp-out plat-btn-lock" id="btn-eco1" data-fr="🌐 Découvrir l'Écosystème" data-en="🌐 Discover the Ecosystem">🌐 Découvrir l'Écosystème</a>
         </div>
       </div>
       <div class="plat-card fu">
-        <div class="plat-step-badge ps-2">Étape 2 — Après Préinscription</div>
-        <div class="plat-head ph-bleu"><div class="plat-icon">🛒</div><h3>Portail TCL — 3 Boutiques en 1</h3><p>Territorialité Citoyenne Libre · Commerce local & Bitcoin</p></div>
+        <div class="plat-step-badge ps-2" data-fr="Étape 2 — Après Préinscription" data-en="Step 2 — After Pre-registration">Étape 2 — Après Préinscription</div>
+        <div class="plat-head ph-bleu"><div class="plat-icon">🛒</div><h3 data-fr="Portail TCL — 6 Catégories" data-en="TCL Portal — 6 Categories">Portail TCL — 6 Catégories</h3><p data-fr="Territorialité Citoyenne Libre · Commerce local &amp; Bitcoin" data-en="Free Citizen Territoriality · Local &amp; Bitcoin Commerce">Territorialité Citoyenne Libre · Commerce local &amp; Bitcoin</p></div>
         <div class="plat-body"><ul class="plat-features">
-          <li>3 rôles : Client / Gestionnaire Zone / CR</li>
-          <li>Carte Leaflet.js · routing OSRM · 509 communes</li>
-          <li>CashBack 2.5% communauté · Portefeuille Mi Sikah</li>
-          <li>Emplois : Coursier-Livreur · GZ · Partenaire TCL</li>
+          <li data-fr="3 rôles : Client / Gestionnaire Zone / CR" data-en="3 roles: Client / Zone Manager / RC">3 rôles : Client / Gestionnaire Zone / CR</li>
+          <li data-fr="Matériaux Quinc. + Artisans BTP · 80 communes/SP" data-en="Building Materials + BTP Craftsmen · 80 municipalities">Matériaux Quinc. + Artisans BTP · 80 communes/SP</li>
+          <li data-fr="CashBack 2,5% dès 30 000 FCFA · Mi Sikah" data-en="2.5% CashBack from 30,000 FCFA · Mi Sikah">CashBack 2,5% dès 30 000 FCFA · Mi Sikah</li>
+          <li data-fr="Emplois : Coursier-Livreur · GZ · Partenaire TCL" data-en="Jobs: Delivery Driver · ZM · TCL Partner">Emplois : Coursier-Livreur · GZ · Partenaire TCL</li>
         </ul></div>
         <div class="plat-foot">
-          <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="btn-plat bp-bleu plat-btn-lock" id="btn-tcl">🤖 Accéder au TCL via Bot CHALLENGER</a>
-          <a href="https://coachmorgans.github.io/challengefinancier/" target="_blank" class="btn-plat bp-out plat-btn-lock" id="btn-eco2">🌐 Découvrir l'Écosystème</a>
+          <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="btn-plat bp-bleu plat-btn-lock" id="btn-tcl" data-fr="🤖 Accéder au TCL via Bot CHALLENGER" data-en="🤖 Access TCL via Bot CHALLENGER">🤖 Accéder au TCL via Bot CHALLENGER</a>
+          <a href="https://coachmorgans.github.io/challengefinancier/" target="_blank" class="btn-plat bp-out plat-btn-lock" id="btn-eco2" data-fr="🌐 Découvrir l'Écosystème" data-en="🌐 Discover the Ecosystem">🌐 Découvrir l'Écosystème</a>
         </div>
       </div>
       <div class="plat-card fu">
-        <div class="plat-step-badge ps-3">Étape 3 — Après Mi Sikah</div>
-        <div class="plat-head ph-vert"><div class="plat-icon">🎓</div><h3>ChallengeFinancier™ LMS</h3><p>La formation certifiante en finances décentralisées</p></div>
+        <div class="plat-step-badge ps-3" data-fr="Étape 3 — Après Mi Sikah" data-en="Step 3 — After Mi Sikah">Étape 3 — Après Mi Sikah</div>
+        <div class="plat-head ph-vert"><div class="plat-icon">🎓</div><h3>ChallengeFinancier™ LMS</h3><p data-fr="La formation certifiante en finances décentralisées" data-en="The certified training in decentralized finance">La formation certifiante en finances décentralisées</p></div>
         <div class="plat-body"><ul class="plat-features">
-          <li>Modules Bitcoin & Blockchain adaptés Afrique</li>
-          <li>Certification Consultant Financier Communautaire</li>
-          <li>1% Cashback pour Colistier Municipal/Régional</li>
-          <li>Candidature Colistier LFA-CI · 7 régions 2028</li>
+          <li data-fr="Modules Bitcoin &amp; Blockchain adaptés Afrique" data-en="Bitcoin &amp; Blockchain modules adapted for Africa">Modules Bitcoin &amp; Blockchain adaptés Afrique</li>
+          <li data-fr="Certification Consultant Financier Communautaire" data-en="Community Financial Consultant Certification">Certification Consultant Financier Communautaire</li>
+          <li data-fr="1% Cashback pour Colistier Municipal/Régional" data-en="1% Cashback for Municipal/Regional Running Mate">1% Cashback pour Colistier Municipal/Régional</li>
+          <li data-fr="Candidature Colistier LFA-CI · 7 régions 2028" data-en="LFA-CI Running Mate Candidacy · 7 regions 2028">Candidature Colistier LFA-CI · 7 régions 2028</li>
         </ul></div>
         <div class="plat-foot">
-          <a href="https://coachmorgans.github.io/lms-cf/" target="_blank" class="btn-plat bp-vert plat-btn-lock" id="btn-lms">🎓 S'inscrire / Se connecter</a>
-          <a href="https://coachmorgans.github.io/challengefinancier/" target="_blank" class="btn-plat bp-out plat-btn-lock" id="btn-eco3">🌐 Découvrir l'Écosystème</a>
+          <a href="https://coachmorgans.github.io/lms-cf/" target="_blank" class="btn-plat bp-vert plat-btn-lock" id="btn-lms" data-fr="🎓 S'inscrire / Se connecter" data-en="🎓 Register / Log in">🎓 S'inscrire / Se connecter</a>
+          <a href="https://coachmorgans.github.io/challengefinancier/" target="_blank" class="btn-plat bp-out plat-btn-lock" id="btn-eco3" data-fr="🌐 Découvrir l'Écosystème" data-en="🌐 Discover the Ecosystem">🌐 Découvrir l'Écosystème</a>
         </div>
       </div>
     </div>
-    <p class="plat-notice" id="plat-notice">🔒 Les boutons s'activent après votre enregistrement NGD ci-dessous.</p>
+    <p class="plat-notice" id="plat-notice" data-fr="🔒 Les boutons s'activent après votre enregistrement NGD ci-dessous." data-en="🔒 Buttons activate after your NGD registration below.">🔒 Les boutons s'activent après votre enregistrement NGD ci-dessous.</p>
   </div>
 </section>
-
-<!-- PROFILS NGD + FORMULAIRES -->
 <section class="section profils-bg" id="profils">
   <div class="section-inner">
     <p class="section-kicker" data-fr="Étape Initiale Obligatoire" data-en="Mandatory Initial Step">Étape Initiale Obligatoire</p>
     <h2 class="section-title" data-fr="Choisissez votre profil — Enregistrez-vous" data-en="Choose your profile — Register">Choisissez votre profil — Enregistrez-vous</h2>
     <p class="section-sub" data-fr="L'enregistrement est OBLIGATOIRE et déverrouille les 3 plateformes de l'écosystème VoteConnect." data-en="Registration is MANDATORY and unlocks the 3 VoteConnect ecosystem platforms.">L'enregistrement est OBLIGATOIRE et déverrouille les 3 plateformes de l'écosystème VoteConnect.</p>
-
     <div class="cx-banner">
       <div class="cx-banner-txt">
-        <strong>Déjà inscrit sur La Grande Réappropriation ou Vers Plus de Pouvoir Local ?</strong><br>
-        Connectez-vous directement sur LP PPL pour accéder à vos 5 plateformes.
+        <strong data-fr="Déjà inscrit sur La Grande Réappropriation ou Vers Plus de Pouvoir Local ?" data-en="Already registered on La Grande Réappropriation or Vers Plus de Pouvoir Local?">Déjà inscrit sur La Grande Réappropriation ou Vers Plus de Pouvoir Local ?</strong><br>
+        <span data-fr="Connectez-vous directement sur LP PPL pour accéder à vos 5 plateformes." data-en="Log in directly on LP PPL to access your 5 platforms.">Connectez-vous directement sur LP PPL pour accéder à vos 5 plateformes.</span>
       </div>
-      <a href="https://coachmorgans.github.io/vers-plus-de-pouvoir-local/#connexion"
-         class="btn-cx-ppl">🔓 Se connecter → LP PPL</a>
+      <a href="https://coachmorgans.github.io/vers-plus-de-pouvoir-local/#connexion" class="btn-cx-ppl" data-fr="🔓 Se connecter → LP PPL" data-en="🔓 Log in → LP PPL">🔓 Se connecter → LP PPL</a>
     </div>
-
     <div class="profils-grid">
-
-      <!-- ══════════════════════════════════════
-           CARTE 1 : Animateur NGD (Citoyen CI)
-           ══════════════════════════════════════ -->
       <div class="profil-card fu">
         <div class="profil-ico ico-vert">🌱</div>
-        <h3>Animateur NGD</h3>
-        <p class="psub">Citoyen ivoirien · Côte d'Ivoire</p>
+        <h3 data-fr="Animateur NGD" data-en="NGD Animator">Animateur NGD</h3>
+        <p class="psub" data-fr="Citoyen ivoirien · Côte d'Ivoire" data-en="Ivorian citizen · Côte d'Ivoire">Citoyen ivoirien · Côte d'Ivoire</p>
         <ul class="profil-bullets">
-          <li>Déploiement Territorialité Citoyenne — 7 régions pilotes CI</li>
-          <li>Formation ChallengeFinancier™ — Certification Bitcoin</li>
-          <li>Portail TCL 3 Boutiques en 1 + commissions</li>
-          <li>Programme 509 Réseauteurs — 50 000 FCFA+</li>
-          <li>Partenariat LFA-CI : candidatures municipales 2028</li>
+          <li data-fr="Déploiement Territorialité Citoyenne — 7 régions pilotes CI" data-en="Citizen Territoriality Deployment — 7 CI pilot regions">Déploiement Territorialité Citoyenne — 7 régions pilotes CI</li>
+          <li data-fr="Formation ChallengeFinancier™ — Certification Bitcoin" data-en="ChallengeFinancier™ Training — Bitcoin Certification">Formation ChallengeFinancier™ — Certification Bitcoin</li>
+          <li data-fr="Portail TCL 6 Catégories + commissions" data-en="TCL Portal 6 Categories + commissions">Portail TCL 6 Catégories + commissions</li>
+          <li data-fr="Programme 350 Réseauteurs — 50 000 FCFA+" data-en="350 Networkers Program — 50,000 FCFA+">Programme 350 Réseauteurs — 50 000 FCFA+</li>
+          <li data-fr="Partenariat LFA-CI : candidatures municipales 2028" data-en="LFA-CI Partnership: 2028 municipal candidacies">Partenariat LFA-CI : candidatures municipales 2028</li>
         </ul>
         <form class="profil-form" id="form-animateur" onsubmit="soumettreFormulaire(event,'animateur')">
           <div class="form-row">
-            <div class="form-group"><label>Prénom *</label><input type="text" name="prenom" placeholder="Votre prénom" required></div>
-            <div class="form-group"><label>Nom *</label><input type="text" name="nom" placeholder="Votre nom" required></div>
+            <div class="form-group"><label data-fr="Prénom *" data-en="First name *">Prénom *</label><input type="text" name="prenom" placeholder="Votre prénom" data-placeholder-fr="Votre prénom" data-placeholder-en="Your first name" required></div>
+            <div class="form-group"><label data-fr="Nom *" data-en="Last name *">Nom *</label><input type="text" name="nom" placeholder="Votre nom" data-placeholder-fr="Votre nom" data-placeholder-en="Your last name" required></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label>Téléphone / WhatsApp *</label><input type="tel" name="telephone" placeholder="07 XX XX XX XX" required></div>
-            <div class="form-group">
-              <label>Région pilote *</label>
+            <div class="form-group"><label data-fr="Téléphone / WhatsApp *" data-en="Phone / WhatsApp *">Téléphone / WhatsApp *</label><input type="tel" name="telephone" placeholder="07 XX XX XX XX" required></div>
+            <div class="form-group"><label data-fr="Région pilote *" data-en="Pilot region *">Région pilote *</label>
               <select name="region" required>
-                <option value="">— Choisir votre région —</option>
+                <option value="" data-fr="— Choisir votre région —" data-en="— Choose your region —">— Choisir votre région —</option>
                 <option value="District d'Abidjan">District d'Abidjan</option>
                 <option value="District de Yamoussoukro">District de Yamoussoukro</option>
                 <option value="Région du Bélier (Toumodi)">Région du Bélier (Toumodi)</option>
@@ -659,354 +479,195 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label>Commune / Quartier *</label><input type="text" name="commune" placeholder="Ex: Cocody, Yopougon..." required></div>
-            <div class="form-group">
-              <label>Profil activité</label>
+            <div class="form-group"><label data-fr="Commune / Quartier *" data-en="Municipality / Neighborhood *">Commune / Quartier *</label><input type="text" name="commune" placeholder="Ex: Cocody, Yopougon..." data-placeholder-fr="Ex: Cocody, Yopougon..." data-placeholder-en="E.g.: Cocody, Yopougon..." required></div>
+            <div class="form-group"><label data-fr="Profil activité" data-en="Activity profile">Profil activité</label>
               <select name="activite">
-                <option value="">— Votre activité —</option>
-                <option>Commerçant(e)</option><option>Étudiant(e)</option>
-                <option>Fonctionnaire</option><option>Entrepreneur(e)</option>
-                <option>Enseignant(e)</option><option>Autre</option>
+                <option value="" data-fr="— Votre activité —" data-en="— Your activity —">— Votre activité —</option>
+                <option data-fr="Commerçant(e)" data-en="Merchant">Commerçant(e)</option>
+                <option data-fr="Étudiant(e)" data-en="Student">Étudiant(e)</option>
+                <option data-fr="Fonctionnaire" data-en="Civil servant">Fonctionnaire</option>
+                <option data-fr="Entrepreneur(e)" data-en="Entrepreneur">Entrepreneur(e)</option>
+                <option data-fr="Enseignant(e)" data-en="Teacher">Enseignant(e)</option>
+                <option data-fr="Autre" data-en="Other">Autre</option>
               </select>
             </div>
           </div>
-          <div class="form-group form-full">
-            <label>Pourquoi rejoindre La Grande Réappropriation ?</label>
-            <textarea name="motivation" placeholder="En quelques mots..." rows="3"></textarea>
-          </div>
+          <div class="form-group form-full"><label data-fr="Pourquoi rejoindre La Grande Réappropriation ?" data-en="Why join La Grande Réappropriation?">Pourquoi rejoindre La Grande Réappropriation ?</label><textarea name="motivation" placeholder="En quelques mots..." data-placeholder-fr="En quelques mots..." data-placeholder-en="In a few words..." rows="3"></textarea></div>
           <div class="form-msg" id="msg-animateur"></div>
           <button type="submit" class="btn-submit" id="submit-animateur">
-            <span class="btn-text">🌱 S'enregistrer comme Animateur NGD</span>
-            <span class="btn-loading" style="display:none">⏳ Enregistrement...</span>
+            <span class="btn-text" data-fr="🌱 S'enregistrer comme Animateur NGD" data-en="🌱 Register as NGD Animator">🌱 S'enregistrer comme Animateur NGD</span>
+            <span class="btn-loading" style="display:none" data-fr="⏳ Enregistrement..." data-en="⏳ Registering...">⏳ Enregistrement...</span>
           </button>
         </form>
-
-        <!-- ══════════════════════════════════════════════════════
-             BLOC PAIEMENT v3.1 — 3 formules → LP ESSAI direct
-             (s'affiche après enregistrement confirmé)
-             ══════════════════════════════════════════════════════ -->
         <div class="wave-payment-bloc" id="wave-bloc-animateur" style="display:none">
-          <h4>🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI</h4>
-          <p class="wave-payment-intro">Cliquez directement la formule de votre choix — vous êtes redirigé sur la LP ESSAI pour finaliser votre adhésion NGD et télécharger l'Essai Autobiographique.</p>
-
+          <h4 data-fr="🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI" data-en="🌱 Choose your NGD Plan — Pay via Wave and download the ESSAY">🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI</h4>
+          <p class="wave-payment-intro" data-fr="Cliquez directement la formule de votre choix — vous êtes redirigé sur la LP ESSAI pour finaliser votre adhésion NGD et télécharger l'Essai Autobiographique." data-en="Click directly on your chosen plan — you will be redirected to the ESSAY LP to finalize your NGD membership and download the Autobiographical Essay.">Cliquez directement la formule de votre choix — vous êtes redirigé sur la LP ESSAI pour finaliser votre adhésion NGD et télécharger l'Essai Autobiographique.</p>
           <div class="wave-formules">
-            <!-- Formule 1 : Sympathisant → LP ESSAI avec présélection f=2500 -->
-            <a href="https://coachmorgans.github.io/essai/?f=2500#adhesion-ngd"
-               target="_blank" class="wave-formule">
-              <div class="wf-left">
-                <span class="wf-label">🌱 Sympathisant NGD</span>
-                <span class="wf-desc">Essai PDF complet · Newsletter NGD · Acte de soutien citoyen</span>
-              </div>
-              <div class="wf-right">
-                <span class="wf-price">2 500 FCFA</span>
-                <span class="wf-arrow">→</span>
-              </div>
-            </a>
-            <!-- Formule 2 : Adhérent → LP ESSAI avec présélection f=5000 -->
-            <a href="https://coachmorgans.github.io/essai/?f=5000#adhesion-ngd"
-               target="_blank" class="wave-formule">
-              <div class="wf-left">
-                <span class="wf-label">📋 Adhérent Statutaire NGD</span>
-                <span class="wf-desc">Essai PDF + carte membre NGD · Accès réseau 509 Leaders</span>
-              </div>
-              <div class="wf-right">
-                <span class="wf-price">5 000 FCFA</span>
-                <span class="wf-arrow">→</span>
-              </div>
-            </a>
-            <!-- Formule 3 : Cadre Actif → LP ESSAI avec présélection f=10000 -->
-            <a href="https://coachmorgans.github.io/essai/?f=10000#adhesion-ngd"
-               target="_blank" class="wave-formule">
-              <div class="wf-left">
-                <span class="wf-label">🏛️ Cadre Actif + Colistier LFA-CI 2028</span>
-                <span class="wf-desc">Essai PDF + Carte Cadre · Dossier Candidat Colistier LFA-CI · Formations ChallengeFinancier™</span>
-              </div>
-              <div class="wf-right">
-                <span class="wf-price">10 000 FCFA</span>
-                <span class="wf-arrow">→</span>
-              </div>
-            </a>
+            <a href="https://coachmorgans.github.io/essai/?f=2500#adhesion-ngd" target="_blank" class="wave-formule"><div class="wf-left"><span class="wf-label" data-fr="🌱 Sympathisant NGD" data-en="🌱 NGD Supporter">🌱 Sympathisant NGD</span><span class="wf-desc" data-fr="Essai PDF complet · Newsletter NGD · Acte de soutien citoyen" data-en="Complete PDF Essay · NGD Newsletter · Citizen support act">Essai PDF complet · Newsletter NGD · Acte de soutien citoyen</span></div><div class="wf-right"><span class="wf-price">2 500 FCFA</span><span class="wf-arrow">→</span></div></a>
+            <a href="https://coachmorgans.github.io/essai/?f=5000#adhesion-ngd" target="_blank" class="wave-formule"><div class="wf-left"><span class="wf-label" data-fr="📋 Adhérent Statutaire NGD" data-en="📋 NGD Statutory Member">📋 Adhérent Statutaire NGD</span><span class="wf-desc" data-fr="Essai PDF + carte membre NGD · Accès réseau 350 Réseauteurs" data-en="PDF Essay + NGD member card · 350 Networkers network access">Essai PDF + carte membre NGD · Accès réseau 350 Réseauteurs</span></div><div class="wf-right"><span class="wf-price">5 000 FCFA</span><span class="wf-arrow">→</span></div></a>
+            <a href="https://coachmorgans.github.io/essai/?f=10000#adhesion-ngd" target="_blank" class="wave-formule"><div class="wf-left"><span class="wf-label" data-fr="🏛️ Cadre Actif + Colistier LFA-CI 2028" data-en="🏛️ Active Executive + LFA-CI Running Mate 2028">🏛️ Cadre Actif + Colistier LFA-CI 2028</span><span class="wf-desc" data-fr="Essai PDF + Carte Cadre · Dossier Candidat Colistier LFA-CI · Formations ChallengeFinancier™" data-en="PDF Essay + Executive Card · LFA-CI Running Mate File · ChallengeFinancier™ Training">Essai PDF + Carte Cadre · Dossier Candidat Colistier LFA-CI · Formations ChallengeFinancier™</span></div><div class="wf-right"><span class="wf-price">10 000 FCFA</span><span class="wf-arrow">→</span></div></a>
           </div>
-
-          <!-- Bouton principal LP ESSAI -->
-          <a href="https://coachmorgans.github.io/essai/?open=1#adhesion-ngd"
-             target="_blank" class="btn-essai-principal">
-            🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI
-          </a>
-
-          <p class="wave-after-msg">
-            Après paiement Wave : cliquez <strong>J'AI EFFECTUÉ LE PAIEMENT</strong> sur la LP ESSAI —
-            votre <strong>Code d'Activation</strong> NGD vous est envoyé automatiquement via WhatsApp.
-            Téléchargez votre ESSAI en 1 minute.
-          </p>
+          <a href="https://coachmorgans.github.io/essai/?open=1#adhesion-ngd" target="_blank" class="btn-essai-principal" data-fr="🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI" data-en="🌱 Choose your NGD Plan — Pay via Wave and download the ESSAY">🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI</a>
+          <p class="wave-after-msg" data-fr="Après paiement Wave : cliquez <strong>J'AI EFFECTUÉ LE PAIEMENT</strong> sur la LP ESSAI — votre <strong>Code d'Activation</strong> NGD vous est envoyé automatiquement via WhatsApp. Téléchargez votre ESSAI en 1 minute." data-en="After Wave payment: click <strong>I HAVE MADE THE PAYMENT</strong> on the ESSAY LP — your NGD <strong>Activation Code</strong> is sent automatically via WhatsApp. Download your ESSAY in 1 minute.">Après paiement Wave : cliquez <strong>J'AI EFFECTUÉ LE PAIEMENT</strong> sur la LP ESSAI — votre <strong>Code d'Activation</strong> NGD vous est envoyé automatiquement via WhatsApp. Téléchargez votre ESSAI en 1 minute.</p>
         </div>
       </div>
-
-      <!-- ══════════════════════════════════════
-           CARTE 2 : Délégué-Pays NGD
-           ══════════════════════════════════════ -->
       <div class="profil-card fu">
         <div class="profil-ico ico-or">🌍</div>
-        <h3>Délégué-Pays NGD</h3>
-        <p class="psub">Citoyen non-ivoirien résident en Côte d'Ivoire · 7 pays UEMOA</p>
+        <h3 data-fr="Délégué-Pays NGD" data-en="NGD Country Delegate">Délégué-Pays NGD</h3>
+        <p class="psub" data-fr="Citoyen non-ivoirien résident en Côte d'Ivoire · 7 pays UEMOA" data-en="Non-Ivorian citizen residing in Côte d'Ivoire · 7 UEMOA countries">Citoyen non-ivoirien résident en Côte d'Ivoire · 7 pays UEMOA</p>
         <ul class="profil-bullets">
-          <li>Pont diaspora UEMOA en CI ↔ pays d'origine</li>
-          <li>Commune / Région d'origine dans votre pays (requis)</li>
-          <li>Préparation expansion NGD dans votre pays</li>
-          <li>Formation ChallengeFinancier™ + Essai Autobiographique</li>
-          <li>Hubs Diaspora : liaison communautés expatriées</li>
-          <li>Positionnement électif prioritaire NGD (2028+)</li>
+          <li data-fr="Pont diaspora UEMOA en CI ↔ pays d'origine" data-en="UEMOA diaspora bridge in CI ↔ home country">Pont diaspora UEMOA en CI ↔ pays d'origine</li>
+          <li data-fr="Commune / Région d'origine dans votre pays (requis)" data-en="Municipality / Region of origin in your country (required)">Commune / Région d'origine dans votre pays (requis)</li>
+          <li data-fr="Préparation expansion NGD dans votre pays" data-en="Preparation of NGD expansion in your country">Préparation expansion NGD dans votre pays</li>
+          <li data-fr="Formation ChallengeFinancier™ + Essai Autobiographique" data-en="ChallengeFinancier™ Training + Autobiographical Essay">Formation ChallengeFinancier™ + Essai Autobiographique</li>
+          <li data-fr="Hubs Diaspora : liaison communautés expatriées" data-en="Diaspora Hubs: expat community liaison">Hubs Diaspora : liaison communautés expatriées</li>
+          <li data-fr="Positionnement électif prioritaire NGD (2028+)" data-en="NGD priority electoral positioning (2028+)">Positionnement électif prioritaire NGD (2028+)</li>
         </ul>
         <form class="profil-form" id="form-delegue" onsubmit="soumettreFormulaire(event,'delegue')">
           <div class="form-row">
-            <div class="form-group"><label>Prénom *</label><input type="text" name="prenom" placeholder="Votre prénom" required></div>
-            <div class="form-group"><label>Nom *</label><input type="text" name="nom" placeholder="Votre nom" required></div>
+            <div class="form-group"><label data-fr="Prénom *" data-en="First name *">Prénom *</label><input type="text" name="prenom" placeholder="Votre prénom" required></div>
+            <div class="form-group"><label data-fr="Nom *" data-en="Last name *">Nom *</label><input type="text" name="nom" placeholder="Votre nom" required></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label>Téléphone / WhatsApp *</label><input type="tel" name="telephone" placeholder="07 XX XX XX XX" required></div>
-            <div class="form-group">
-              <label>Quartier à Abidjan *</label>
+            <div class="form-group"><label data-fr="Téléphone / WhatsApp *" data-en="Phone / WhatsApp *">Téléphone / WhatsApp *</label><input type="tel" name="telephone" placeholder="07 XX XX XX XX" required></div>
+            <div class="form-group"><label data-fr="Quartier à Abidjan *" data-en="Neighborhood in Abidjan *">Quartier à Abidjan *</label>
               <select name="quartier_abidjan" required>
-                <option value="">— Votre quartier —</option>
-                <option>Adjamé</option><option>Yopougon</option><option>Abobo</option>
-                <option>Cocody</option><option>Marcory</option><option>Koumassi</option>
-                <option>Treichville</option><option>Plateau</option><option>Autre</option>
+                <option value="" data-fr="— Votre quartier —" data-en="— Your neighborhood —">— Votre quartier —</option>
+                <option>Adjamé</option><option>Yopougon</option><option>Abobo</option><option>Cocody</option><option>Marcory</option><option>Koumassi</option><option>Treichville</option><option>Plateau</option><option data-fr="Autre" data-en="Other">Autre</option>
               </select>
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group">
-              <label>Pays d'origine UEMOA *</label>
+            <div class="form-group"><label data-fr="Pays d'origine UEMOA *" data-en="UEMOA country of origin *">Pays d'origine UEMOA *</label>
               <select name="pays_origine" required onchange="mettreAJourRegions(this.value)">
-                <option value="">— Choisir votre pays —</option>
-                <option value="Bénin">🇧🇯 Bénin</option>
-                <option value="Burkina Faso">🇧🇫 Burkina Faso</option>
-                <option value="Guinée-Bissau">🇬🇼 Guinée-Bissau</option>
-                <option value="Mali">🇲🇱 Mali</option>
-                <option value="Niger">🇳🇪 Niger</option>
-                <option value="Sénégal">🇸🇳 Sénégal</option>
-                <option value="Togo">🇹🇬 Togo</option>
+                <option value="" data-fr="— Choisir votre pays —" data-en="— Choose your country —">— Choisir votre pays —</option>
+                <option value="Bénin">🇧🇯 Bénin</option><option value="Burkina Faso">🇧🇫 Burkina Faso</option><option value="Guinée-Bissau">🇬🇼 Guinée-Bissau</option><option value="Mali">🇲🇱 Mali</option><option value="Niger">🇳🇪 Niger</option><option value="Sénégal">🇸🇳 Sénégal</option><option value="Togo">🇹🇬 Togo</option>
               </select>
             </div>
-            <div class="form-group">
-              <label>Ville / Département d'origine *</label>
-              <input type="text" name="ville_origine" id="ville-origine" placeholder="Ex: Cotonou, Dakar..." required>
-            </div>
+            <div class="form-group"><label data-fr="Ville / Département d'origine *" data-en="City / Region of origin *">Ville / Département d'origine *</label><input type="text" name="ville_origine" id="ville-origine" placeholder="Ex: Cotonou, Dakar..." required></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label>Communauté / Association</label><input type="text" name="communaute" placeholder="Nom de votre association"></div>
-            <div class="form-group">
-              <label>Personnes mobilisables</label>
+            <div class="form-group"><label data-fr="Communauté / Association" data-en="Community / Association">Communauté / Association</label><input type="text" name="communaute" placeholder="Nom de votre association" data-placeholder-fr="Nom de votre association" data-placeholder-en="Your association name"></div>
+            <div class="form-group"><label data-fr="Personnes mobilisables" data-en="Mobilizable people">Personnes mobilisables</label>
               <select name="mobilisation">
-                <option value="">— Estimation —</option>
-                <option value="1-10">1 à 10 personnes</option>
-                <option value="10-50">10 à 50 personnes</option>
-                <option value="50-100">50 à 100 personnes</option>
-                <option value="100+">Plus de 100 personnes</option>
+                <option value="" data-fr="— Estimation —" data-en="— Estimate —">— Estimation —</option>
+                <option value="1-10" data-fr="1 à 10 personnes" data-en="1 to 10 people">1 à 10 personnes</option>
+                <option value="10-50" data-fr="10 à 50 personnes" data-en="10 to 50 people">10 à 50 personnes</option>
+                <option value="50-100" data-fr="50 à 100 personnes" data-en="50 to 100 people">50 à 100 personnes</option>
+                <option value="100+" data-fr="Plus de 100 personnes" data-en="More than 100 people">Plus de 100 personnes</option>
               </select>
             </div>
           </div>
           <div class="form-msg" id="msg-delegue"></div>
           <button type="submit" class="btn-submit" id="submit-delegue">
-            <span class="btn-text">🌍 S'enregistrer comme Délégué-Pays NGD</span>
-            <span class="btn-loading" style="display:none">⏳ Enregistrement...</span>
+            <span class="btn-text" data-fr="🌍 S'enregistrer comme Délégué-Pays NGD" data-en="🌍 Register as NGD Country Delegate">🌍 S'enregistrer comme Délégué-Pays NGD</span>
+            <span class="btn-loading" style="display:none" data-fr="⏳ Enregistrement..." data-en="⏳ Registering...">⏳ Enregistrement...</span>
           </button>
         </form>
-
-        <!-- BLOC PAIEMENT v3.1 — Délégué -->
         <div class="wave-payment-bloc" id="wave-bloc-delegue" style="display:none">
-          <h4>🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI</h4>
-          <p class="wave-payment-intro">Cliquez directement la formule de votre choix — vous êtes redirigé sur la LP ESSAI pour finaliser votre adhésion NGD et télécharger l'Essai Autobiographique.</p>
-
+          <h4 data-fr="🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI" data-en="🌱 Choose your NGD Plan — Pay via Wave and download the ESSAY">🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI</h4>
+          <p class="wave-payment-intro" data-fr="Cliquez directement la formule de votre choix — vous êtes redirigé sur la LP ESSAI pour finaliser votre adhésion NGD et télécharger l'Essai Autobiographique." data-en="Click directly on your chosen plan — you will be redirected to the ESSAY LP to finalize your NGD membership and download the Autobiographical Essay.">Cliquez directement la formule de votre choix — vous êtes redirigé sur la LP ESSAI pour finaliser votre adhésion NGD et télécharger l'Essai Autobiographique.</p>
           <div class="wave-formules">
-            <a href="https://coachmorgans.github.io/essai/?f=2500#adhesion-ngd"
-               target="_blank" class="wave-formule">
-              <div class="wf-left">
-                <span class="wf-label">🌱 Sympathisant NGD</span>
-                <span class="wf-desc">Essai PDF complet · Newsletter NGD · Acte de soutien citoyen</span>
-              </div>
-              <div class="wf-right">
-                <span class="wf-price">2 500 FCFA</span>
-                <span class="wf-arrow">→</span>
-              </div>
-            </a>
-            <a href="https://coachmorgans.github.io/essai/?f=5000#adhesion-ngd"
-               target="_blank" class="wave-formule">
-              <div class="wf-left">
-                <span class="wf-label">📋 Adhérent Statutaire NGD</span>
-                <span class="wf-desc">Essai PDF + carte membre NGD · Accès réseau 509 Leaders</span>
-              </div>
-              <div class="wf-right">
-                <span class="wf-price">5 000 FCFA</span>
-                <span class="wf-arrow">→</span>
-              </div>
-            </a>
-            <a href="https://coachmorgans.github.io/essai/?f=10000#adhesion-ngd"
-               target="_blank" class="wave-formule">
-              <div class="wf-left">
-                <span class="wf-label">🏛️ Cadre Actif + Colistier LFA-CI 2028</span>
-                <span class="wf-desc">Essai PDF + Carte Cadre · Dossier Candidat Colistier LFA-CI · Formations ChallengeFinancier™</span>
-              </div>
-              <div class="wf-right">
-                <span class="wf-price">10 000 FCFA</span>
-                <span class="wf-arrow">→</span>
-              </div>
-            </a>
+            <a href="https://coachmorgans.github.io/essai/?f=2500#adhesion-ngd" target="_blank" class="wave-formule"><div class="wf-left"><span class="wf-label" data-fr="🌱 Sympathisant NGD" data-en="🌱 NGD Supporter">🌱 Sympathisant NGD</span><span class="wf-desc" data-fr="Essai PDF complet · Newsletter NGD · Acte de soutien citoyen" data-en="Complete PDF Essay · NGD Newsletter · Citizen support act">Essai PDF complet · Newsletter NGD · Acte de soutien citoyen</span></div><div class="wf-right"><span class="wf-price">2 500 FCFA</span><span class="wf-arrow">→</span></div></a>
+            <a href="https://coachmorgans.github.io/essai/?f=5000#adhesion-ngd" target="_blank" class="wave-formule"><div class="wf-left"><span class="wf-label" data-fr="📋 Adhérent Statutaire NGD" data-en="📋 NGD Statutory Member">📋 Adhérent Statutaire NGD</span><span class="wf-desc" data-fr="Essai PDF + carte membre NGD · Accès réseau 350 Réseauteurs" data-en="PDF Essay + NGD member card · 350 Networkers network access">Essai PDF + carte membre NGD · Accès réseau 350 Réseauteurs</span></div><div class="wf-right"><span class="wf-price">5 000 FCFA</span><span class="wf-arrow">→</span></div></a>
+            <a href="https://coachmorgans.github.io/essai/?f=10000#adhesion-ngd" target="_blank" class="wave-formule"><div class="wf-left"><span class="wf-label" data-fr="🏛️ Cadre Actif + Colistier LFA-CI 2028" data-en="🏛️ Active Executive + LFA-CI Running Mate 2028">🏛️ Cadre Actif + Colistier LFA-CI 2028</span><span class="wf-desc" data-fr="Essai PDF + Carte Cadre · Dossier Candidat Colistier LFA-CI · Formations ChallengeFinancier™" data-en="PDF Essay + Executive Card · LFA-CI Running Mate File · ChallengeFinancier™ Training">Essai PDF + Carte Cadre · Dossier Candidat Colistier LFA-CI · Formations ChallengeFinancier™</span></div><div class="wf-right"><span class="wf-price">10 000 FCFA</span><span class="wf-arrow">→</span></div></a>
           </div>
-
-          <a href="https://coachmorgans.github.io/essai/?open=1#adhesion-ngd"
-             target="_blank" class="btn-essai-principal">
-            🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI
-          </a>
-
-          <p class="wave-after-msg">
-            Après paiement Wave : cliquez <strong>J'AI EFFECTUÉ LE PAIEMENT</strong> sur la LP ESSAI —
-            votre <strong>Code d'Activation</strong> NGD vous est envoyé automatiquement via WhatsApp.
-            Téléchargez votre ESSAI en 1 minute.
-          </p>
+          <a href="https://coachmorgans.github.io/essai/?open=1#adhesion-ngd" target="_blank" class="btn-essai-principal" data-fr="🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI" data-en="🌱 Choose your NGD Plan — Pay via Wave and download the ESSAY">🌱 Choisissez votre Formule NGD — Payez via Wave et téléchargez l'ESSAI</a>
+          <p class="wave-after-msg" data-fr="Après paiement Wave : cliquez <strong>J'AI EFFECTUÉ LE PAIEMENT</strong> sur la LP ESSAI — votre <strong>Code d'Activation</strong> NGD vous est envoyé automatiquement via WhatsApp. Téléchargez votre ESSAI en 1 minute." data-en="After Wave payment: click <strong>I HAVE MADE THE PAYMENT</strong> on the ESSAY LP — your NGD <strong>Activation Code</strong> is sent automatically via WhatsApp. Download your ESSAY in 1 minute.">Après paiement Wave : cliquez <strong>J'AI EFFECTUÉ LE PAIEMENT</strong> sur la LP ESSAI — votre <strong>Code d'Activation</strong> NGD vous est envoyé automatiquement via WhatsApp. Téléchargez votre ESSAI en 1 minute.</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
-
-<!-- LFA-CI -->
 <section class="section" id="lfa">
   <div class="section-inner">
-    <p class="section-kicker">Partenaire Stratégique Exclusif</p>
+    <p class="section-kicker" data-fr="Partenaire Stratégique Exclusif" data-en="Exclusive Strategic Partner">Partenaire Stratégique Exclusif</p>
     <h2 class="section-title">LFA-CI — Les Frères Africains · Côte d'Ivoire</h2>
     <div class="lfa-card">
       <div class="lfa-body">
-        <div class="lfa-badge">Partenaire Extérieur Exclusif NGD</div>
-        <h3>Listes de candidatures Municipales & Régionales 2028</h3>
-        <p>LFA-CI est le partenaire extérieur exclusif de NGD pour les candidatures aux élections Municipales et Régionales de septembre 2028, dans les 7 régions pilotes de Côte d'Ivoire. Ce partenariat ne concerne que la CI et uniquement les scrutins de 2028.</p>
+        <div class="lfa-badge" data-fr="Partenaire Extérieur Exclusif NGD" data-en="Exclusive External NGD Partner">Partenaire Extérieur Exclusif NGD</div>
+        <h3 data-fr="Listes de candidatures Municipales &amp; Régionales 2028" data-en="Municipal &amp; Regional Candidacy Lists 2028">Listes de candidatures Municipales &amp; Régionales 2028</h3>
+        <p data-fr="LFA-CI est le partenaire extérieur exclusif de NGD pour les candidatures aux élections Municipales et Régionales de septembre 2028, dans les 7 régions pilotes de Côte d'Ivoire. Ce partenariat ne concerne que la CI et uniquement les scrutins de 2028." data-en="LFA-CI is the exclusive external partner of NGD for candidacies in the Municipal and Regional elections of September 2028, in the 7 pilot regions of Côte d'Ivoire. This partnership concerns only CI and only the 2028 elections.">LFA-CI est le partenaire extérieur exclusif de NGD pour les candidatures aux élections Municipales et Régionales de septembre 2028, dans les 7 régions pilotes de Côte d'Ivoire. Ce partenariat ne concerne que la CI et uniquement les scrutins de 2028.</p>
       </div>
       <div class="lfa-regions">
-        <h4>7 Régions Pilotes CI · 2028</h4>
+        <h4 data-fr="7 Régions Pilotes CI · 2028" data-en="7 CI Pilot Regions · 2028">7 Régions Pilotes CI · 2028</h4>
         <ul>
-          <li>District d'Abidjan</li><li>District de Yamoussoukro</li>
-          <li>Région du Bélier</li><li>Agnéby-Tiassa</li>
-          <li>Région de Mé</li><li>Grands-Ponts</li><li>Sud-Comoé</li>
+          <li>District d'Abidjan</li><li>District de Yamoussoukro</li><li data-fr="Région du Bélier" data-en="Bélier Region">Région du Bélier</li><li>Agnéby-Tiassa</li><li data-fr="Région de Mé" data-en="Mé Region">Région de Mé</li><li>Grands-Ponts</li><li>Sud-Comoé</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
-
-<!-- BOT CHALLENGER -->
 <section class="section bot-bg" id="bot">
   <div class="section-inner">
-    <p class="section-kicker">Intelligence Artificielle NGD</p>
-    <h2 class="section-title">Bot CHALLENGER — Votre guide 24/7</h2>
+    <p class="section-kicker" data-fr="Intelligence Artificielle NGD" data-en="NGD Artificial Intelligence">Intelligence Artificielle NGD</p>
+    <h2 class="section-title" data-fr="Bot CHALLENGER — Votre guide 24/7" data-en="Bot CHALLENGER — Your 24/7 guide">Bot CHALLENGER — Votre guide 24/7</h2>
     <div class="bot-card">
       <div class="bot-body">
-        <h3>Le Bot de La Grande Réappropriation</h3>
-        <p>Bot CHALLENGER est l'assistant intelligent de l'écosystème NGD · VoteConnect. Il vous guide dans votre parcours, répond à vos questions, et vous connecte aux 3 plateformes de vente.</p>
+        <h3 data-fr="Le Bot de La Grande Réappropriation" data-en="The Bot of La Grande Réappropriation">Le Bot de La Grande Réappropriation</h3>
+        <p data-fr="Bot CHALLENGER est l'assistant intelligent de l'écosystème NGD · VoteConnect. Il vous guide dans votre parcours, répond à vos questions, et vous connecte aux plateformes de vente." data-en="Bot CHALLENGER is the intelligent assistant of the NGD · VoteConnect ecosystem. It guides you through your journey, answers your questions, and connects you to the selling platforms.">Bot CHALLENGER est l'assistant intelligent de l'écosystème NGD · VoteConnect. Il vous guide dans votre parcours, répond à vos questions, et vous connecte aux 3 plateformes de vente.</p>
         <div class="bot-features">
-          <div class="bot-feat"><span class="bi">🌱</span><span>Framework La Grande Réappropriation intégré</span></div>
-          <div class="bot-feat"><span class="bi">🗳️</span><span>Calendrier électoral UEMOA · Territorialité Citoyenne</span></div>
-          <div class="bot-feat"><span class="bi">💰</span><span>Portefeuille Mi Sikah · Transactions Wave intégrées</span></div>
-          <div class="bot-feat"><span class="bi">📊</span><span>Dashboard CF-DB v3.2 · commande /dashboard</span></div>
+          <div class="bot-feat"><span class="bi">🌱</span><span data-fr="Framework La Grande Réappropriation intégré" data-en="La Grande Réappropriation framework integrated">Framework La Grande Réappropriation intégré</span></div>
+          <div class="bot-feat"><span class="bi">🗳️</span><span data-fr="Calendrier électoral UEMOA · Territorialité Citoyenne" data-en="UEMOA electoral calendar · Citizen Territoriality">Calendrier électoral UEMOA · Territorialité Citoyenne</span></div>
+          <div class="bot-feat"><span class="bi">💰</span><span data-fr="Portefeuille Mi Sikah · Transactions Wave intégrées" data-en="Mi Sikah Wallet · Integrated Wave transactions">Portefeuille Mi Sikah · Transactions Wave intégrées</span></div>
+          <div class="bot-feat"><span class="bi">📊</span><span data-fr="Dashboard CF-DB v3.3 · commande /dashboard" data-en="CF-DB v3.3 Dashboard · /dashboard command">Dashboard CF-DB v3.3 · commande /dashboard</span></div>
         </div>
-        <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="btn-tg">📱 Ouvrir le Bot CHALLENGER</a>
+        <a href="https://t.me/ChallengeFinancierbot" target="_blank" class="btn-tg" data-fr="📱 Ouvrir le Bot CHALLENGER" data-en="📱 Open Bot CHALLENGER">📱 Ouvrir le Bot CHALLENGER</a>
       </div>
       <div class="bot-visual">
         <img src="https://i.ibb.co/nMMn7Tx2/Logo-Bot-CF.png" alt="Bot CHALLENGER" class="bot-logo" onerror="this.style.display='none'">
         <div class="bot-name">Bot CHALLENGER</div>
         <div class="bot-handle">@ChallengeFinancierbot</div>
         <div class="bot-stats">
-          <div class="bst"><div class="bv">24/7</div><div class="bl">Disponibilité</div></div>
-          <div class="bst"><div class="bv">3</div><div class="bl">Plateformes</div></div>
-          <div class="bst"><div class="bv">8</div><div class="bl">États UEMOA</div></div>
-          <div class="bst"><div class="bv">FR·EN</div><div class="bl">Langues</div></div>
+          <div class="bst"><div class="bv">24/7</div><div class="bl" data-fr="Disponibilité" data-en="Availability">Disponibilité</div></div>
+          <div class="bst"><div class="bv">6</div><div class="bl" data-fr="Catégories TCL" data-en="TCL Categories">Catégories TCL</div></div>
+          <div class="bst"><div class="bv">8</div><div class="bl" data-fr="États UEMOA" data-en="UEMOA States">États UEMOA</div></div>
+          <div class="bst"><div class="bv">FR·EN</div><div class="bl" data-fr="Langues" data-en="Languages">Langues</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- GUIDE TELEGRAM 5 ÉTAPES -->
 <section class="section" id="telegram">
   <div class="section-inner">
-    <p class="section-kicker">Pour les nouveaux sur Telegram</p>
-    <h2 class="section-title">Rejoindre le Bot en 5 étapes — 3 minutes</h2>
-    <p class="section-sub">75% des utilisateurs ici n'ont jamais utilisé Telegram. Ce guide est pour vous.</p>
+    <p class="section-kicker" data-fr="Pour les nouveaux sur Telegram" data-en="For Telegram newcomers">Pour les nouveaux sur Telegram</p>
+    <h2 class="section-title" data-fr="Rejoindre le Bot en 5 étapes — 3 minutes" data-en="Join the Bot in 5 steps — 3 minutes">Rejoindre le Bot en 5 étapes — 3 minutes</h2>
+    <p class="section-sub" data-fr="75% des utilisateurs ici n'ont jamais utilisé Telegram. Ce guide est pour vous." data-en="75% of users here have never used Telegram. This guide is for you.">75% des utilisateurs ici n'ont jamais utilisé Telegram. Ce guide est pour vous.</p>
     <div class="tg-grid">
-      <div class="tg-step fu">
-        <div class="step-num">1</div>
-        <h4>Télécharger Telegram</h4>
-        <p>Rendez-vous sur votre boutique. Gratuit · 30 secondes.</p>
-        <div class="tg-links">
-          <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger" target="_blank">📱 Android</a>
-          <a href="https://apps.apple.com/app/telegram-messenger/id686449807" target="_blank">🍎 iPhone</a>
-        </div>
-      </div>
-      <div class="tg-step fu">
-        <div class="step-num">2</div>
-        <h4>Créer votre compte</h4>
-        <p>Entrez votre numéro, puis le code SMS. Choisissez un prénom. C'est tout.</p>
-      </div>
-      <div class="tg-step fu">
-        <div class="step-num">3</div>
-        <h4>Cliquer le lien Bot</h4>
-        <p>Cliquez depuis votre téléphone. Telegram s'ouvre sur Bot CHALLENGER.</p>
-        <div class="tg-links">
-          <a href="https://t.me/ChallengeFinancierbot" target="_blank">👉 t.me/ChallengeFinancierbot</a>
-        </div>
-      </div>
-      <div class="tg-step fu">
-        <div class="step-num">4</div>
-        <h4>Appuyer START BOT</h4>
-        <p>Appuyez sur le bouton bleu START BOT. Le menu s'affiche. Vous y êtes !</p>
-      </div>
-      <div class="tg-step step5 fu">
-        <div class="step-num gold">5</div>
-        <h4>Copier &amp; Partager</h4>
-        <p>Invitez vos contacts à rejoindre NGD.</p>
+      <div class="tg-step fu"><div class="step-num">1</div><h4 data-fr="Télécharger Telegram" data-en="Download Telegram">Télécharger Telegram</h4><p data-fr="Rendez-vous sur votre boutique. Gratuit · 30 secondes." data-en="Go to your app store. Free · 30 seconds.">Rendez-vous sur votre boutique. Gratuit · 30 secondes.</p><div class="tg-links"><a href="https://play.google.com/store/apps/details?id=org.telegram.messenger" target="_blank">📱 Android</a><a href="https://apps.apple.com/app/telegram-messenger/id686449807" target="_blank">🍎 iPhone</a></div></div>
+      <div class="tg-step fu"><div class="step-num">2</div><h4 data-fr="Créer votre compte" data-en="Create your account">Créer votre compte</h4><p data-fr="Entrez votre numéro, puis le code SMS. Choisissez un prénom. C'est tout." data-en="Enter your number, then the SMS code. Choose a first name. That's it.">Entrez votre numéro, puis le code SMS. Choisissez un prénom. C'est tout.</p></div>
+      <div class="tg-step fu"><div class="step-num">3</div><h4 data-fr="Cliquer le lien Bot" data-en="Click the Bot link">Cliquer le lien Bot</h4><p data-fr="Cliquez depuis votre téléphone. Telegram s'ouvre sur Bot CHALLENGER." data-en="Click from your phone. Telegram opens on Bot CHALLENGER.">Cliquez depuis votre téléphone. Telegram s'ouvre sur Bot CHALLENGER.</p><div class="tg-links"><a href="https://t.me/ChallengeFinancierbot" target="_blank">👉 t.me/ChallengeFinancierbot</a></div></div>
+      <div class="tg-step fu"><div class="step-num">4</div><h4 data-fr="Appuyer START BOT" data-en="Press START BOT">Appuyer START BOT</h4><p data-fr="Appuyez sur le bouton bleu START BOT. Le menu s'affiche. Vous y êtes !" data-en="Press the blue START BOT button. The menu appears. You're in!">Appuyez sur le bouton bleu START BOT. Le menu s'affiche. Vous y êtes !</p></div>
+      <div class="tg-step step5 fu"><div class="step-num gold">5</div><h4 data-fr="Copier &amp; Partager" data-en="Copy &amp; Share">Copier &amp; Partager</h4><p data-fr="Invitez vos contacts à rejoindre NGD." data-en="Invite your contacts to join NGD.">Invitez vos contacts à rejoindre NGD.</p>
         <div class="share-btns">
-          <a href="https://wa.me/?text=Rejoins%20La%20Grande%20R%C3%A9appropriation%20%E2%80%94%20NGD%20%7C%20Club%20des%208%20%C3%89tats%20UEMOA%20%3A%20https%3A%2F%2Ft.me%2FChallengeFinancierbot" target="_blank" class="shr s-wa">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            WhatsApp
-          </a>
-          <a href="https://t.me/share/url?url=https%3A%2F%2Ft.me%2FChallengeFinancierbot&text=Rejoins%20NGD%20%E2%80%94%20La%20Grande%20R%C3%A9appropriation" target="_blank" class="shr s-tg">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-            Telegram
-          </a>
-          <a href="https://www.facebook.com/dialog/send?link=https%3A%2F%2Ft.me%2FChallengeFinancierbot&app_id=291494419107518&redirect_uri=https%3A%2F%2Ft.me%2FChallengeFinancierbot" target="_blank" class="shr s-ms">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.652V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/></svg>
-            Messenger
-          </a>
+          <a href="https://wa.me/?text=Rejoins%20La%20Grande%20R%C3%A9appropriation%20%E2%80%94%20NGD%20%7C%20Club%20des%208%20%C3%89tats%20UEMOA%20%3A%20https%3A%2F%2Ft.me%2FChallengeFinancierbot" target="_blank" class="shr s-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
+          <a href="https://t.me/share/url?url=https%3A%2F%2Ft.me%2FChallengeFinancierbot&text=Rejoins%20NGD%20%E2%80%94%20La%20Grande%20R%C3%A9appropriation" target="_blank" class="shr s-tg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>Telegram</a>
+          <a href="https://www.facebook.com/dialog/send?link=https%3A%2F%2Ft.me%2FChallengeFinancierbot&app_id=291494419107518&redirect_uri=https%3A%2F%2Ft.me%2FChallengeFinancierbot" target="_blank" class="shr s-ms"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.652V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/></svg>Messenger</a>
         </div>
-        <div class="copy-row">
-          <span class="copy-lnk">t.me/ChallengeFinancierbot</span>
-          <button class="copy-btn" id="copyBtn" onclick="copyLink()">📋 Copier</button>
-        </div>
+        <div class="copy-row"><span class="copy-lnk">t.me/ChallengeFinancierbot</span><button class="copy-btn" id="copyBtn" onclick="copyLink()" data-fr="📋 Copier" data-en="📋 Copy">📋 Copier</button></div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="flogo">La Grande Réappropriation</div>
-        <p>La révolution citoyenne par la base dans les 8 États UEMOA. De Abidjan aux 7 capitales UEMOA — 2026 à 2035.</p>
+        <p data-fr="La révolution citoyenne par la base dans les 8 États UEMOA. De Abidjan aux 7 capitales UEMOA — 2026 à 2035." data-en="The citizen revolution from the ground up in the 8 UEMOA States. From Abidjan to the 7 UEMOA capitals — 2026 to 2035.">La révolution citoyenne par la base dans les 8 États UEMOA. De Abidjan aux 7 capitales UEMOA — 2026 à 2035.</p>
         <div class="legal">VoteConnect SARL · RCCM CI-ABJ-03-2025-B12-03666 · CC 2504848 N<br>Cocody-Angré Djibi 3, Abidjan, Côte d'Ivoire</div>
       </div>
       <div class="fcol">
-        <h5>Plateformes</h5>
+        <h5 data-fr="Plateformes" data-en="Platforms">Plateformes</h5>
         <ul>
           <li><a href="https://t.me/ChallengeFinancierbot" target="_blank">🤖 Bot CHALLENGER</a></li>
           <li><a href="https://coachmorgans.github.io/lms-cf/" target="_blank">🎓 LMS ChallengeFinancier™</a></li>
-          <li><a href="https://t.me/ChallengeFinancierbot" target="_blank">🛒 Portail TCL via Bot</a></li>
-          <li><a href="https://coachmorgans.github.io/essai/" target="_blank">📖 L'Essai + Adhésion NGD</a></li>
+          <li><a href="https://t.me/ChallengeFinancierbot" target="_blank" data-fr="🛒 Portail TCL via Bot" data-en="🛒 TCL Portal via Bot">🛒 Portail TCL via Bot</a></li>
+          <li><a href="https://coachmorgans.github.io/essai/" target="_blank" data-fr="📖 L'Essai + Adhésion NGD" data-en="📖 The Essay + NGD Membership">📖 L'Essai + Adhésion NGD</a></li>
         </ul>
       </div>
       <div class="fcol">
-        <h5>Landing Pages</h5>
+        <h5 data-fr="Landing Pages" data-en="Landing Pages">Landing Pages</h5>
         <ul>
           <li><a href="https://coachmorgans.github.io/challengefinancier/" target="_blank">ChallengeFinancier™</a></li>
           <li><a href="https://coachmorgans.github.io/vers-plus-de-pouvoir-local/" target="_blank">Vers Plus de Pouvoir Local</a></li>
@@ -1014,232 +675,139 @@ footer { background: var(--noir); color: var(--blanc); padding: 48px var(--px) 2
         </ul>
       </div>
       <div class="fcol">
-        <h5>Contact</h5>
+        <h5 data-fr="Contact" data-en="Contact">Contact</h5>
         <ul>
-          <li><a href="https://wa.me/2250767560908" target="_blank">💬 WhatsApp Admin</a></li>
-          <li><a href="https://youtube.com/@voteconnect?si=iJhrKcktcZLeHQJb" target="_blank">📺 ChallengeF TV</a></li>
-          <li><a href="https://www.youtube.com/@VoteConnect" target="_blank">📺 YouTube VoteConnect</a></li>
-          <li><a href="https://t.me/ChallengeFinancierbot" target="_blank">📱 Telegram Bot</a></li>
+          <li><a href="https://wa.me/2250767560908" target="_blank" data-fr="💬 WhatsApp Admin" data-en="💬 WhatsApp Admin">💬 WhatsApp Admin</a></li>
+          <li><a href="https://youtube.com/@ChallengeF_TV" target="_blank">📺 ChallengeF TV</a></li>
+          <li><a href="https://youtube.com/@LFA-TV-h5z" target="_blank">📺 LFA TV</a></li>
+          <li><a href="https://t.me/ChallengeFinancierbot" target="_blank" data-fr="📱 Telegram Bot" data-en="📱 Telegram Bot">📱 Telegram Bot</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 VoteConnect SARL · NGD · Tous droits réservés</p>
-      <div class="footer-motto">Une Afrique UNIE · SOLIDAIRE · PROSPÈRE</div>
+      <p data-fr="© 2026 VoteConnect SARL · NGD · Tous droits réservés" data-en="© 2026 VoteConnect SARL · NGD · All rights reserved">© 2026 VoteConnect SARL · NGD · Tous droits réservés</p>
+      <div class="footer-motto" data-fr="Une Afrique UNIE · SOLIDAIRE · PROSPÈRE" data-en="A UNITED · SOLIDARY · PROSPEROUS Africa">Une Afrique UNIE · SOLIDAIRE · PROSPÈRE</div>
     </div>
   </div>
 </footer>
-
 <script>
-/* ═══════════════════════════════════════════════════════════
-   CONFIGURATION
-   ═══════════════════════════════════════════════════════════ */
-const GS_URL         = 'https://script.google.com/macros/s/AKfycbzdqCRk06C35clJhQcDS1AN3eZvzq4JO5UjsRU1E7y1pDfTu-xHt6ppSM6pD0UnGn10/exec';
-const DATE_FIN_ENREG = new Date('2026-04-30T23:59:59');
-
-/* ═══════════════════════════════════════════════════════════
-   COMPTEUR
-   ═══════════════════════════════════════════════════════════ */
-function majCompteur() {
-  const diff = DATE_FIN_ENREG - new Date();
-  const el   = document.getElementById('heroCountdown');
-  if (!el) return;
-  if (diff <= 0) {
-    el.innerHTML = '<div class="countdown-ended">🚀 Session Inaugurale — 509 Réseauteurs en cours !</div>';
-    return;
-  }
-  const j = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  const f = n => String(n).padStart(2, '0');
-  document.getElementById('cd-j').textContent = f(j);
-  document.getElementById('cd-h').textContent = f(h);
-  document.getElementById('cd-m').textContent = f(m);
-  document.getElementById('cd-s').textContent = f(s);
+const GS_URL='https://script.google.com/macros/s/AKfycbzdqCRk06C35clJhQcDS1AN3eZvzq4JO5UjsRU1E7y1pDfTu-xHt6ppSM6pD0UnGn10/exec';
+const DATE_FIN_ENREG=new Date('2026-06-30T23:59:59');
+function majCompteur(){
+  const diff=DATE_FIN_ENREG-new Date();
+  const el=document.getElementById('heroCountdown');
+  if(!el)return;
+  if(diff<=0){el.innerHTML='<div class="countdown-ended">🚀 Session Inaugurale — 350 Réseauteurs en cours !</div>';return;}
+  const j=Math.floor(diff/86400000);
+  const h=Math.floor((diff%86400000)/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+  const s=Math.floor((diff%60000)/1000);
+  const f=n=>String(n).padStart(2,'0');
+  document.getElementById('cd-j').textContent=f(j);
+  document.getElementById('cd-h').textContent=f(h);
+  document.getElementById('cd-m').textContent=f(m);
+  document.getElementById('cd-s').textContent=f(s);
 }
 majCompteur();
-setInterval(majCompteur, 1000);
-
-/* ═══════════════════════════════════════════════════════════
-   LANGUE
-   ═══════════════════════════════════════════════════════════ */
-let lang = 'fr';
-function setLang(l) {
-  lang = l;
-  document.getElementById('btn-fr').classList.toggle('active', l === 'fr');
-  document.getElementById('btn-en').classList.toggle('active', l === 'en');
-  document.documentElement.lang = l;
-  document.querySelectorAll('[data-fr]').forEach(el => {
-    const t = el.getAttribute('data-' + l);
-    if (t) el.innerHTML = t;
+setInterval(majCompteur,1000);
+let lang='fr';
+function setLang(l){
+  lang=l;
+  document.getElementById('btn-fr').classList.toggle('active',l==='fr');
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-fr]').forEach(el=>{
+    const t=el.getAttribute('data-'+l);
+    if(t)el.innerHTML=t;
+  });
+  document.querySelectorAll('[data-placeholder-fr]').forEach(el=>{
+    const p=el.getAttribute('data-placeholder-'+l);
+    if(p)el.placeholder=p;
+  });
+  document.querySelectorAll('option[data-fr]').forEach(el=>{
+    const t=el.getAttribute('data-'+l);
+    if(t)el.textContent=t;
   });
 }
-
-/* ═══════════════════════════════════════════════════════════
-   ACTIVATION BOUTONS PLATEFORMES
-   ═══════════════════════════════════════════════════════════ */
-function activerBoutonsPlateformes() {
-  document.querySelectorAll('.plat-btn-lock').forEach(btn => btn.classList.add('active'));
-  const notice = document.getElementById('plat-notice');
-  if (notice) {
-    notice.textContent = '✅ Enregistrement confirmé — Accédez maintenant aux 3 plateformes.';
-    notice.style.color = '#1a7a3c';
-    notice.style.fontWeight = '600';
+function activerBoutonsPlateformes(){
+  document.querySelectorAll('.plat-btn-lock').forEach(btn=>btn.classList.add('active'));
+  const notice=document.getElementById('plat-notice');
+  if(notice){
+    notice.setAttribute('data-fr','✅ Enregistrement confirmé — Accédez maintenant aux 3 plateformes.');
+    notice.setAttribute('data-en','✅ Registration confirmed — Access the 3 platforms now.');
+    notice.textContent=lang==='en'?'✅ Registration confirmed — Access the 3 platforms now.':'✅ Enregistrement confirmé — Accédez maintenant aux 3 plateformes.';
+    notice.style.color='#1a7a3c';notice.style.fontWeight='600';
   }
-  sessionStorage.setItem('ngd_registered', '1');
+  sessionStorage.setItem('ngd_registered','1');
 }
-if (sessionStorage.getItem('ngd_registered') === '1') {
-  document.addEventListener('DOMContentLoaded', activerBoutonsPlateformes);
-}
-
-/* ═══════════════════════════════════════════════════════════
-   NORMALISATION TÉLÉPHONE
-   ═══════════════════════════════════════════════════════════ */
-function normaliserTel(tel) {
-  // Supprime espaces, tirets
-  let t = tel.replace(/[\s\-\.]/g, '');
-  // +225 ou 00225 → 225XXXXXXXX
-  t = t.replace(/^(\+|00)225/, '225');
-  // Si commence par 0 et 10 chiffres → enlève le 0 initial (local ivoirien)
-  if (/^0\d{9}$/.test(t)) t = '225' + t.slice(1);
-  // Si 9 chiffres sans indicatif → ajoute 225
-  if (/^\d{9}$/.test(t)) t = '225' + t;
+if(sessionStorage.getItem('ngd_registered')==='1'){document.addEventListener('DOMContentLoaded',activerBoutonsPlateformes);}
+function normaliserTel(tel){
+  let t=tel.replace(/[\s\-\.]/g,'');
+  t=t.replace(/^(\+|00)225/,'225');
+  if(/^0\d{9}$/.test(t))t='225'+t.slice(1);
+  if(/^\d{9}$/.test(t))t='225'+t;
   return t;
 }
-
-/* ═══════════════════════════════════════════════════════════
-   VÉRIFICATION ANTI-DOUBLON via CF-DB
-   ═══════════════════════════════════════════════════════════ */
-async function verifierDoublon(telephone) {
-  try {
-    const telNorm = normaliserTel(telephone);
-    const url = `${GS_URL}?action=verifier_telephone&telephone=${encodeURIComponent(telNorm)}`;
-    const resp = await fetch(url, { method: 'GET' });
-    if (!resp.ok) return false; // Si erreur réseau → on laisse passer (fail open)
-    const data = await resp.json();
-    return data.existe === true;
-  } catch (e) {
-    // En cas d'erreur (CORS, réseau) → fail open, ne pas bloquer l'inscription
-    return false;
-  }
+async function verifierDoublon(telephone){
+  try{
+    const telNorm=normaliserTel(telephone);
+    const url=`${GS_URL}?action=verifier_telephone&telephone=${encodeURIComponent(telNorm)}`;
+    const resp=await fetch(url,{method:'GET'});
+    if(!resp.ok)return false;
+    const data=await resp.json();
+    return data.existe===true;
+  }catch(e){return false;}
 }
-
-/* ═══════════════════════════════════════════════════════════
-   SOUMISSION FORMULAIRES — v3.1
-   Ajout : vérification anti-doublon AVANT POST
-   ═══════════════════════════════════════════════════════════ */
-async function soumettreFormulaire(event, profil) {
+async function soumettreFormulaire(event,profil){
   event.preventDefault();
-  const form      = event.target;
-  const submitBtn = form.querySelector('.btn-submit');
-  const btnText   = form.querySelector('.btn-text');
-  const btnLoad   = form.querySelector('.btn-loading');
-  const msgEl     = document.getElementById('msg-' + profil);
-
-  submitBtn.disabled    = true;
-  btnText.style.display = 'none';
-  btnLoad.style.display = 'inline';
-  msgEl.className       = 'form-msg';
-  msgEl.textContent     = '';
-
-  const donnees = new FormData(form);
-  const payload = { profil, source: 'LP_GR', timestamp: new Date().toISOString() };
-  donnees.forEach((val, key) => { payload[key] = val; });
-
-  /* ── Étape 1 : Vérification anti-doublon ── */
-  const telephone = payload.telephone || '';
-  if (telephone) {
-    const doublon = await verifierDoublon(telephone);
-    if (doublon) {
-      msgEl.className   = 'form-msg error';
-      msgEl.textContent = '❌ Ces identifiants sont déjà utilisé par un Citoyen-Client NGD. Si vous êtes déjà inscrit, cliquez "Déjà inscrit ?" en haut de page.';
-      submitBtn.disabled    = false;
-      btnText.style.display = 'inline';
-      btnLoad.style.display = 'none';
+  const form=event.target;
+  const submitBtn=form.querySelector('.btn-submit');
+  const btnText=form.querySelector('.btn-text');
+  const btnLoad=form.querySelector('.btn-loading');
+  const msgEl=document.getElementById('msg-'+profil);
+  submitBtn.disabled=true;btnText.style.display='none';btnLoad.style.display='inline';
+  msgEl.className='form-msg';msgEl.textContent='';
+  const donnees=new FormData(form);
+  const payload={profil,source:'LP_GR',timestamp:new Date().toISOString()};
+  donnees.forEach((val,key)=>{payload[key]=val;});
+  const telephone=payload.telephone||'';
+  if(telephone){
+    const doublon=await verifierDoublon(telephone);
+    if(doublon){
+      msgEl.className='form-msg error';
+      msgEl.textContent=lang==='en'?'❌ These credentials are already used by an NGD Citizen-Client. If you are already registered, click "Already registered?" at the top of the page.':'❌ Ces identifiants sont déjà utilisés par un Citoyen-Client NGD. Si vous êtes déjà inscrit, cliquez "Déjà inscrit ?" en haut de page.';
+      submitBtn.disabled=false;btnText.style.display='inline';btnLoad.style.display='none';
       return;
     }
   }
-
-  /* ── Étape 2 : Enregistrement CF-DB ── */
-  try {
-    await fetch(GS_URL, {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-
-    msgEl.className   = 'form-msg success';
-    msgEl.textContent = profil === 'animateur'
-      ? '✅ Enregistrement Animateur NGD confirmé ! Procédez maintenant au paiement de l\'Essai ci-dessous.'
-      : '✅ Enregistrement Délégué-Pays NGD confirmé ! Procédez maintenant au paiement de l\'Essai ci-dessous.';
-
+  try{
+    await fetch(GS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    msgEl.className='form-msg success';
+    if(profil==='animateur'){
+      msgEl.textContent=lang==='en'?'✅ NGD Animator registration confirmed! Proceed now to pay for the Essay below.':'✅ Enregistrement Animateur NGD confirmé ! Procédez maintenant au paiement de l\'Essai ci-dessous.';
+    }else{
+      msgEl.textContent=lang==='en'?'✅ NGD Country Delegate registration confirmed! Proceed now to pay for the Essay below.':'✅ Enregistrement Délégué-Pays NGD confirmé ! Procédez maintenant au paiement de l\'Essai ci-dessous.';
+    }
     form.reset();
     activerBoutonsPlateformes();
-
-    // Afficher le bloc de paiement v3.1 (3 formules → LP ESSAI)
-    const waveBloc = document.getElementById('wave-bloc-' + profil);
-    if (waveBloc) {
-      waveBloc.style.display = 'block';
-      setTimeout(() => {
-        waveBloc.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 800);
-    }
-
-  } catch (err) {
-    msgEl.className   = 'form-msg error';
-    msgEl.textContent = '❌ Erreur réseau. Vérifiez votre connexion et réessayez.';
-  } finally {
-    submitBtn.disabled    = false;
-    btnText.style.display = 'inline';
-    btnLoad.style.display = 'none';
-  }
+    const waveBloc=document.getElementById('wave-bloc-'+profil);
+    if(waveBloc){waveBloc.style.display='block';setTimeout(()=>{waveBloc.scrollIntoView({behavior:'smooth',block:'nearest'});},800);}
+  }catch(err){
+    msgEl.className='form-msg error';
+    msgEl.textContent=lang==='en'?'❌ Network error. Check your connection and try again.':'❌ Erreur réseau. Vérifiez votre connexion et réessayez.';
+  }finally{submitBtn.disabled=false;btnText.style.display='inline';btnLoad.style.display='none';}
 }
-
-/* ═══════════════════════════════════════════════════════════
-   DROPDOWN PAYS → PLACEHOLDER VILLE
-   ═══════════════════════════════════════════════════════════ */
-const placeholderVilles = {
-  'Bénin': 'Ex: Cotonou, Porto-Novo, Parakou...',
-  'Burkina Faso': 'Ex: Ouagadougou, Bobo-Dioulasso...',
-  'Guinée-Bissau': 'Ex: Bissau, Bafatá...',
-  'Mali': 'Ex: Bamako, Sikasso, Ségou...',
-  'Niger': 'Ex: Niamey, Zinder, Maradi...',
-  'Sénégal': 'Ex: Dakar, Saint-Louis, Thiès...',
-  'Togo': 'Ex: Lomé, Sokodé, Kara...'
-};
-function mettreAJourRegions(pays) {
-  const input = document.getElementById('ville-origine');
-  if (input && placeholderVilles[pays]) input.placeholder = placeholderVilles[pays];
+const placeholderVilles={'Bénin':'Ex: Cotonou, Porto-Novo, Parakou...','Burkina Faso':'Ex: Ouagadougou, Bobo-Dioulasso...','Guinée-Bissau':'Ex: Bissau, Bafatá...','Mali':'Ex: Bamako, Sikasso, Ségou...','Niger':'Ex: Niamey, Zinder, Maradi...','Sénégal':'Ex: Dakar, Saint-Louis, Thiès...','Togo':'Ex: Lomé, Sokodé, Kara...'};
+function mettreAJourRegions(pays){const input=document.getElementById('ville-origine');if(input&&placeholderVilles[pays])input.placeholder=placeholderVilles[pays];}
+function copyLink(){
+  const url='https://t.me/ChallengeFinancierbot';
+  const btn=document.getElementById('copyBtn');
+  navigator.clipboard.writeText(url).catch(()=>{const t=document.createElement('textarea');t.value=url;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);});
+  btn.textContent=lang==='en'?'✅ Copied!':'✅ Copié!';btn.classList.add('done');
+  setTimeout(()=>{btn.textContent=lang==='en'?'📋 Copy':'📋 Copier';btn.classList.remove('done');},2200);
 }
-
-/* ═══════════════════════════════════════════════════════════
-   COPIER LIEN BOT
-   ═══════════════════════════════════════════════════════════ */
-function copyLink() {
-  const url = 'https://t.me/ChallengeFinancierbot';
-  const btn = document.getElementById('copyBtn');
-  navigator.clipboard.writeText(url).catch(() => {
-    const t = document.createElement('textarea');
-    t.value = url; document.body.appendChild(t); t.select();
-    document.execCommand('copy'); document.body.removeChild(t);
-  });
-  btn.textContent = '✅ Copié !'; btn.classList.add('done');
-  setTimeout(() => { btn.textContent = '📋 Copier'; btn.classList.remove('done'); }, 2200);
-}
-
-/* ═══════════════════════════════════════════════════════════
-   ANIMATIONS SCROLL
-   ═══════════════════════════════════════════════════════════ */
-const obs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('on'), i * 70);
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('on'),i*70);obs.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
