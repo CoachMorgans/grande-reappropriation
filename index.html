@@ -751,7 +751,7 @@ function normaliserTel(tel){
 async function verifierDoublon(telephone){
   try{
     const telNorm=normaliserTel(telephone);
-    const url=`${GS_URL}?action=verifier_telephone&telephone=${encodeURIComponent(telNorm)}`;
+    const url=`${GS_URL}?route=verifier_telephone&telephone=${encodeURIComponent(telNorm)}`;
     const resp=await fetch(url,{method:'GET'});
     if(!resp.ok)return false;
     const data=await resp.json();
@@ -768,7 +768,7 @@ async function soumettreFormulaire(event,profil){
   submitBtn.disabled=true;btnText.style.display='none';btnLoad.style.display='inline';
   msgEl.className='form-msg';msgEl.textContent='';
   const donnees=new FormData(form);
-  const payload={profil,source:'LP_GR',timestamp:new Date().toISOString()};
+  const payload={route:'enregistrement',profil,source:'LP_GR',timestamp:new Date().toISOString()};
   donnees.forEach((val,key)=>{payload[key]=val;});
   const telephone=payload.telephone||'';
   if(telephone){
